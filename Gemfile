@@ -80,3 +80,4 @@ gem 'rails-jquery-autocomplete'
 
 gem "pagseguro-oficial"
 
+gem "unicorn"

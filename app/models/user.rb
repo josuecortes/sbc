@@ -75,6 +75,7 @@ class User
           p.desconto = 0.0
           p.licencas = 2
           p.user_ids << self.id
+          p.transaction_code = p.id
           p.save
         end
       else
