@@ -57,7 +57,7 @@
   <div class="dropdown dropdown-profile">
     <a href="" data-toggle="dropdown" class="dropdown-link">
       <% if current_user.avatar.blank? %>
-        <img src="/assets/default.png" class="wd-60 rounded-circle" alt="">
+        <%= image_tag('default.png', class: "wd-60 rounded-circle") %>
       <% else %>
         <%= image_tag(current_user.avatar.url(:perfil), class: "wd-60 rounded-circle") %>
       <% end %>
@@ -66,7 +66,7 @@
       <div class="media align-items-center">
         
         <% if current_user.avatar.blank? %>
-          <img src="/assets/default.png" class="wd-60 ht-60 rounded-circle bd pd-5" alt="">
+          <%= image_tag('default.png', class: "wd-60 ht-60 rounded-circle bd pd-5") %>
         <% else %>
           <%= image_tag(current_user.avatar.url(:perfil), class: "wd-60 ht-60 rounded-circle bd pd-5") %>
         <% end %>
