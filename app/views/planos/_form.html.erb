@@ -1,0 +1,112 @@
+
+<div class="panel panel-default">
+  <div class="panel-body">
+
+  <%= simple_form_for([@usuario,@plano], url: usuario_planos_path(@usuario,@plano), method: :post) do |f| %>
+
+    <div class="row">
+      <div class="col-md-3">
+        <%= f.input :contratado_em, :label=>false, :input_html => {:class=>"form-control", :placeholder=>"Data da Ativação"} %>
+      </div>
+      <div class="col-md-3">
+        <%= f.input :expira_em, :label=>false, :input_html => {:class=>"form-control", :placeholder=>"Expira em"} %>
+      </div>
+      <div class="col-md-3">
+        <%= f.input :desconto, :label=>false, :input_html => {:class=>"form-control", :placeholder=>"Desconto Aplicado"} %>
+      </div>
+      <div class="col-md-3">
+        <%= f.input :preco, :label=>false, :input_html => {:class=>"form-control", :placeholder=>"$Valor Final"} %>
+      </div>
+    </div>
+
+    <hr/>
+
+    <h4>
+       Selecione os estados contratados
+    </h4>
+
+    <div class="row">
+      <div class="panel-body">
+        <div class="col-lg-2">
+          <h4>Regiao Norte</h4>
+        </div>
+        <% for i in 0..array_estados('norte').count - 1 %>
+          <div class="col-lg-1">
+            <%= f.input :estados, collection: [array_estados('norte')[i]], as: :check_boxes, include_blank: false, :required=>true, :label=>false, :prompt=>"Selecione os estados a contratar:", :input_html => {:class=>"required", :placeholder=>"Selecione os estados a contratar:"} %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="panel-body">
+        <div class="col-lg-2">
+          <h4>Regiao Nordeste</h4>
+        </div>
+        <% for i in 0..array_estados('nordeste').count - 1 %>
+          <div class="col-lg-1">
+            <%= f.input :estados, collection: [array_estados('nordeste')[i]], as: :check_boxes, include_blank: false, :required=>true, :label=>false, :prompt=>"Selecione os estados a contratar:", :input_html => {:class=>"required", :placeholder=>"Selecione os estados a contratar:"} %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="panel-body">
+        <div class="col-lg-2">
+          <h4>Regiao Centro-Oeste</h4>
+        </div>
+        <% for i in 0..array_estados('centro').count - 1 %>
+          <div class="col-lg-1">
+            <%= f.input :estados, collection: [array_estados('centro')[i]], as: :check_boxes, include_blank: false, :required=>true, :label=>false, :prompt=>"Selecione os estados a contratar:", :input_html => {:class=>"required", :placeholder=>"Selecione os estados a contratar:"} %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="panel-body">
+        <div class="col-lg-2">
+          <h4>Regiao Sudeste</h4>
+        </div>
+        <% for i in 0..array_estados('sudeste').count - 1 %>
+          <div class="col-lg-1">
+            <%= f.input :estados, collection: [array_estados('sudeste')[i]], as: :check_boxes, include_blank: false, :required=>true, :label=>false, :prompt=>"Selecione os estados a contratar:", :input_html => {:class=>"required", :placeholder=>"Selecione os estados a contratar:"} %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="panel-body">
+        <div class="col-lg-2">
+          <h4>Regiao Sul</h4>
+        </div>
+        <% for i in 0..array_estados('sul').count - 1 %>
+          <div class="col-lg-1">
+            <%= f.input :estados, collection: [array_estados('sul')[i]], as: :check_boxes, include_blank: false, :required=>true, :label=>false, :prompt=>"Selecione os estados a contratar:", :input_html => {:class=>"required", :placeholder=>"Selecione os estados a contratar:"} %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+
+    <%= f.input :status, :as => :hidden, :input_html => {value: "ATIVO"} %>
+
+    <% if @plano.transaction_code == nil %>
+      <%= f.input :transaction_code, :as => :hidden, :input_html => {value: @plano.id} %>  
+    <% end %>
+      
+    <%= f.input :status, :as => :hidden, :input_html => {value: "ATIVO"} %>
+
+    <br/>
+
+    <div class="row">
+      <center>
+        <button type="submit" class="btn btn-success">Salvar</button>
+        <%= link_to link_icone('voltar'), usuario_planos_path(@usuario), :class=>"btn btn-default" %>
+      </center>
+    </div>
+
+  <% end %>
+  </div>
+</div>

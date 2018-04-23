@@ -1,0 +1,39 @@
+<% if user_signed_in? %>
+	<% controller.redirect_to home_index_path %> 
+<% else %>
+	<div class="signpanel-wrapper">
+	  <div class="signbox">
+	    <div class="signbox-header">
+	      <h2>SBC</h2>
+	      <p class="mg-b-0">Área do Cliente</p>
+	    </div><!-- signbox-header -->
+	    <div class="signbox-body">
+	    	<%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+	    		<%= render 'layouts/flash_message' %>
+	    		<div class="form-group">
+		        
+		        <%= f.input :email, label: "E-mail", placeholder: 'Entre com seu e-mail', input_html: {class: 'form-control'} %>
+		      </div><!-- form-group -->
+		      <div class="form-group">
+		        
+		        <%= f.input :password, label: "Senha", placeholder: 'Entre com sua senha', input_html: {class: 'form-control'} %>
+		      </div><!-- form-group -->
+		      <div class="form-group">
+		        <a href="">Perdeu sua senha?</a>
+		      </div><!-- form-group -->
+		      <%= f.button :submit, "Entrar", class: 'btn btn-primary btn-block' %>		   
+		     
+		      <br/>
+		      <center>
+		      	Não possui cadastro? <%= link_to 'Cadastre-se', new_user_registration_path %>
+		    	</center>
+		      <br/>
+		      <center>
+		      	<i class="fa fa-arrow-left"></i> <%= link_to 'Voltar', site_index_path %>
+		    	</center>
+
+		    <% end %>
+	    </div><!-- signbox-body -->
+	  </div><!-- signbox -->
+	</div><!-- signpanel-wrapper -->
+<% end %>

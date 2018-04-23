@@ -1,0 +1,62 @@
+<% content_for :breadcrumbs do %>
+	<a class="breadcrumb-item" href="<%= usuarios_path %>">Usuários</a>
+  <span class="breadcrumb-item active">Novo</span>	
+<% end %>
+
+<% content_for :titulo do %>
+	<div class="sh-pagetitle-icon"><i class="icon ion-ios-person mg-t-3"></i></div>
+	<div class="sh-pagetitle-title">
+	  <span></span>
+	  <h2>Novo Usuário</h2>
+	</div><!-- sh-pagetitle-left-title -->
+<% end %>
+
+<%= simple_form_for(@usuario, url: usuarios_path(@usuario)) do |f| %>
+  <div class="form-layout">
+    <div class="row mg-b-25">
+      <div class="col-lg-6">
+        <div class="form-group">
+          
+          <%= f.input :nome, required: true, label: "Nome", placeholder: "Digite seu nome completo", input_html: {class: "form-control"} %>
+        </div>
+      </div><!-- col-6 -->
+      <div class="col-lg-6">
+        <div class="form-group">
+          
+          <%= f.input :email, required: true, label: "E-mail", placeholder: "Digite seu e-mail", input_html: {class: "form-control"} %>
+        </div>
+      </div><!-- col-6 -->
+                     
+      <% if current_user.permissao == "ADMINISTRADOR" %>  
+        <div class="col-lg-3">
+          <div class="form-group">
+            <label class="form-control-label">Permissão: <span class="tx-danger">*</span></label>
+            <%= f.input :permissao, collection: array_permissoes_selecionaveis(current_user.permissao), as: :select, :required=>true, label: false, prompt: "Selecione a Permissão", :input_html => {:class=>"form-control"} %>
+          </div>
+        </div><!-- col-3 -->
+      <% else %>
+        <%= f.input :permissao, as: :hidden, input_html: {value: "CLIENTE"} %>
+      <% end %>
+
+      <% if current_user.permissao == "ADMINISTRADOR" %>  
+        <div class="col-lg-3">
+          <div class="form-group">
+            <label class="form-control-label">Empresa: <span class="tx-danger">*</span></label>
+            <%= f.input :empresa_id, :collection=>Empresa.order_by('nome ASC').collect {|e| [e.nome, e.id]}, as: :select, :required=>true, label: false, prompt: "Selecione a Empresa", :input_html => {:class=>"form-control"} %>
+          </div>
+        </div><!-- col-3 -->
+      <% else %>
+        <%= f.input :empresa_id, as: :hidden, input_html: {value: current_user.empresa_id} %>
+      <% end %>
+
+      <%= f.input :password, as: :hidden, input_html: {value: "12345678"} %>
+  		<%= f.input :password_confirmation, as: :hidden, input_html: {value: "12345678"} %>
+  	</div><!-- row -->
+    <div class="form-layout-footer">
+      <%= link_to link_icone('voltar-texto'), usuarios_path, class: "btn btn-secondary mg-r-5" %>
+      <button type="submit" class="btn btn-success mg-r-5">
+          <i class="fa fa-save"></i> Salvar
+      </button>
+    </div><!-- form-layout-footer -->
+  </div><!-- form-layout -->    
+<% end %>

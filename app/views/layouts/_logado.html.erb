@@ -1,0 +1,42 @@
+<body>
+
+  <div class="sh-logopanel">
+    <a href="<%= home_index_path %>" class="sh-logo-text">Sbc</a>
+    <a id="navicon" href="" class="sh-navicon d-none d-xl-block"><i class="icon ion-navicon"></i></a>
+    <a id="naviconMobile" href="" class="sh-navicon d-xl-none"><i class="icon ion-navicon"></i></a>
+  </div><!-- sh-logopanel -->
+
+  <div class="sh-sideleft-menu">
+    <%= render 'layouts/menu_lateral' %>
+  </div><!-- sh-sideleft-menu -->
+
+  <div class="sh-headpanel">
+    <%= render 'layouts/menu_superior' %>
+  </div><!-- sh-headpanel -->
+
+  <div class="sh-mainpanel">
+    <div class="sh-breadcrumb">
+      <nav class="breadcrumb">
+        <a class="breadcrumb-item" href="<%= home_index_path %>"><i class="fa fa-home"></i> Home</a>
+        <%= yield :breadcrumbs %>
+      </nav>
+    </div><!-- sh-breadcrumb -->
+    <div class="sh-pagetitle">
+      <div class="">
+        <%= yield :search %>
+      </div><!-- input-group -->
+      <div class="sh-pagetitle-left">
+      	<%= yield :titulo %>
+      </div><!-- sh-pagetitle-left -->
+    </div><!-- sh-pagetitle -->
+
+    <div class="sh-pagebody">
+      <%= render 'layouts/flash_message' %>
+      <%= yield %>
+    </div><!-- sh-pagebody -->
+  </div><!-- sh-mainpanel -->
+
+  <%= javascript_include_tag 'application' %>
+
+</body>
+

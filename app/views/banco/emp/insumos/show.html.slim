@@ -1,0 +1,118 @@
+/ Modais
+#modal-editar-dados.modal.hide.fade.in aria-hidden="false" aria-labelledby="myModalLabel" role="dialog" tabindex="-1"
+  = form_for @insumo do |f|
+    .modal-header
+      button aria-hidden="true" data-dismiss="modal" class="close" type="button" &times;
+      h3 id="myModalLabel" Editar
+    .modal-body
+      h4 Formulário para Edição do insumo
+      p
+        = f.label :codigo, "Código"
+        span.field = f.text_field :codigo, :class => "input-block-level"
+        small.desc style="margin-top: -10px;" Opcional
+      p
+        = f.label :descricao, "Descrição"
+        span.field = f.text_field :descricao, :class => "input-block-level"
+      - unless @insumo.tipo == 8
+        p
+          = f.label :tipo
+          span.field = f.select :tipo, select_tipo_insumo(TIPOSDEINSUMOS, @insumo), {}, {:class=>'input-block-level'}
+      p
+        = f.label :unidade
+        span.field = f.text_field :unidade, :class => "input-block-level"
+      p
+        = f.label :observacao, "Observação"
+        span.field = f.text_area :observacao, class: "input-block-level"
+    .modal-footer
+      a.btn data-dismiss="modal" Cancelar
+      button.btn.btn-primary Salvar
+
+#modal-copiar.modal.hide.fade.in aria-hidden="false" aria-labelledby="myModalLabel" role="dialog" tabindex="-1"
+  = form_for @insumo_clone, url: copiar_banco_emp_insumos_path(id: @insumo.id) do |f|
+    
+    = modal_header("Copiar")
+    .modal-body
+      h4 Formulário para criar uma copia deste insumo
+      br
+      p
+        = f.label :codigo, "Código"
+        span.field = f.text_field :codigo, value: @insumo_clone.sugestao_de_codigo(@empresa_logada.id), class: "input-block-level"
+      p
+        = f.label :descricao, "Descrição"
+        span.field = f.text_field :descricao, class: "input-block-level"
+      p
+        = f.label :unidade
+        span.field = f.text_field :unidade, class: "input-block-level"
+      p
+        = f.label :estado
+        span.field = f.select :estado, option_select_estado, {}, {class: 'input-block-level'}
+      p
+        = f.label :tipo
+        span.field = f.select :tipo, select_tipo_insumo(TIPOSDEINSUMOS, @insumo), {}, {class: 'input-block-level', onchange: "MudarValores();"}
+      p
+        = f.label :observacao, "Observação"
+        span.field = f.text_area :observacao, class: "input-block-level"
+      p.stdformbutton = f.submit "Criar Insumo", class: "btn btn-primary"
+    = modal_footer("Copiar")
+/ Modais
+
+ul.breadcrumbs
+  li
+    = link_to "<i class='flaticon-home168'></i>".html_safe, home_index_path
+    span.separator
+  li
+    = link_to "<i class='flaticon-bricks9'></i>".html_safe, banco_insumos_path
+    span.separator
+  li Equipe
+
+.pageheader
+  .pageicon
+    span.flaticon-bricks9
+  .pagetitle
+    h5 detalhamento do insumo com preços de todos os estados
+    h1 = @insumo.codigo
+
+.maincontent
+  .maincontentinner
+
+    .widget
+      h4.widgettitle = @insumo.descricao.html_safe
+      .widgetcontent
+        .row-fluid
+          table.table.table-no-border
+            tr
+              th style="width: 60px;" Tipo
+              td = @insumo.tipo_por_extenso
+            tr
+              th Unidade
+              td = @insumo.unidade
+            tr
+              th Observação
+              td = @insumo.observacao
+          br
+          table.table
+            tr
+              th Estado
+              - if @insumo.tipo == 1
+                th style="text-align: right" Valor Não Desonerado Operativo
+                th style="text-align: right" Valor Desonerado Operativo
+                th style="text-align: right" Valor Não Desonerado Improdutivo
+                th style="text-align: right" Valor Desonerado Improdutivo
+              - elsif @insumo.tipo == 3
+                th style="text-align: right" Valor Não Desonerado
+                th style="text-align: right" Valor Desonerado
+              - else
+                th style="text-align: right" Valor Unitário
+            - @insumo.estados.sort.each do |estado|
+              tr
+                td = estado.first.uf_to_nome
+                - if @insumo.tipo == 1
+                  td.right = estado.last["pnd"].real_contabil
+                  td.right = estado.last["pd"].real_contabil
+                  td.right = estado.last["pndi"].real_contabil if estado.last["pndi"]
+                  td.right = estado.last["pdi"].real_contabil if estado.last["pdi"]
+                - elsif @insumo.tipo == 3
+                  td.right = estado.last["pnd"].real_contabil
+                  td.right = estado.last["pd"].real_contabil
+                - else
+                  td.right = estado.last["pnd"].real_contabil                

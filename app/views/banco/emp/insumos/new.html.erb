@@ -1,0 +1,114 @@
+<% content_for :breadcrumbs do %>
+	<a class="breadcrumb-item" href="<%= banco_sbc_insumos_path %>">Insumos</a>
+  <span class="breadcrumb-item active">Criar</span>	
+<% end %>
+
+<% content_for :titulo do %>
+	<div class="sh-pagetitle-icon"><i class="fa fa-file mg-t-3"></i></div>
+	<div class="sh-pagetitle-title">
+	  <span></span>
+	  <h2>Criar Insumo</h2>
+	</div>
+<% end %>
+
+ 
+<%= simple_form_for(@insumo) do |f| %> 
+  
+  <div class="form-layout">
+    <div class="row mg-b-25">
+      <div class="col-lg-3">
+        <div class="form-group">
+          <%= f.input :codigo, label: "Codigo", placeholder: "Digite o Codigo", input_html: {class: "form-control", value: (@insumo.codigo ? @insumo.codigo : @insumo.sugestao_de_codigo(@current_user.empresa_id))} %>
+        </div>
+      </div>
+      <div class="col-lg-3">
+        <%= f.input :unidade, label: "Unidade", placeholder: "Digite a Unidade", input_html: {class: "form-control"} %>
+      </div>
+      <div class="col-lg-3">
+        <div class="form-group">
+          <%= f.input :estado, collection: ESTADOS, as: :select, label: "Estado", include_blank: false, :input_html => {:class=>"form-control"} %>
+        </div>
+      </div>
+
+      <div class="col-lg-3">
+        <div class="form-group">
+          <%= f.input :tipo, collection: array_tipo_insumos_descricao, as: :select, label: "Tipo", include_blank: false, input_html: { class: "form-control carregar tipo_insumo", onchange: "MudarValores();"} %>
+        </div>
+      </div>
+    	
+      <div class="col-lg-3">
+        <div class="form-group">
+          <%= f.input :pnd, label: "Valor não Desonerado Operativo", placeholder: "", input_html: {class: "form-control"} %>
+        </div>
+      </div>
+      <div class="col-lg-3">
+        <div class="form-group esconder">
+          <%= f.input :pd, label: "Valor Desonerado Operativo", placeholder: "", input_html: {class: "form-control"} %>
+        </div>
+      </div>
+      <div class="col-lg-3">
+        <div class="form-group esconder esconder2">
+          <%= f.input :pndi, label: "Valor não Desonerado Improdutivo", placeholder: "", input_html: {class: "form-control"} %>
+        </div>
+      </div>
+      <div class="col-lg-3">
+        <div class="form-group esconder esconder2">
+          <%= f.input :pdi, label: "Valor Desonerado Improdutivo", placeholder: "", input_html: {class: "form-control"} %>
+        </div>
+      </div>
+
+      <div class="col-lg-12">
+        <div class="form-group">
+          <%= f.input :descricao, label: "Descrição", placeholder: "Digite a Descrição...", input_html: {class: "form-control"} %>
+        </div>
+      </div>
+
+      <div class="col-lg-12">
+        <div class="form-group">
+          <%= f.input :observacao, as: :text, label: "Observações", placeholder: "Observações...", input_html: {class: "form-control"} %>
+        </div>
+      </div>
+
+      <%= f.input :empresa_id, as: :hidden, input_html: {value: current_user.empresa_id} %>
+      
+      <%= f.input :user_id, as: :hidden, input_html: {value: current_user.id} %>
+
+    </div>  
+
+ 	 	<div class="form-layout-footer">
+      <%= link_to link_icone('voltar-texto'), banco_sbc_insumos_path, class: "btn btn-secondary mg-r-5" %>
+      <button type="submit" class="btn btn-success mg-r-5">
+          <i class="fa fa-save"></i> Criar
+      </button>
+    </div>
+      
+  </div>
+<% end %>
+
+
+<div class="texto"></div>
+
+
+
+<script>
+
+  function MudarValores() {
+    var myselect = document.getElementById('banco_emp_insumo_tipo');
+    var tipo = myselect.value;
+    
+    if (tipo == '1') {
+      $("label[for='banco_emp_insumo_pnd']").text('Valor não Desonerado Operativo');
+      $("label[for='banco_emp_insumo_pd']").text('Valor Desonerado Operativo');
+      $(".esconder").show();
+    }else if (tipo == '3') {
+      $("label[for='banco_emp_insumo_pnd']").text('Valor não Desonerado');
+      $("label[for='banco_emp_insumo_pd']").text('Valor Desonerado');
+      $(".esconder").show();
+      $(".esconder2").hide();
+    }else{
+    	$("label[for='banco_emp_insumo_pnd']").text('Valor');
+    	$(".esconder").hide();
+    }
+  }
+
+</script>

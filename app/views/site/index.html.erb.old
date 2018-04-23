@@ -1,0 +1,1324 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="O melhor banco de composições analíticas">
+	<meta name="author" content="">
+
+	<title>Informativo SBC</title>
+
+	<!-- Bootstrap Core CSS -->
+	<link href="/template-sbc/vendor/bootstrap/css/bootstrap.css" rel="stylesheet">
+
+	<!-- Custom Fonts -->
+	<link href="/template-sbc/vendor/font-awesome/css/font-awesome.css" rel="stylesheet" type="text/css">
+
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700,800" rel="stylesheet">
+
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+	<!-- Theme CSS -->
+	<link href="/template-sbc/css/agency.css" rel="stylesheet">
+
+
+
+	<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+	<!--[if lt IE 9]>
+		<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js" integrity="sha384-0s5Pv64cNZJieYFkXYOTId2HMA2Lfb6q2nAcx2n0RTLUnCAoTTsS0nKEO27XyKcY" crossorigin="anonymous"></script>
+		<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js" integrity="sha384-ZoaMbDF+4LeFxg6WdScQ9nnR1QC2MIRxA1O9KWEXQwns1G8UNyIEZIQidzb0T1fo" crossorigin="anonymous"></script>
+	<![endif]-->
+
+</head>
+
+<body id="page-top" class="index">
+
+	<!-- Navigation -->
+	<nav id="mainNav" class="navbar navbar-default navbar-custom navbar-fixed-top">
+		<div class="container">
+			<!-- Brand and toggle get grouped for better mobile display -->
+			<div class="navbar-header page-scroll">
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+					<span class="sr-only">Toggle navigation</span><i class="fa fa-bars"></i>MENU
+					<!-- <a href="#" class="header__icon" id="header__icon">menu</a> -->
+				</button>
+				<a class="navbar-brand page-scroll header_logo" href="#page-top"><img src="/template-sbc/img/sbc.jpg" class="img img-responsive"></a>
+			</div>
+
+			<!-- Collect the nav links, forms, and other content for toggling -->
+			<div class="collapse navbar-collapse"  id="bs-example-navbar-collapse-1">
+				<ul class="nav navbar-nav navbar-right">
+					<li class="hidden">
+						<a href="#page-top"></a>
+					</li>
+					<li class="active">
+						<a class="page-scroll" href="#inicio">Inicio</a>
+					</li>
+					<li>
+						<a class="page-scroll" href="#empresa">Sobre a Base</a>
+					</li>
+					<li>
+						<a class="page-scroll" href="#parceria">Parceria</a>
+					</li>
+					<li>
+						<a class="page-scroll" href="#portifolio">Portifólio</a>
+					</li>
+					<li>
+						<a class="page-scroll" href="#planos">Planos</a>
+					</li>
+					<li>
+						<a class="page-scroll" href="#" data-toggle="modal" data-target=".modalartigos">Artigos</a>
+					</li>
+					<li>
+						<%= link_to "Login", new_user_session_path %>
+					</li>
+				</ul>
+			</div>
+			<!-- /.navbar-collapse -->
+		</div>
+		<!-- /.container-fluid -->
+	</nav>
+
+	<!-- Header -->
+	<header id="inicio">
+		<div class="container">
+			<div class="intro-text">
+				<div class="intro-heading">O melhor banco de composições analíticas</div>
+				<div class="intro-lead-in">12.000 composições e 16.000 insumos em 24 capitais</div>
+				<center>
+					<div style="width: 30%;align-content: center; text-align: center;">
+						<%= link_to "Cadastre-se Gratuitamente", new_user_registration_path, class: "btn btn-primary btn-primary-cadastro", style: "font-size: 18px" %>
+					</div>
+				</center>
+			</div>
+		</div>
+	</header>
+
+	<br/>
+	<!-- Clients Aside -->
+	<!--
+	<aside class="clients">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-3 col-sm-6">
+					<a href="#">
+						<img src="/template-sbc/img/logos/envato.jpg" class="img-responsive img-centered" alt="">
+					</a>
+				</div>
+				<div class="col-md-3 col-sm-6">
+					<a href="#">
+						<img src="/template-sbc/img/logos/designmodo.jpg" class="img-responsive img-centered" alt="">
+					</a>
+				</div>
+				<div class="col-md-3 col-sm-6">
+					<a href="#">
+						<img src="/template-sbc/img/logos/themeforest.jpg" class="img-responsive img-centered" alt="">
+					</a>
+				</div>
+				<div class="col-md-3 col-sm-6">
+					<a href="#">
+						<img src="/template-sbc/img/logos/creative-market.jpg" class="img-responsive img-centered" alt="">
+					</a>
+				</div>
+			</div>
+		</div>
+
+	</aside>
+	-->
+
+	<!--Portifolio Section-->
+	<section class="xadrez titulo" id="empresa">
+		<h2 class="text-center section-heading">SOBRE A BASE SBC</h2>
+	</section>
+
+	<!-- About Section -->
+	<section class="xadrez" style="padding: 50px 0;">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12">
+					<ul class="timeline">
+						<li>
+							<div class="timeline-image">
+								<img class="img-circle img-responsive" src="/template-sbc/img/1.jpg" alt="">
+							</div>
+							<div class="timeline-panel">
+								<div class="timeline-heading">
+									<h4 class="subheading">As composições constantes da Base de Dados SBC, são adequadas, cidade a cidade em função da produtividade de mão-de-obra, assim como em relação a preços e custos.</h4>
+								</div>
+							</div>
+						</li>
+						<li class="timeline-inverted">
+							<div class="timeline-image">
+								<img class="img-circle img-responsive" src="/template-sbc/img/2.jpg" alt="">
+							</div>
+							<div class="timeline-panel">
+								<div class="timeline-heading">
+									<h4 class="subheading">Estão  disponíveis preços em 24 cidades, brasileiras.</h4>
+								</div>
+							</div>
+						</li>
+						<li>
+							<div class="timeline-image">
+								<img class="img-circle img-responsive" src="/template-sbc/img/3.jpg" alt="">
+							</div>
+							<div class="timeline-panel">
+								<div class="timeline-heading">
+									<h4 class="subheading">As composições são organizadas de acordo com o Decreto 92.100 que dispõe sobre a cronologia para a orçamentação de obras.</h4>
+								</div>
+						</li>
+						<li class="timeline-inverted">
+							<div class="timeline-image">
+								<img class="img-circle img-responsive" src="/template-sbc/img/4.jpg" alt="">
+							</div>
+							<div class="timeline-panel">
+								<div class="timeline-heading">
+									<h4 class="subheading">A Base de Dados SBC tem como característica uma maior abrangência em termos de serviços.</h4>
+								</div>
+							</div>
+						</li>
+						<li>
+							<div class="timeline-image">
+								<img class="img-circle img-responsive" src="/template-sbc/img/5.jpg" alt="">
+							</div>
+							<div class="timeline-panel">
+								<div class="timeline-heading">
+									<h4 class="subheading">As atualizações da Base de Dados SBC são disponibilizadas mensalmente.</h4>
+								</div>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!--miguel Section-->
+	<section class="xadrez xadrez-img xadrez-img-right xadrez-img-0" id="">
+		<div class="container">
+			
+			<div class="row">
+				<div class="col-sm-12 visible-xs visible-sm">
+					<img src="/template-sbc/img/Miguel_Stabile_1.jpg" width="100%">
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-lg-6 text-right branco">
+					<p>Professor <strong>Miguel Stabile</strong> ao longo de sua carreira escreveu mais de <a href="#">20 livros</a>, foi Engenheiro de Fiscalização Intinerante mo Estado de São  Paulo para a empresa Texaco-Petróleo Brasileiro e  Assessor Técnico da empresa STABILE - SBC SISTEMAS E CONSULTORIA DE CUSTOS, nos serviços do INFORMATIVO SBC, divulgado pela Internet.</p><br/>
+					<button type="button" class="btn btn-primary" data-toggle="modal" data-target=".modal001">Saiba mais</button>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!--Empresa Section-->
+	<section class="xadrez xadrez-img xadrez-img-1" id="">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-6">
+				</div>
+				<div class="col-lg-6 text-left branco">
+					<h2>54 anos informando os que constroem o progresso</h2>
+					<p>A revista nasceu a partir da publicaçã do livro “Composições de Custos”, a primeira das 16 obras até hoje publicadas, fruto de estudos, pesquisas e apropriações em métodos construtivos, realizadas pelo professor <strong>Miguel Stabile</strong>.</p><br/><br/>
+					<button type="button" class="btn btn-primary" data-toggle="modal" data-target=".modal001">Saiba mais</button>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!--Parceria Section-->
+	<section class="xadrez xadrez-img xadrez-img-right xadrez-img-2" id="parceria">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-6 text-right branco">
+					<h2>Parceria Informativo SBC e OrçaFascio</h2>
+					<p>O <strong>Informativo SBC</strong>, acaba de fechar parceria tecnológica com o <strong>OrçaFascio</strong>. Este convênio permite que o sistema OrçaFascio utilize oficialmente a base SBC no seu orçamento de obras.</p>
+
+					<p>Esta base foi criada em 1963 pelo <strong>Professor Miguel Stabile</strong>, hoje é considerada a maior coleção de composições do país (12.063 COMPOSIÇÕES e 16.605 INSUMOS) presente em <strong>24 capitais</strong>. Agora os usuários do OrçaFascio podem ter acesso a SBC para confeccionarem seus orçamentos com base de dados do Informativo SBC.</p>
+					<a href="https://www.orcafascio.com" target="_blank" class="btn btn-primary">OrçaFascio</a>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!--Portifolio Section-->
+	<section class="xadrez titulo" id="portifolio">
+		<h2 class="text-center section-heading">PORTIFÓLIO</h2>
+	</section>
+	<section>
+		<div class="container">
+
+			<div class="row portifolio-row">
+				<div class="col-md-3 col-sm-6">
+					<a href="#">
+						<img src="/template-sbc/img/portfolio/bio-m.jpg" class="img-responsive img-centered" alt="">
+					</a>
+				</div>
+				<div class="col-md-3 col-sm-6">
+					<a href="#">
+						<img src="/template-sbc/img/portfolio/iphan.png" class="img-responsive img-centered" alt="">
+					</a>
+				</div>
+				<div class="col-md-3 col-sm-6">
+					<a href="#">
+						<img src="/template-sbc/img/portfolio/dpf.png" class="img-responsive img-centered" alt="">
+					</a>
+				</div>
+				<div class="col-md-3 col-sm-6">
+					<a href="#">
+						<img src="/template-sbc/img/portfolio/fiocruz.png" class="img-responsive img-centered" alt="">
+					</a>
+				</div>
+			</div>
+
+			<div class="row portifolio-row">
+				<div class="col-md-3 col-sm-6">
+					<a href="#">
+						<img src="/template-sbc/img/portfolio/farnus.png" class="img-responsive img-centered" alt="">
+					</a>
+				</div>
+				<div class="col-md-3 col-sm-6">
+					<a href="#">
+						<img src="/template-sbc/img/portfolio/trtminas.png" class="img-responsive img-centered" alt="">
+					</a>
+				</div>
+				<div class="col-md-3 col-sm-6">
+					<a href="#">
+						<img src="/template-sbc/img/portfolio/previdencia.png" class="img-responsive img-centered" alt="">
+					</a>
+				</div>
+				<div class="col-md-3 col-sm-6">
+					<a href="#">
+						<img src="/template-sbc/img/portfolio/tce_rj.png" class="img-responsive img-centered" alt="">
+					</a>
+				</div>
+			</div>
+
+			<div class="row portifolio-row">
+				<div class="col-md-3 col-sm-6">
+					<a href="#">
+						<img src="/template-sbc/img/portfolio/banco-do-brasil.jpg" class="img-responsive img-centered" alt="">
+					</a>
+				</div>
+				<div class="col-md-3 col-sm-6">
+					<a href="#">
+						<img src="/template-sbc/img/portfolio/BNDES.jpg" class="img-responsive img-centered" alt="">
+					</a>
+				</div>
+				<div class="col-md-3 col-sm-6">
+					<a href="#">
+						<img src="/template-sbc/img/portfolio/casa_da_moeda.png" class="img-responsive img-centered" alt="">
+					</a>
+				</div>
+				<div class="col-md-3 col-sm-6">
+					<a href="#">
+						<img src="/template-sbc/img/portfolio/incra-logo.jpg" class="img-responsive img-centered" alt="">
+					</a>
+				</div>
+			</div>
+			<div class="row portifolio-row">
+				<div class="col-md-3 col-sm-6">
+					<a href="#">
+						<img src="/template-sbc/img/portfolio/INCA.jpg" class="img-responsive img-centered" alt="">
+					</a>
+				</div>
+				<div class="col-md-3 col-sm-6">
+					<a href="#">
+						<img src="/template-sbc/img/portfolio/mp sp.jpg" class="img-responsive img-centered" alt="">
+					</a>
+				</div>
+				<div class="col-md-3 col-sm-6">
+					<a href="#">
+						<img src="/template-sbc/img/portfolio/TREBA.jpeg" class="img-responsive img-centered" alt="">
+					</a>
+				</div>
+				<div class="col-md-3 col-sm-6">
+					<a href="#">
+						<img src="/template-sbc/img/portfolio/PMERJ.jpg" class="img-responsive img-centered" alt="">
+					</a>
+				</div>
+			</div>
+
+			<div class="row portifolio-row">
+				<div class="col-md-3 col-sm-6">
+					<a href="#">
+						<img src="/template-sbc/img/portfolio/UFRJ.png" class="img-responsive img-centered" alt="">
+					</a>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section class="xadrez titulo" id="planos">
+		<h2 class="text-center section-heading">PLANOS</h2>
+	</section>
+	<section class="xadrez">
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-12">
+										
+ 						<div class="col-sm-3">
+ 							<div class="tiny">
+                <div class="pricing-table-header-tiny">
+                    <h2>R$ 30,00</h2>
+                    <h3>Mensal</h3>
+                </div><div class="pricing-table-features">
+                	<p><strong>SBC</strong> Cadastro de Insumos</p>
+                 	<p><strong>SBC</strong> Cadastro de Composições</p>
+                 	<p><strong>SBC</strong> Custo do M2 de Construção - RJO x SPO</p>
+                 	<p><strong>Orçamento</strong> Resumo Orçamentário</p>
+                 	<p><strong>Orçamento</strong> Orçamento Sintético</p>
+                 	<p><strong>Orçamento</strong> Listagem Geral de Insumos</p>
+                 	<p><strong>Orçamento</strong> Curva ABC</p>
+                </div>
+                <div class="pricing-table-signup-tiny">
+
+                  <!-- INICIO FORMULARIO BOTAO PAGSEGURO -->  
+									<FORM id="form_tiny" ACTION="https://pagseguro.uol.com.br/checkout/v2/payment.html" method="post" onsubmit="PagSeguroLightbox(this); return false;">  
+									<!-- NÃO EDITE OS COMANDOS DAS LINHAS ABAIXO -->  
+										<INPUT TYPE="hidden" NAME="code" VALUE="4437C04DF3F3FB52247CEFB4D042DC79">  
+										<INPUT TYPE="hidden" NAME="iot" VALUE="button">
+										<INPUT TYPE="SUBMIT" class="btn" NAME="submit" VALUE="assinar" alt="Pague com PagSeguro - é rápido, grátis e seguro!">
+									</FORM>  
+									<SCRIPT TYPE="text/JAVASCRIPT" SRC="https://stc.pagseguro.uol.com.br/pagseguro/api/v2/checkout/pagseguro.lightbox.js"></SCRIPT>  
+									<!-- FINAL FORMULARIO BOTAO PAGSEGURO -->  
+                </div>
+              </div>
+            </div>
+
+
+            <div class="col-sm-3">
+            	<div class="small">
+                <div class="pricing-table-header-small">
+                    <h2>R$ 83,00</h2>
+                    <h3>Trimestral</h3>
+                </div><div class="pricing-table-features">
+                  <p><strong>SBC</strong> Cadastro de Insumos</p>
+                 	<p><strong>SBC</strong> Cadastro de Composições</p>
+                 	<p><strong>SBC</strong> Custo do M2 de Construção - RJO x SPO</p>
+                 	<p><strong>Orçamento</strong> Resumo Orçamentário</p>
+                 	<p><strong>Orçamento</strong> Orçamento Sintético</p>
+                 	<p><strong>Orçamento</strong> Listagem Geral de Insumos</p>
+                 	<p><strong>Orçamento</strong> Curva ABC</p>
+                </div>
+                <div class="pricing-table-signup-small">
+                		
+                    <!-- INICIO FORMULARIO BOTAO PAGSEGURO -->  
+										<FORM id="form_small" ACTION="https://pagseguro.uol.com.br/checkout/v2/payment.html" method="post" onsubmit="PagSeguroLightbox(this); return false;">  
+										<!-- NÃO EDITE OS COMANDOS DAS LINHAS ABAIXO -->  
+										<INPUT TYPE="hidden" NAME="code" VALUE="587F68989D9DAE9EE4F1BFBB474E27B7">  
+										<INPUT TYPE="hidden" NAME="iot" VALUE="button">
+										<INPUT TYPE="SUBMIT" class="btn" NAME="submit" VALUE="assinar" alt="Pague com PagSeguro - é rápido, grátis e seguro!"> 
+										</FORM>  
+										<SCRIPT TYPE="text/JAVASCRIPT" SRC="https://stc.pagseguro.uol.com.br/pagseguro/api/v2/checkout/pagseguro.lightbox.js"></SCRIPT>  
+										<!-- FINAL FORMULARIO BOTAO PAGSEGURO -->
+                </div>
+              </div>
+            </div>
+
+            <div class="col-sm-3">
+            	<div class="medium">
+                <div class="pricing-table-header-medium">
+                    <h2>R$ 138,00</h2>
+                    <h3>Semestral</h3>
+                </div><div class="pricing-table-features">
+                  <p><strong>SBC</strong> Cadastro de Insumos</p>
+                 	<p><strong>SBC</strong> Cadastro de Composições</p>
+                 	<p><strong>SBC</strong> Custo do M2 de Construção - RJO x SPO</p>
+                 	<p><strong>Orçamento</strong> Resumo Orçamentário</p>
+                 	<p><strong>Orçamento</strong> Orçamento Sintético</p>
+                 	<p><strong>Orçamento</strong> Listagem Geral de Insumos</p>
+                 	<p><strong>Orçamento</strong> Curva ABC</p>
+                </div>
+                <div class="pricing-table-signup-medium">
+                		
+                    <!-- INICIO FORMULARIO BOTAO PAGSEGURO -->  
+										<FORM id="form_medium" ACTION="https://pagseguro.uol.com.br/checkout/v2/payment.html" method="post" onsubmit="PagSeguroLightbox(this); return false;">  
+										<!-- NÃO EDITE OS COMANDOS DAS LINHAS ABAIXO -->  
+										<INPUT TYPE="hidden" NAME="code" VALUE="973855533C3CDC4DD4ACBF94DE474FC4">  
+										<INPUT TYPE="hidden" NAME="iot" VALUE="button">
+										<INPUT TYPE="SUBMIT" class="btn" NAME="submit" VALUE="assinar" alt="Pague com PagSeguro - é rápido, grátis e seguro!">  
+										</FORM>  
+										<SCRIPT TYPE="text/JAVASCRIPT" SRC="https://stc.pagseguro.uol.com.br/pagseguro/api/v2/checkout/pagseguro.lightbox.js"></SCRIPT>  
+										<!-- FINAL FORMULARIO BOTAO PAGSEGURO --> 
+                </div>
+            	</div>
+            </div>
+
+            <div class="col-sm-3">
+            	
+            </div>
+
+
+            <!-- josue -->
+
+            <div class="col-sm-9">
+            	<div class="pro">
+                <div class="pricing-table-header-pro">
+                    <h3>Dados para contratação</h3>
+                </div>
+                <div class="row">
+                  <%= render 'site/form' %>
+                </div>
+              </div>
+            </div>
+
+
+
+            <div class="col-sm-3">
+            	<div class="pro">
+                <div class="pricing-table-header-pro">
+                	<h2 id="quantidade" class="quantidade">R$ 0,00</h2>
+                	<h3>Anual</h3>
+                </div>
+                
+                <div class="row">
+                	<div class="pricing-table-features">
+	                  <p><strong>SBC</strong> Cadastro de Insumos</p>
+	                 	<p><strong>SBC</strong> Cadastro de Composições</p>
+	                 	<p><strong>SBC</strong> Custo do M2 de Construção - RJO x SPO</p>
+	                 	<p><strong>SBC</strong> Composições e Insumos em Excell</p>
+	                 	<p><strong>Orçamento</strong> Curva ABC</p>
+	                </div>
+                </div>
+
+                <div class="pricing-table-signup-pro">
+                	<!-- INICIO FORMULARIO BOTAO PAGSEGURO -->  
+									<FORM id="form_pro" ACTION="https://pagseguro.uol.com.br/checkout/v2/payment.html" method="post" onsubmit="PagSeguroLightbox(this); return false;">  
+									<!-- NÃO EDITE OS COMANDOS DAS LINHAS ABAIXO -->  
+									<INPUT TYPE="hidden" NAME="code" VALUE="2D9C27A532329F6334B10FA2630CB64F">  
+									<INPUT TYPE="hidden" NAME="iot" VALUE="button">  
+
+									
+
+									<INPUT TYPE="text" NAME="form-estados-selecionados" ID="estados-selecionados" VALUE="">
+									<INPUT TYPE="hidden" NAME="form-quantidade-licencas-selecionadas" ID="quantidade-licencas-selecionadas" VALUE="">  
+
+
+									</FORM>  
+									<SCRIPT TYPE="text/JAVASCRIPT" SRC="https://stc.pagseguro.uol.com.br/pagseguro/api/v2/checkout/pagseguro.lightbox.js"></SCRIPT>  
+									<!-- FINAL FORMULARIO BOTAO PAGSEGURO -->  
+
+									<h2 id="quantidade" class="quantidade">R$ 0,00</h2>
+
+									
+
+<br/>
+
+
+
+                  <p><a href="#" onclick="$('#form_pro').submit(); return false;" alt="Pague com PagSeguro - é rápido, grátis e seguro!">ASSINAR</a></p>
+
+
+                   
+                </div>
+            	</div>
+            </div>
+
+            <!-- end josue -->
+
+         </div>
+         <!-- <div class="row">
+         	<div class="col-sm-3">
+						 	<div class="tiny">
+	              <div class="pricing-table-header-tiny">
+	                  <h2>Grátis</h2>
+	              </div>
+	              <div class="pricing-table-features">
+	                  <p><strong>SBC</strong> Cadastro de Insumos</p>
+	                 	<p><strong>SBC</strong> Cadastro de Composições</p>
+	                 	<p><strong>SBC</strong> Custo do M2 de Construção - RJO x SPO</p>
+	                 	<p>Tabela de Índices Econômicos</p>
+	                 	<p>Atualização Monetária Online</p>
+	              </div>
+	              <div class="pricing-table-signup-tiny">
+	                <p><a href="#">Sign Up</a></p>
+	              </div>
+	           	</div>
+            </div>
+         </div> -->
+
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<footer>
+		<div class="container">
+			<div class="row footer-links">
+				<div class="col-md-3">
+					<ul class="footer-ul">
+						<li><a href="#">Início</a></li>
+						<li><a href="#">Empresa</a></li>
+						<li><a href="#">Informativo</a></li>
+						<li><a href="#">Portifólio</a></li>
+						<li><a href="#">Assinaturas</a></li>
+						<li><a href="#">Parceria</a></li>
+						<li><a href="#">Fornecedores</a></li>
+					</ul>
+				</div>
+				<div class="col-md-3">
+					<ul class="footer-ul">
+						<li><a href="#">Links</a></li>
+						<li><a href="#">Portal de Assinantes</a></li>
+						<li><a href="#">Artigos Técnicos</a></li>
+						<li><a href="#">Central de ajuda</a></li>
+						<li><a href="#">Contato</a></li>
+					</ul>
+				</div>
+				<div class="col-md-2">
+					(+55) 21 2492-4074<br>
+					sbc@informativosbc.com.br<br><br>
+
+					<ul class="list-inline social-buttons">
+						<li><a href="#"><i class="fa fa-twitter"></i></a>
+						</li>
+						<li><a href="#"><i class="fa fa-facebook"></i></a>
+						</li>
+						<li><a href="#"><i class="fa fa-linkedin"></i></a>
+						</li>
+					</ul>
+
+				</div>
+			</div>
+		</div>
+		<div class="row footer-rodape">
+			<div class="container">
+				<div class="col-md-12">
+					© 2017 Ao Informativo SBC, todos os direitos reservados. | <a href="#">Política de Privacidade</a> | <a href="#">Termo de Uso</a>
+				</div>
+			</div>
+		</div>
+	</footer>
+
+	<div class="site-cache" id="site-cache"></div>
+	<!-- jQuery -->
+	<script src="/template-sbc/vendor/jquery/jquery.min.js"></script>
+
+	<!-- Bootstrap Core JavaScript -->
+	<script src="/template-sbc/vendor/bootstrap/js/bootstrap.min.js"></script>
+
+	<!-- Plugin JavaScript -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js" integrity="sha384-mE6eXfrb8jxl0rzJDBRanYqgBxtJ6Unn4/1F7q4xRRyIw7Vdg9jP4ycT7x1iVsgb" crossorigin="anonymous"></script>
+
+	<!-- Contact Form JavaScript -->
+	<script src="/template-sbc/js/jqBootstrapValidation.js"></script>
+	<script src="/template-sbc/js/contact_me.js"></script>
+
+	<!-- Theme JavaScript -->
+	<script src="/template-sbc/js/agency.min.js"></script>
+
+</body>
+
+</html>
+
+
+
+
+
+
+
+<div class="modal fade modal001" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+  <div class="modal-dialog modal-lg" role="document">
+  	<div class="modal-content">
+    	<div class="modal-header">
+	      <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
+	      <h4 class="pull-left">Sobre a Base</h4>
+	    </div>
+	    <div class="" style="padding: 20px 20px 20px 20px;">
+				<p align="justify">Fundada há 54 anos, a revista nasceu a partir da publicação do livro "Composições de Custos", a primeira das 16 obras até hoje publicadas, fruto de estudos, pesquisas e apropriações em métodos construtivos, realizadas pelo professor Miguel Stabile.</p>
+				<p align="justify">Pioneira na utilização de computadores, desde 1961 desenvolveu estudos de processos construtivos, que hoje constituem o SBC - a maior Base de Dados até hoje existente no Brasil, pioneira em sistema "on- line", desde a implantação do Sistema RENPAC pela EMBRATEL operando custos de construção em "main frame", com atividades de pesquisa em várias localidades do Brasil.</p>
+				<p align="justify">Para o governo Federal, em Brasí­lia, foram orçados praticamente, todos os edifícios públicos, assim como edificações funcionais e de habitação. Na mesma Época, no Rio de Janeiro, as obras de ampliação da Avenida Atlântica e as do Aterro do Flamengo tiveram suas estimativas operadas, assim como, as obras de reforma e ampliação de toda a rede de Unidades de Saúde e Hospitais, da então Sursan, foram igualmente orçadas pela empresa.</p>
+				<p align="justify">Com a edição da Lei 4.591 de dezembro 64, - das Incorporações imobiliárias - a SBC participou efetivamente no Grupo de Trabalho que elaborou as normas básicas para a determinação dos custos na construção, a então P-NB-140, hoje NBR 12721, da ABNT - Associação Brasileira de Normas Técnicas.</p>
+				<p align="justify">Em continuidade a estes trabalhos, em 1964 a empresa firmou contrato com o BNH - Banco Nacional da Habitação para, além da elaboração de software especí­fico, fossem os custos de materiais, serviço e mão-de-obra, em escala nacional, reunidos em um elenco de Composições de Custos que permitissem a operação e divulgação de seus respectivos custos, com o objetivo da implantação do Plano Nacional da Habitação.</p>
+				<p align="justify">Em 1973, através do CENPHA - Centro Nacional de Pesquisas Habitacionais do próprio BNH, a Boletim de Custos continuou os seus serviços de operação e publicação mensal destes custos em 75 cidades brasileiras, já com a adoção dos padrões de processamento do SINAPI. que perdurou até 1980.</p>
+				<p align="justify">Em 1986, novamente procurada pelo BNH, a SBC foi contratada para a execução dos estudos e cálculos destinados à reformulação do SINAPI, abordando todos os estágios construtivos de obras em seus diversos projetos e padrões de acabamento, contrato esse posteriormente assumido, até a sua conclusão, o pela CEF - Caixa Econômica Federal.</p>
+				<p align="justify">Na mesma Época a SBC, firmou contrato com o SERPRO - Serviço Federal de Processamento de Dados, para o estudo e execução da Tabela de Pontos para os Projetos CIATA e PGM abrangendo pesquisa e operação de custos em 1.075 cidades brasileiras.</p>
+				<p align="justify">Em maio 1985, a SBC firmou convênio com a FGV - Fundação Getúlio Vargas para a composição e operação de dados orçamentários destinados a compor as ponderações de Custos que geraram os atuais Índices que formam o INCC - Índice Nacional do Custo da Construção, disseminado para várias Regiões do Brasil.</p>
+				<p align="justify">Em 1994 foi firmado Contrato com o Ministério da Educação e do Desporto, através do Projeto Nordeste, para os estudos e pesquisas e serviços de estimativa e orçamento para construção Escolar, em todos os seus níveis, inclusive custos de gerais manutenção, assim como mobiliário e equipamento escolar, incluindo-se o custo/aluno e custo/instrutor.</p>
+				<p align="justify">Em 1994 a SBC firmou contrato com o Ministério da Saúde, através do Projeto BRA, para a apuração de custos e atualização mensal dos mesmos em todo o paí­s, abordando vários projetos arquitetônicos de estabelecimentos de saúde, com a finalidade de instituir o CCEAS - Custo de Construção de Estabelecimentos Assistenciais de Saúde, executados com a interveniência do Ministério da Saúde, em todo o Território Nacional.</p>
+				<p align="justify">Para atingir especificamente o setor da construção civil , um arquivo de 8.100 Composições de Custos e 12.500 produtos, foi desenvolvido, em parceria com a Exeplan o software DYS, Versão 4.02, que extremamente acessí­vel a qualquer usuário, disponibiliza cálculo de orçamento de obras, de forma Sintética ou Analí­tica, relação de materiais e insumos, Curva ABC, em sistema totalmente integrado.</p>
+			</div>
+			<div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Fechar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+<div class="modal fade modalartigos" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+  <div class="modal-dialog modal-lg" role="document">
+  	<div class="modal-content">
+    	<div class="modal-header">
+	      <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
+	      <h4 class="pull-left">Artigos</h4>
+	    </div>
+	    
+
+
+
+	    <div class="panel-group">
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<h4 class="panel-title">
+					<a data-toggle="collapse" href="#collapse1" style="text-decoration: none; text-transform: none;">Custos Diretos</a>
+				</h4>
+			</div>
+			<div id="collapse1" class="panel-collapse collapse">
+				<div class="panel-body">
+					<p style="text-indent: 20px; font-size: 16px;" align="justify">São os formados pela apropriação de Áreas, volumes e quantidades contidas em projetos, destinadas a formarem o produto-acabado final, ou sejam, as obras propriamente ditas.</p>
+					<p style="font-size: 16px;" align="justify">Melhor exemplificando, todos os volumes de estruturas, alvenarias e revestimentos deverão estar definidos no projeto e, como tal, possíveis de serem corretamente avaliados e apropriados, da mesma forma que os trabalhos em terra,	 em relação aos projetos de fundações gerais, assim como os serviços de pintura, em relação às superfícies a receberem tratamento final.</p>
+					<p style="font-size: 16px;" align="justify">Um completo arquivo de Composições de Custos, adiante relacionado, retrata todos os eventos hoje existentes em obras civis, assim como, os trabalhos de alternativas que forem propostas.</p>
+					<p style="font-size: 16px;" align="justify">Entretanto, nas mesmas Composições, quando se determina a quantidade dos materiais componentes de um metro quadrado de alvenaria, os insumos relativos à&nbsp; mão-de-obra empregada retratam unicamente os serviços de levantamento da mesma alvenaria, tomando-se por base que os materiais estejam necessariamente à disposição dos pedreiros e ajudantes, numa vizinhança nunca superior ao percurso de dois metros. Obedecem ao mesmo critério, todos os demais acabamentos, inclusive os de revestimentos de pisos e elevações, assim como instalações gerais e pinturas.</p>
+					<p style="font-size: 16px;" align="justify">Torna-se importante, desta forma, a correta apropriação das áreas volumes e quantidades de todos esses serviços, de forma que possam ser corretamente avaliados os seus custos indiretos, ou sejam os de Acampamento e Canteiro de Obras e serviços de transporte vertical e horizontal, inclusive armazenamento.</p>
+					<p style="font-size: 16px;" align="justify">Adiante, a discriminação da codificação dos Grupos que formam os Custos Diretos; contidos na discriminação do Decreto 92.100:</p>
+				</div>
+			</div>
+		</div>
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<h4 class="panel-title">
+					<a data-toggle="collapse" href="#collapse2" style="text-decoration: none; text-transform: none;">Custos Indiretos</a>
+				</h4>
+			</div>
+			<div id="collapse2" class="panel-collapse collapse">
+				<div class="panel-body">
+					<p style="text-indent: 20px; font-size: 16px;" align="justify">Dentro do critério descrito, estes custos referem-se aos serviços de apoio, assim como complementos necessários ao desenvolvimento racionalizado de todos os estágios de obras.</p>
+					<p style="font-size: 16px;" align="justify">Exemplificando, somente será¡ possí­vel determinar-se a área de armazenamento de agregados e agregantes se já estão perfeitamente conhecidos os volumes estruturais, assim como os de alvenaria e revestimentos constantes nos Custos Diretos.</p>
+					<p style="font-size: 16px;" align="justify">Um completo arquivo de Composições de Custos, adiante relacionado, retrata todos os eventos hoje existentes em obras civis, assim como, os trabalhos de alternativas que forem propostas.</p>
+					<p style="font-size: 16px;" align="justify">Da mesma forma, conhecidos os valores representados pelos volumes e áreas ou unidades de acabamento, é possí­vel avaliarem-se, através de Composições de Custos especí­ficas todos os serviços contidos na organização de um Canteiro de Obras que correspondam às especificações requeridas em determinada obra.</p>
+					<p style="font-size: 16px;" align="justify">Com a identificação de todos os trabalhos a serem desenvolvidos, igualmente é conhecido, através das próprias Composições de Custos, o contingente da mão-de-obra necessário à completação das mesmas, podendo desta forma ser avaliado o número de operários e técnicos que deverão ter o apoio de alojamento e instalações adequadas ao desenvolvimento dos serviços, inclusive no que se refere aos diversos trabalhos de transporte vertical e horizontal.</p>
+					<p style="font-size: 16px;" align="justify">O perfeito conhecimento dos eventos a serem produzidos nos encargos de obras pode servir de base tecnologicamente correta para a determinação e qualificação de máquinas e equipamentos necessários aos serviços de apoio, podendo serem dimensionados em custos/hora ou outras unidades equivalentes, representados por Composições de Custos já especificamente elaboradas e disponí­veis para tal fim.</p>
+					<p style="font-size: 16px;" align="justify">Nos custos indiretos estão também incluí­das as despesas e encargos com os serviços de estiva de carga e descarga, além dos de estocagem de materiais e equipamentos.</p>
+					<p style="font-size: 16px;" align="justify">Neste caso, por exemplo, sabe-se que um vaso sanitário é representado por 0,12m3 em volume, fato esse que determina a àrea de espaço que deverá estar disponí­vel no Barracão de obras em volume para a estocagem desse conjuntos de equipamentos.</p>
+					<p style="font-size: 16px;" align="justify">Na descrição dos eventos em obras, previstos no Decreto 92.100 e na Lei 4.591, todos os serviços estão cobertos por Composições de Custos analí­ticas, com a discriminação isolada de cada unidade, sempre com a anotação da mão-de-obra correspondente e respectivos encargos sociais.</p>
+					<p style="font-size: 16px;" align="justify">Estes mesmos dados são importantes para a determinação das equipes técnicas de direção e administração da obra, usualmente custeadas em bases de custo/mãos. Pode-se afirmar que, em obras de currí­culo normal, determinada edificação de 2 mil metros quadrados poderá ocupar a mesma equipe técnica de fiscalização que seria empregada em uma obra de 6 mil metros quadrados. Os estudos de racionalização dos demais serviços, certamente, contribuirão decisivamente para que tais custos sejam reduzidos ao mí­nimo necessário.</p>
+					<p style="font-size: 16px;" align="justify">Adiante, a discriminação da codificação dos Grupos que formam os Custos Indiretos, dentro das disposições contidas no Decreto 92.100:</p>
+					<table class="table table-striped" style="width: 40%;">
+						<thead>
+							<tr><th>Relação de Custos Indiretos</th></tr>
+						</thead>
+						<tbody>
+							<tr><td>000	PROJETOS</td></tr>
+							<tr><td>011	SERVIÇOS ADMINISTRATIVOS</td></tr>
+							<tr><td>012	INSTALAÇÕES PROVISÓRIAS</td></tr>
+							<tr><td>013	MÁQUINAS E FERRAMENTAS</td></tr>
+							<tr><td>014	CONSUMOS</td></tr>
+							<tr><td>015	EQUIPAMENTOS DE SEGURANÇA</td></tr>
+							<tr><td>017	TRANSPORTES E CARRETOS</td></tr>
+							<tr><td>018	MÁQUINAS E EQUIPAMENTOS</td></tr>
+						</tbody>
+					</table>
+					<p style="text-indent: 20px; font-size: 16px;" align="justify">Por serem do mesmo Decreto 92.100 e da Lei 4.591 que, em seu Art.53, originou a PNB-140 da ABTN atual NBR 12.721, a elaboração de discriminação orçamentária é regulamentada de tal forma que todos os eventos e insumos que compõe determinada obra, possam - e devam - estar perfeitamente determinados, ordenados e englobados nos seus Custos Diretos e Indiretos.</p>
+					<p style="font-size: 16px;" align="justify">Isso equivale afirmar que todos os eventos que forem programados, regularmente custeados, deverão ter os seus encargos cobertos pelo proprietário da obra, adicionando-se aos referidos custos, os encargos de Administração ou Lucro do Construtor, da forma mais conveniente.</p>
+					<p style="font-size: 16px;" align="justify">Pelo mesmo raciocí­nio, insumos não previstos serão insumos provavelmente sujeitos a discussão e, o que é pior, insumos que poderiam ser cobertos pelo proprietário mas que o serão pelo construtor, deduzidos naturalmente as suas taxas de Administração e Lucro, sem se mencionar as sanções já previstas na legislação.</p>
+					<p style="font-size: 16px;" align="justify">É dever do orçamentista, a correta estimativa dos Custos Indiretos de Obras, fazendo com que os trabalhos de estimativa e previsão orçamentária se situem, tanto quanto tecnicamente possí­veis, os mais próximos da realidade.</p>
+				</div>
+			</div>
+		</div>
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<h4 class="panel-title">
+					<a data-toggle="collapse" href="#collapse3" style="text-decoration: none; text-transform: none;">Encargos Sociais e Trabalhistas</a>
+				</h4>
+			</div>
+			<div id="collapse3" class="panel-collapse collapse">
+				<div class="panel-body">
+					<p style="font-size: 16px; font-weight:600;" align="justify">Encargos Sociais Incidentes sobre mão-de-obra na Constução Civil</p>
+					<p style="text-indent: 20px; font-size: 16px;" align="justify">A formação dos coeficientes que retratam as várias incidências que compõe os Encargos Sociais do Empregador na Indústria da Construção Civil, desde os anos de 1986, até 2002, sofreu uma série de modificações, causadas pela edição de Leis, Decretos e Portarias.</p>
+					<p style="font-size: 16px;" align="justify">O cálculo dos coeficientes de participação estão ordenados através de GRUPOS, que facilitam a compreensão do método adotado pelo Sistema SBC.</p>
+					<p style="font-size: 16px;" align="justify">Iniciamos esta apresentação pelo relato das Portarias. Decretos e Leis diretamente relacionados com a formação dos Encargos Sociais, como se seguem:</p>
+					<p style="font-size: 16px; font-weight:600; margin: 30px 0 30px 0;" align="justify">Legislação</p>
+					<p style="font-size: 16px; font-weight:600;" align="justify">I - Outubro de 1988</p>
+					<p style="text-indent: 20px; font-size: 16px;" align="justify">No dia 5 de outubro do ano de 1988, foi promulgada a nova Constituição Brasileira que, dentre seus artigos, efetivou a redução da carga horária semanal dos trabalhadores no Brasil, em todos os níveis, de 48 para 44 horas concedendo, inclusive, benefícios a operários, sem a edição de legislações complementares para a sua imprescindível regulamentação, surgindo, como não poderia deixar de ser, dúvidas sobre a metodologia de cálculo a ser adotada na definição daqueles percentuais.</p>
+					<p style="font-size: 16px; font-weight:600;" align="justify">II - Ano de 1989</p>
+					<p style="text-indent: 20px; font-size: 16px;" align="justify">A Lei 7787 de 30 de junho de 1989 publicada no Diário Oficial da União em 30 de junho de 1989 alterou significativamente a legislação anterior, provocando sensíveis modificações no cálculo dos Encargos Sociais do Empregador no que se refere à atividade da construção civil, quando a antiga alíquota, referente ao IAPAS que era de 10% foi elevada para 20%, englobando os seguintes percentuais, tais como 4% do Salário-Família, 0,m3% do Salário Maternidade e 2,4% referentes ao Funrural.</p>
+					<p style="font-size: 16px;" align="justify">A alíquota de 20% passou a incidir sobre todos os pagamentos à título de mão-de-obra, inclusive dos autônomos, a partir de setembro de 1989.</p>
+					<p style="font-size: 16px;" align="justify">A Taxa referente a Acidentes no Trabalho, regrediu de 2,5% para 2%, alterando inclusive o Finsocial, elevando-o de 0,5% para 1,0%.</p>
+					<p style="font-size: 16px;" align="justify">Os Seguros Coletivos, assim como o fornecimento de uniformes, roupas de trabalho, vales-transporte, refeições e/ou lanches, não foram contemplados pela Lei 7787/89.</p>
+					<p style="font-size: 16px;" align="justify">Como o cálculo do Finsocial refere-se percentual da Renda Bruta, decorrente da venda de mercadorias e/ou serviços, não devendo incidir sobre os salários, de acordo com o Decreto 92698 de 21 de maio de 1986 e da Lei 1940 de 25 de maio de 1983.</p>					<p style="font-size: 16px; font-weight:600;" align="justify">III - Janeiro de 1991</p>
+					<p style="text-indent: 20px; font-size: 16px;" align="justify">A Lei 8154 de 28 de dezembro de 1990, eleva, a partir de janeiro, as alíquotas de contribuição ao SESI, para 1,7% e, para o SENAI, 1,2%.</p>
+					<p style="font-size: 16px; font-weight:600;" align="justify">IV - Janeiro de 1992</p>
+					<p style="text-indent: 20px; font-size: 16px;" align="justify">O Regulamento do Custeio da Seguridade Social, aprovado pelo Decreto 356 de 7 de dezembro de 1991 classificou, para efeito do Seguro de Acidentes do Trabalho, a atividade da CONSTRUÇÃO CIVIL como Grau 3 - Riscos Graves - implicando em uma taxa incidente de mais 3%.</p>
+					<p style="font-size: 16px; font-weight:600;" align="justify">V - Janeiro de 1993</p>
+					<p style="text-indent: 20px; font-size: 16px;" align="justify">A Legislação da Previdência Social determinou que, a partir de janeiro de 1993, as alíquotas de contribuição para o SESI ficam estabelecidas em 1.8% e, ao SENAI, para 1,3%.</p>
+					<p style="text-indent: 60px; font-size: 16px;" align="justify"><b>V.I</b> - O Artigo 29 da Medida Provisória 457 dispõe que, no caso de dispensa imotivada, seja paga a multa de 50% (cinquenta por cento) calculada sobre a remuneração, que altera a incidência do Aviso-Prévio Indenizado, de 40% para 50%, o que igualmente alterou a alíquota anterior de 14,35% para 15,15%.</p>
+					<p style="text-indent: 60px; font-size: 16px;" align="justify"><b>V.II</b> - A edição da Medida Provisória 1523 considera que as "horas extras" não devem ter incidência sobre o Repouso Semanal Remunerado, e nem sobre o cálculo de Férias e do 13º Salário.</p>
+					<p style="font-size: 16px;" align="justify">Desta forma deixam de ser consideradas as alíquotas diferenciadas de Aviso-Prévio Trabalhado" e Aviso-Prévio Indenizado", assim como horas extras eventuais e taxas referentes a adicional noturno, por serem estes itens inscritos nos Custos Indiretos nos Orçamentos de Obras de construção.</p>
+					<p style="font-size: 16px; font-weight:600;" align="justify">VI - Novembro de 1998</p>
+					<p style="text-indent: 20px; font-size: 16px;" align="justify">Deixam de ser considerados nos cálculos dos Encargos Sociais, as incidências relativas ao Aviso Prévio Trabalhado, e os adicionais sobre Acidentes do Trabalho, por estarem inscritos no Grupo I, com a alíquota de 3,0%, assim como Adicionais sobre o trabalho noturno, por ser este item considerado nos orçamentos de obras, em Custos Indiretos particularizados individualmente para cada obra, e não considerados como incidência de procedimento usual pelas construtoras.</p>
+					<p style="font-size: 16px; font-weight:600;" align="justify">VII - Outubro de 2001</p>
+					<p style="text-indent: 20px; font-size: 16px;" align="justify">A Lei Complementar 110/2001 que aborda as alterações de incidências para a quitação do expurgo inflacionário do Fundo de Garantia do Tempo de Serviço (FGTS), alterou a então alíquota de 8,0%, para 8,50%.</p>
+					<p style="text-indent: 60px; font-size: 16px;" align="justify"><b>VII.I</b> - As Leis Federais, respectivamente, 7418 de 1985 e 76618 de 1987 que se referem à instituição do Vale-Transporte, não consideram estes valores como Custos Diretos em obras, mas sim, no caso da Construção Civil, englobados separadamente de obra a obra, em relação ao número de operários envolvidos em cada uma delas, não devendo, portanto, serem contemplados como incidências nos cálculos de Encargos Sociais.</p>
+					<p style="text-indent: 60px; font-size: 16px;" align="justify"><b>VII.II</b> - O mesmo se aplica ao custo originado pela Lei Municipal 1418 de 1989 promulgada pela Prefeitura do Município da Cidade do Rio de Janeiro, incidente somente naquele Município, que não devem ser incorporados nos cálculos dos Encargos Sociais, em âmbito nacional. Seus custos deve, da mesma forma, serem inscritos, às despesas indiretas em obras realizadas naquela mesma cidade nos Canteiros de Obras, baseadas igualmente no número de operários incidentes em cada obra, para a elaboração de diversos orçamentos.</p>
+					<p style="font-size: 16px; font-weight:600; margin: 30px 0 30px 0;" align="justify">Considerações Gerais</p>
+					<p style="font-size: 16px; font-weight:600;" align="justify">Feriados e dias santificados</p>
+					<p style="text-indent: 20px; font-size: 16px;" align="justify">Ficam estabelecidos 12 dias referentes a esse título, em relação aos 10 dias estabelecidos por Lei. Consideram-se, para os Municípios do Rio de Janeiro e de São Paulo, o "Dia do Trabalhador na Construção Civil", assim como os feriados santificados de São João Baptista, para o Estado do Rio de Janeiro e a data de 9 de julho, para o Estado de São Paulo.</p>
+					<p style="font-size: 16px; font-weight:600;" align="justify">Avido Prévio</p>
+					<p style="text-indent: 20px; font-size: 16px;" align="justify">Por consenso, habitualmente utilizado em qualquer empresa, todo o empregado dispensado fica usualmente desobrigado de cumprir as horas reduzidas de serviço, dispensando-se do trabalho, em regime de Aviso-Prévio.</p>
+					<p style="font-size: 16px;" align="justify">Esta norma visa principalmente a manutenção dos limites mínimos de disciplina, inclusive os de economia e segurança da própria obra ou local de trabalho, sem o inconveniente de se ter, dentro de uma equipe de trabalho, elementos que possam desestabiliza-la.</p>
+					<p style="font-size: 16px; font-weight:600;" align="justify">Encargos de Paternidade</p>
+					<p style="text-indent: 20px; font-size: 16px;" align="justify">Matéria absolutamente controversa e de difícil solução, envolveu entretanto, várias considerações.</p>
+					<p style="font-size: 16px;" align="justify">Até posterior regulamentação legal ( desde aquela data, até hoje, outubro de 2002, nada foi feito) decidiu-se adotar como válida a estimativa de que, a cada três (3) anos, cada operário " poderia" registrar o nascimento de um filho, obtendo assim o benefício dos cinco dias estipulados pela Constituição.</p>
+					<p style="font-size: 16px; font-weight:600;" align="justify">Pagamentos de 40% por rescisão</p>
+					<p style="text-indent: 20px; font-size: 16px;" align="justify">O consenso geral, em análise dos currículos de andamento de obras, tanto para empreiteiros como para empresas públicas e particulares, em relação à duração de obras e serviços de construção civil permite considerar que a rotatividade dos operários, normalmente ocorre a cada seis meses, como fator de maior economia.</p>
+					<p style="font-size: 16px;" align="justify">A estipulação, para efeito de cálculo, em 3 ou 3,5 meses, tornaria os resultados bem mais onerosos, o que não representa a expressão da realidade.</p>
+					<p style="font-size: 16px;" align="justify">Desta forma, para o cálculo da incidência do percentual deste item na formação dos Encargos Sociais, passa a ser adotada a nova metodologia de cálculo explicitada na descrição dos Encargos Sociais, sob o item 20 (vide Tabelas).</p>
+					<p style="font-size: 16px; font-weight:600;" align="justify">Acidentes no Trabalho</p>
+					<p style="text-indent: 20px; font-size: 16px;" align="justify">Todos os participantes do Grupo de Trabalho foram concordes na adoção do atual percentual (item 16) em relação ao cálculo da incidência, notando-se que no caso das empresas SHELL e FURNAS, cujos representantes faziam parte do referido Grupo de Trabalho, o numero de acidentes é muito mais reduzido em relação aos serviços gerais de empreiteiros, pela adoção de rígidas normas de segurança exigidas em trabalhos de obras, de uma forma geral.</p>
+					<p style="font-size: 16px; font-weight:600;" align="justify">Adicional Noturno</p>
+					<p style="text-indent: 20px; font-size: 16px;" align="justify">Este item, abordado na formação dos Encargos Sociais em alguns cálculos elaborados por Sindicatos da Construção, por consenso geral, foi desconsiderado.</p>
+					<p style="font-size: 16px;" align="justify">Os valores que formam os encargos de Adicional por Trabalho Noturno, ou inclusive horas extras, são elementos, eventualmente existentes, devem ser levados à conta de Custos Indiretos na formação de Orçamentos Gerais de Obras.</p>
+					<p style="font-size: 16px;" align="justify">Da mesma forma, deixaram de ser considerados encargos ou despesas, itens tais como Ferramentas da Obra, Despesas Eventuais, Dias de Chuva, Outras Dificuldades ou outros quaisquer títulos não perfeitamente identificados com o objetivo da formação dos coeficientes de Encargos Sociais.</p>
+					<p style="font-size: 16px; font-weight:600;" align="justify">Redução da Jornada de Trabalho</p>
+					<p style="text-indent: 20px; font-size: 16px;" align="justify">Cálculo da incidência da redução de 48 para 44 horas semanais na jornada de trabalho, está convenientemente explicitado na descrição da metodologia adotada para a determinação de todos os coeficientes, formam os Encargos Sociais que determina, pela nova Constituição Brasileira, 1956 horas de trabalho anuais, contra as 2880 horas/ano anteriores à Constituição.</p>
+					<p style="font-size: 16px; font-weight:600;" align="justify">Determinação do dias efetivos de trabalho</p>
+					<p style="text-indent: 20px; font-size: 16px;" align="justify">A jornada diária de trabalho que, nos termos da nova Constituição, reduz de 48 para 44 horas semanais, dentro da Rubrica 507 do IAPAS, especificamente para a atividade da construção civil, produz os seguintes resultados:</p>
+					<p style="text-indent: 60px; font-size: 16px;" align="justify"><b>A</b> - Jornada de trabalho: 40 horas de trabalho de segunda .à sexta-feira, em 8 horas diárias e, aos sábados, 4 horas, totalizando : 1956 horas trabalhadas/ano.</p>
+					<p style="text-indent: 60px; font-size: 16px;" align="justify"><b>B</b> - Domingos : 49 dias</p>
+					<p style="text-indent: 60px; font-size: 16px;" align="justify"><b>C</b> - Feriados : 12 dias</p>
+					<p style="text-indent: 60px; font-size: 16px;" align="justify"><b>D</b> - Enfermidade (média admitida ) : 5 dias</p>
+					<p style="text-indent: 60px; font-size: 16px;" align="justify"><b>E</b> - Férias : 30 dias</p>
+					<p style="text-indent: 60px; font-size: 16px;" align="justify"><b>F</b> - Jornada mensal: Domingos 4 dias, Dias úteis 26 dias</p>
+					<p style="text-indent: 60px; font-size: 16px;" align="justify"><b>G</b>- Total dos dias do ano: 365 dias</p>
+					<p style="text-indent: 60px; font-size: 16px;" align="justify"><b>H</b> - Dias efetivamente trabalhados: 269 dias</p>
+					<p style="font-size: 16px;" align="justify">O cálculo para os dias efetivos de trabalho está baseado para os Municípios do Rio de Janeiro e de São Paulo que, coincidentemente, são idênticos.</p>
+					<p style="font-size: 16px;" align="justify">Para outros Municípios é conveniente a observação,da ocorrência de feriados específicos.</p>
+					<p style="font-size: 16px; font-weight:600; margin: 30px 0 30px 0;" align="justify">Metodologia adotada para cálculo dos encargos sociais</p>
+					<p style="font-size: 16px; font-weight:600;" align="justify">11 - Repouso semanal remunerado</p>
+					<p style="text-indent: 20px; font-size: 16px;" align="justify">Incidência: 49 dias / 269 dias = 0,1822 = 18,22%</p>
+					<p style="font-size: 16px; font-weight:600;" align="justify">12 - Férias</p>
+					<p style="text-indent: 20px; font-size: 16px;" align="justify">As férias continuam em 30 dias, porém o empregador deve remunerar mais 10 dias.</p>
+					<p style="text-indent: 20px; font-size: 16px;" align="justify">Incidência: 40 dias / 269 dias = 0,1486 = 14,86%</p>
+					<p style="font-size: 16px; font-weight:600;" align="justify">13 - Feriados e dias santificados</p>
+					<p style="text-indent: 20px; font-size: 16px;" align="justify">Os feriados e dias santificados são em número de 12.</p>
+					<p style="text-indent: 20px; font-size: 16px;" align="justify">Incidência:12 dias / 269 dias = 0,0446 = 4,46%
+					</p><p style="font-size: 16px; font-weight:600;" align="justify">14 - Aviso Prévio</p>
+					<p style="text-indent: 20px; font-size: 16px;" align="justify">Neste item, considera-se que o empregador, na construção civil, prefere pagar o Aviso-Prévio integral, dispensando o empregado da permanência na obra ou local de serviço, sem a exigência de que o mesmo cumpra o período de duas horas a menos. Tal medida revela-se eficaz no que se refere à manutenção da disciplina e segurança da obra e a tranqüilidade social nos locais de serviço.</p>
+					<p style="text-indent: 20px; font-size: 16px;" align="justify">Incidência: 30 dias / 269 dias = 0,1115 = 11,15%</p>
+					<p style="font-size: 16px; font-weight:600;" align="justify">15 - Auxílio Enfermidade</p>
+					<p style="text-indent: 20px; font-size: 16px;" align="justify">O empregador deve pagar os primeiros 15 dias após o acidente. Neste caso está considerado que 10% dos segurados da Previdência recorrem ao Auxílio-Enfermidade.</p>
+					<p style="text-indent: 20px; font-size: 16px;" align="justify">Incidência: 15 dias / 269 dias x 0,10 = 0,0055 = 0,55%</p>
+					<p style="font-size: 16px; font-weight:600;" align="justify">16 - Acidentes do trabalho</p>
+					<p style="text-indent: 20px; font-size: 16px;" align="justify">Tem havido por parte dos empregadores uma acentuada e efetiva ação o sentido de serem evitados os acidentes no trabalho. A atuação das CIPAS tem sido responsável por grande parte da prevenção de acidentes, com a educação e treinamento de operários em todos os estágios de obras. As estatísticas em geral já demonstram que apenas 2% dos operários ainda se acidentam.</p>
+					<p style="text-indent: 20px; font-size: 16px;" align="justify">Incidência: 15 dias/ 269 dias x 0,02 = 0,001 = 0,11%</p>
+					<p style="font-size: 16px; font-weight:600;" align="justify">17 - Encargos Paternidade</p>
+					<p style="text-indent: 20px; font-size: 16px;" align="justify">A licença paternidade estabelecida pela Constituição é de 5 dias.Para o cálculo desta incidência, estima-se que cada operário, a cada três anos, possa ter um filho.</p>
+					<p style="text-indent: 20px; font-size: 16px;" align="justify">Incidência: 5 dias / 807 dias = 0,0061 = 0,61%</p>
+					<p style="font-size: 16px; font-weight:600;" align="justify">18 - Décimo Terceiro Salário</p>
+					<p style="text-indent: 20px; font-size: 16px;" align="justify">Incidência: 30 dias / 269 dias = 0,1115 = 11,15%</p>
+					<p style="font-size: 16px; font-weight:600;" align="justify">19 - Incidência do FGTS sobre o Décimo Terceiro Salário</p>
+					<p style="text-indent: 20px; font-size: 16px;" align="justify">Incidência: 0,08 x 11,15 = 0,89%</p>
+					<p style="font-size: 16px; font-weight:600;" align="justify">20 - pagamento de 40% por rescisão sem justa causa</p>
+					<p style="text-indent: 20px; font-size: 16px;" align="justify">Levando-se em consideração que o operário permanece no emprego durante o prazo mediano de seis (6) meses, deve-se calcular quantas horas equivalentes são depositadas neste período, considerando-se que cada operário tem o direito de 8% do salário correspondente a cada mês de trabalho.</p>
+					<p style="font-size: 16px;" align="justify">Para a determinação do montante depositado à conta do FGTS., teremos:</p>
+					<p style="font-size: 16px;" align="justify">220 horas - 100%</p>
+					<p style="font-size: 16px;" align="justify">x horas - 8%</p>
+					<p style="font-size: 16px;" align="justify">Sendo x = 17,6 horas/mês, em 6 meses teremos:</p>
+					<p style="font-size: 16px;" align="justify">17,6 x 6 = 105,6 horas/mês.</p>
+					<p style="font-size: 16px;" align="justify">Logo:</p>
+					<p style="font-size: 16px;" align="justify">220,0 horas - 100%</p>
+					<p style="font-size: 16px;" align="justify">105,6 horas - x</p>
+					<p style="font-size: 16px;" align="justify">Sendo x = 48%</p>
+					<p style="font-size: 16px; font-weight:600;" align="justify">Nota 1</p>
+					<p style="text-indent: 20px; font-size: 16px;" align="justify">Pela nova Constituição, deve ser pago 40% deste montante, onde teremos:</p>
+					<p style="font-size: 16px;" align="justify">40% de 48% do salário = 19,2% do salário.</p>
+					<p style="font-size: 16px;" align="justify">Logo, se o montante do F.G.T.S. é de 19,2% do salário, para UM (1) mês, teremos:</p>
+					<p style="text-indent: 20px; font-size: 16px;" align="justify">Incidência: 19,2 % / 6 = 3,2% (percentual que perdurou até abril de 1994)</p>
+					<p style="font-size: 16px; font-weight:600;" align="justify">Nota 2</p>
+					<p style="text-indent: 20px; font-size: 16px;" align="justify">A partir de maio de1995, por determinação da Medida Provisória 457, o Art. 29 determina que, para a dispensa imotivada, seja paga pelo empregador, a multa de 50% da remuneração, alterando a incidência percentual do Aviso-Prévio, de 14,35% para 15,15%. Neste caso, teríamos a seguinte incidência:</p>
+					<p style="font-size: 16px;" align="justify">50% de 48% do salário = 24% do salário</p>
+					<p style="font-size: 16px;" align="justify">24,0% / 6 = 4.0%.</p>
+					<p style="font-size: 16px;" align="justify">Entretanto o cálculo do Finsocial refere-se à receita bruta, decorrente da venda de mercadoria e/ou serviços, e não deve incidir sobre os salários, de acordo com o Decreto 92698 de 21 de maio de 1986 e Lei 1940 de 25 de maio de 1983.</p>
+					<p style="font-size: 16px;" align="justify">Os Seguros coletivos, assim como, uniformes, roupas de trabalho, vale-transporte refeições e/ou lanches para operários não foram contemplados pela Lei 7787/89, assim como a taxa de 1,0% do Seconci para o Sindicato Patronal.</p>
+					<p style="font-size: 16px; font-weight:600; margin: 30px 0 30px 0;" align="justify">Resumo dos encargos sociais do empregador</p>
+					<table class="table table-striped" style="width: 35%;">
+						<thead>
+							<tr><th>GRUPO I</th></tr>
+						</thead>
+						<tbody>
+							<tr><td>01 INSS</td><td style="text-align: right;">20,00%</td></tr>
+							<tr><td>02 SESI</td><td style="text-align: right;">1,50%</td></tr>
+							<tr><td>03 SENAI</td><td style="text-align: right;">1,00%</td></tr>
+							<tr><td>04 SEBRAE</td><td style="text-align: right;">0,60%</td></tr>
+							<tr><td>05 INCRA</td><td style="text-align: right;">0,20%</td></tr>
+							<tr><td>06 SALARIO EDUCAÇÃO</td><td style="text-align: right;">2,50%</td></tr>
+							<tr><td>07 SEGURO ACID TRABALHO</td><td style="text-align: right;">3,00%</td></tr>
+							<tr><td>08 FGTS</td><td style="text-align: right;">8,50%</td></tr>
+							<tr><td>09 SECONCI</td><td style="text-align: right;">1,00%</td></tr>
+							<tr><td>TOTAL:</td><td style="text-align: right;">38,30%</td></tr>
+						</tbody>
+					</table>					
+					<table class="table table-striped" style="width: 35%;">
+						<thead>
+							<tr><th>GRUPO II</th></tr>
+						</thead>
+						<tbody>
+							<tr><td>10 REPOUSO REMUNERADO</td><td style="text-align: right;">18,21%</td></tr>
+							<tr><td>11 FÉRIAS</td><td style="text-align: right;">14,86%</td></tr>
+							<tr><td>12 FERIADOS</td><td style="text-align: right;">4,46%</td></tr>
+							<tr><td>13 AUXÍLIO ENFERMIDADE</td><td style="text-align: right;">0,55%</td></tr>
+							<tr><td>14 LICENÇA PATERNIDADE</td><td style="text-align: right;">0,62%</td></tr>
+							<tr><td>15 13º.SALÁRIO</td><td style="text-align: right;">11,15%</td>
+							</tr><tr><td>TOTAL:</td><td style="text-align: right;">49,85%</td></tr>
+						</tbody>
+					</table>
+					<table class="table table-striped" style="width: 35%;">
+						<thead>
+							<tr><th>GRUPO III</th></tr>
+						</thead>
+						<tbody>
+							<tr><td>16 INDENIZAÇÃO DE 50% RESC.</td><td style="text-align: right;">4,00%</td></tr>
+							<tr><td>17 AVISO PRÉVIO INDENIZADO</td><td style="text-align: right;">11,15%</td></tr>
+							<tr><td>TOTAL:</td><td style="text-align: right;">15,15%</td></tr>
+						</tbody>
+					</table>
+					<table class="table table-striped" style="width: 40%;">
+						<thead>
+							<tr><th colspan="2">Incidências do Grupo I sobre o Grupo II</th></tr>
+						</thead>
+						<tbody>
+							<tr><td>( 0.383 x 49,85%)</td><td style="text-align: right;">19,09%</td></tr>
+							<tr><td>TOTAL DOS ENCARGOS</td><td style="text-align: right;">122,39%</td></tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<h4 class="panel-title">
+					<a data-toggle="collapse" href="#collapse4" style="text-decoration: none; text-transform: none;">Honorários do Construtor</a>
+				</h4>
+			</div>
+			<div id="collapse4" class="panel-collapse collapse">
+				<div class="panel-body">
+					<p style="text-indent: 20px; font-size: 16px;" align="justify">Existem vários sistemas de remuneração, sempre ligados a vários tipos de negociação que envolvem valores por empreitada global, obras por administração, preço certo e outros tipos, os mais variados.</p>
+					<p style="font-size: 16px;" align="justify">Tudo porém, colima o mesmo objetivo: Determinar o valor da remuneração.</p>
+					<p style="font-size: 16px;" align="justify">Tudo se resume em determinar, para a remuneração, um percentual a ser aplicado sobre o valor do orçamento geral da obra.</p>
+					<p style="font-size: 16px;" align="justify">Estabelecendo uma rotina para raciocí­nio, é conveniente esclarecer:</p>
+					<p style="font-size: 16px;" align="justify">1. Uma obra é composta, fundamentalmente por CUSTOS DIRETOS, que, englobados em Composições de Custos, representam, o "Produto-Acabado" , ou seja, a obra propriamente dita, considerados todos os serviços, desde os Trabalhos em Terra (Grupo 020) até a Limpeza da Obra (Grupo 210). A soma dos valores que compõe estas unidades, denomina-se: CUSTO DA OBRA.</p>
+					<p style="font-size: 16px;" align="justify">2. Não é, entretanto, tecnologicamente correto, orçar uma obra, considerando-se apenas Custos Diretos. É necessária, para a complementação dos mesmos, a adição do resultado dos CUSTOS INDIRETOS, compostos pelo elenco de atividades obtidas em consequência, da existência dos próprios Custos Diretos.</p>
+					<p style="font-size: 16px;" align="justify">A soma dos valores, de Custos Diretos e Custos Indiretos, denomina-se CUSTO TOTAL DA OBRA, em qualquer orçamento de construção.</p>
+					<p style="font-size: 16px;" align="justify">A forma final para o cálculo da remuneração ao construtor, se resume na determinação do percentual que incide sobre este CUSTO TOTAL DA OBRA. O percentual é obtido dividindo-se o valor do Custo Indireto, pelo valor do Custo Direto.</p>
+					<p style="font-size: 16px;" align="justify">Estes custos foram obtidos, através de orçamentação prévia, tendo os Custos Diretos sido definidos através de levantamento em projetos, das áreas, volumes e quantidades da obra. Os Custos Indiretos foram definidos, aplicando-se Composições de Custos adequadas, dos Grupos 000 a 018 às unidades individualizadas de CUSTOS DIRETOS. A aplicação do percentual obtido sobre o CUSTO TOTAL DA OBRA resulta no valor da remuneração do construtor.</p>
+					<p style="font-size: 16px;" align="justify">Este é, especificamente, o valor que deve ser considerado a tí­tulo de honorários lucro, BDI, provento ou benefí­cio do construtor (quaisquer dos adjetivos é uma boa escolha).</p>
+				</div>
+			</div>
+		</div>
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<h4 class="panel-title">
+					<a data-toggle="collapse" href="#collapse5" style="text-decoration: none; text-transform: none;">Composições de Custos</a>
+				</h4>
+			</div>
+			<div id="collapse5" class="panel-collapse collapse">
+				<div class="panel-body">
+					<p style="font-size: 16px; font-weight:600;" align="justify">O que é uma Composição de Custos?</p>
+					<p style="text-indent: 20px; font-size: 16px;" align="justify">Basicamente, uma Composição de Custos retrata a unidade de determinado produto-acabado em várias etapas construtivas de obra ou serviço, perfeitamente identificada na objetiva quantificação de todos os insumos que dela fazem parte, através de coeficientes, incluindo-se materiais, mão-de-obra e encargos sociais.</p>
+					<p style="font-size: 16px;" align="justify">Em cada Composição de Custos, na sua fase de elaboração é adotado o seguinte procedimento básico:</p>
+					<p style="font-size: 16px;" align="justify">Tudo se resume em determinar, para a remuneração, um percentual a ser aplicado sobre o valor do orçamento geral da obra.</p>
+					<p style="font-size: 16px;" align="justify">Estabelecendo uma rotina para raciocí­nio, é conveniente esclarecer:</p>
+					<p style="font-size: 16px; font-weight:600;" align="justify">1. Materiais ou Serviços</p>
+					<p style="text-indent: 20px; font-size: 16px;" align="justify">A quantificação dos materiais ou serviços empregados em cada etapa - objeto de determinada Composição de Custos - engloba a sua exata participação naquela unidade de trabalho, anotando-se, inclusive, os índices de perdas ou desgastes, quando existentes, em cada parcela ou insumo apropriado.</p>
+					<p style="font-size: 16px;" align="justify">Cada material ou serviço é representado por uma codificação para sua identificação e a sua participação em determinado serviço é representado por unidades de inteiros e três decimais.</p>
+					<p style="font-size: 16px;" align="justify">Cada unidade devidamente codificada permite que possam ser anotadas todas as participações de determinados materiais ou serviços em mais de uma Composição de Custos de forma a serem relacionados, quantificados através de coeficientes em relação aos diversos Grupos e estágios que compõe uma obra, multiplicados pelas áreas, volumes e quantidades obtidas nos levantamentos de projetos e especificações diversas.</p>
+					<p style="font-size: 16px; font-weight:600;" align="justify">2. Mão-de-Obra</p>
+					<p style="text-indent: 20px; font-size: 16px;" align="justify">Da mesma forma, todos os operários e técnicos, nas mais diversas especialidades ou funções são identificados em cada Composição de Custos na razão direta de sua participação através de coeficientes em cada tipo de trabalho, dentro da unidade de medida apropriada.</p>
+					<p style="font-size: 16px;" align="justify">A mesma lógica obedece à codificacão e quantificação referidas nos insumos de materiais e serviços para que possam ser obtidos os mesmos resultados finais de quantificações em cada etapa da obra.</p>
+					<p style="font-size: 16px; font-weight:600;" align="justify">3. Custos Diretos</p>
+					<p style="text-indent: 20px; font-size: 16px;" align="justify">Todas as Composições de Custos devem refletir exatamente a quantificação do consumo necessário à complementação de cada unidade de serviço, com os seus insumos, materiais, serviços e mão-de-obra.</p>
+					<p style="font-size: 16px;" align="justify">Não se admite a inclusão em qualquer Composição de Custos, de insumos estranhos a elas, ou sejam, por exemplo, percentuais ou verbas destinadas à máquinas, equipamentos, ferramentas, taxas de lucro, "eventuais", ou outro qualquer pretexto.</p>
+					<p style="font-size: 16px;" align="justify">Na Composição de Custos não estão incluí­da - como exemplo - a determinada quantidade de metros cúbicos de argamassa, nos serviços de revestimentos. A mesma Composição reflete unicamente - e exatamente - a quantidade - expressa em unidades - da quantificação de cada insumo correspondente a agregados ou agregantes destinados a determinado serviço.</p>
+					<p style="font-size: 16px;" align="justify">A consequente totalização dos insumos, devidamente codificados, trará a quantificação total de unidades da obra proposta.</p>
+					<p style="font-size: 16px; font-weight:600;" align="justify">4. Custos Indiretos</p>
+					<p style="text-indent: 20px; font-size: 16px;" align="justify">Seguindo o mesmo raciocínio - por exemplo - uma Composição de Custos de Alvenarias ou colocação de Azulejos reflete exatamente a quantificação dos materiais que estejam à disposição dos operários até uma distância máxima de 2 metros do local de aplicação.</p>
+					<p style="font-size: 16px;" align="justify">Todos os transportes necessários, estiva ou movimentação, estão contidos em Composições de Custos especificamente preparadas para tal fim, para cada tipo de serviço auxiliar desejado.</p>
+					<p style="font-size: 16px;" align="justify">A eventual inclusão de qualquer "verba" ou "percentual" é absolutamente desaconselhada pois de forma alguma irá refletir os trabalhos necessários que serão exigidos no canteiro de obras que, por sua vez, estão diretamente ligados ao volume de unidades propostas e, consequentemente, deverão ser dimensionados em relação a este fator. Dentro deste raciocí­nio, a correta utilização das Composições de Custos, cujas unidades refletem unicamente o seu consumo específico, torna inócuo e perfeitamente dispensável o uso das chamadas "Composições de Custos Auxiliares".</p>
+					<p style="font-size: 16px;" align="justify">Reiterando o desaconselhamento à inclusão de qualquer unidade de obra onde não haja quantificação prévia, com a perfeita identificação dos produtos ou serviços, aliados à sua correta mensuração em unidades reconhecí­veis no Orçamento de determinada obra, os valores financeiros que expressam as referidas "verbas" passam a ter duvidosa qualidade quanto à sua mensuração na hora em que tiverem que ser feitos os pagamentos pelos serviços "verbificados", o que tornaria um absurdo a simples tentativa de sua quantificação em qualquer estágio de obra a ser remunerada.</p>
+					<p style="font-size: 16px; font-weight:600;" align="justify">5. Elaboração de uma Composição de Custos</p>
+					<p style="text-indent: 20px; font-size: 16px;" align="justify">A elaboração de uma Composição de Custos reflete, basicamente, o conhecimento e identificação da unidade de serviço proposta, seja ela, o simples assentamento de uma porta de madeira, ou a montagem de uma sofisticada subestação.</p>
+					<p style="font-size: 16px;" align="justify">Ambas as unidades estão contidas em projetos especí­ficos que deverão estar levantados em todas as suas áreas, volumes e quantidades componentes, assim como as unidades de mão-de-obra, distribuidas pela participação das diversas categorias profissionais envolvidas, com a apropriação quantificada do tempo necessário a cada uma delas para a completação dos serviço.</p>
+				</div>
+			</div>
+		</div>
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<h4 class="panel-title">
+					<a href="http://www.paineldetrabalho.com.br/informativosbc/SBC/elaboracao_orcamentos.doc" target="blank" style="text-transform: none;">Elaboração de Orçamentos</a> - <a href="http://www.paineldetrabalho.com.br/informativosbc/SBC/elaboracao_orcamentos.doc" target="blank" style="text-decoration:none"> <img src="http://www.paineldetrabalho.com.br/informativosbc/SBC/images/ico_doc.png" style="float: none; border-style:none; text-transform: none;"> elaboracao_orcamentos.doc</a>
+				</h4>
+			</div>
+		</div>
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<h4 class="panel-title">
+					<a data-toggle="collapse" href="#collapse6" style="text-decoration: none; text-transform: none;">Alternativas em Métodos Construtivos</a>
+				</h4>
+			</div>
+			<div id="collapse6" class="panel-collapse collapse">
+				<div class="panel-body">
+					<p style="text-indent: 20px; font-size: 16px;" align="justify">Um simples tipo de revestimento é como exemplo o "emboço", - se não convenientemente planejado, pode resultar em consideráveis problemas que, além de envolver todo o restante processo de acabamento em relação a esta aplicação, pode ser responsável por prejuízos diversos, contando-se entre eles o aumento dos prazos de obra e os seus custos finais, senão vejamos:</p>
+					<p style="font-size: 16px;" align="justify">Estas considerações se referem principalmente aquele revestimento de emboço que é praticado com argamassa com a mistura de cimento, areia , saibro ou e terra de emboço, não importando os traços de 1:6 ou 1:8 desta argamassa.</p>
+					<p style="font-size: 16px;" align="justify">A composição 120020 contida neste arquivo demonstra que, são necessários 2,14 homens/hora para execução, a um custo de R$ 9,34 e um custo global de R$ 11,36 p/m2.</p>
+					<p style="font-size: 16px;" align="justify">Anotem as alternativas:</p>
+					<p style="font-size: 16px;" align="justify">1. Composição 120007 argamassa cimento/saibro/barro = 2,14h/h e custo R$ 9,34</p>
+					<p style="font-size: 16px;" align="justify">2. Composição 120007 argamassa cimento/cal/areia = 0,94 h/h custo R$ 4,50</p>
+					<p style="font-size: 16px;" align="justify">3. Composição 120020 argamassa pre-fabricada = 0,88 h/h custo R$ 4,03</p>
+					<p style="font-size: 16px;" align="justify">4. Composição 120039 argamassa de gesso = 0,36 h/h custo R$ 2,58</p>
+				</div>
+			</div>
+		</div>
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<h4 class="panel-title">
+					<a href="http://www.paineldetrabalho.com.br/informativosbc/SBC/CURVAS_Ivaldo_SBC.pdf" target="blank" style="text-transform: none;">Aplicações da Curva "S" no Gerenciamento de Projetos </a> - <a href="http://www.paineldetrabalho.com.br/informativosbc/SBC/CURVAS_Ivaldo_SBC.pdf" target="blank" style="text-decoration:none"><img src="http://www.paineldetrabalho.com.br/informativosbc/SBC/images/ico_pdf.png" style="float: none; border-style:none; text-transform: none;"> CURVAS_Ivaldo_SBC.pdf</a>
+				</h4>
+			</div>
+		</div>
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<h4 class="panel-title">
+					<a data-toggle="collapse" href="#collapse7" style="text-decoration: none; text-transform: none;">MP 612 de 04 de abril de 2013 - Medida Provisória 612 esclarece a desoneração da Folha de Pagamento</a>
+				</h4>
+			</div>
+			<div id="collapse7" class="panel-collapse collapse">
+				<div class="panel-body">
+					<p style="text-indent: 20px; font-size: 16px;" align="justify">Foi publicada no Diário Oficial da União do dia 4 de abril a Medida Provisória (MP) 612, que altera a MP 601, de dezembro de 2012, sobre, entre outros assuntos, a desoneração da folha de pagamento na construção civil.</p>
+					<p style="font-size: 16px;" align="justify">O incentivo permite que as construtoras de edificações e suas subcontratadas deixem de recolher os 20% da contribuição previdenciária e passem a pagar de 1% a 2% sobre o faturamento.</p>
+					<p style="font-size: 16px;" align="justify">A MP 612 esclareceu que o incentivo só é válido para obras com matrículas CEI abertas a partir de 1º de abril.</p>
+					<p style="font-size: 16px;" align="justify">Obras com CEI anterior continuam recolhendo à alíquota de 20% sobre a folha até o final da obra, com possibilidade de abatimento da retenção de 11% sobre o valor dos serviços das subcontratadas.</p>
+					<p style="font-size: 16px;" align="justify">A receita destas obras deve ser excluída da base de cálculo da nova contribuição sobre a receita bruta.</p>
+					<p style="font-size: 16px;" align="justify">Martelene Carvalhaes advogada e contadora, fundadora da MLF Consultoria, esclarece as mudanças da MP 612. Em texto publicado na PINIWEB.</p>
+					<br>
+					<p style="font-size: 16px;" align="justify">" São Paulo, 08 de abril de 2013</p>
+					<p style="font-size: 16px;" align="justify">Conforme esperado foi publicado no Diário Oficial da União em 05 de abril de 2013 a MP 612 de 04 de abril de 2013 que altera dispositivo da MP 601 que incluiu na lista de serviços abrangidos pela desoneração da folha de pagamento o setor da construção civil.</p>
+					<p style="font-size: 16px; font-weight:600;" align="justify">1º - SÓ VALE PARA OBRAS INICIADAS A PARTIR DE 1º DE ABRIL DE 2013 - SEGUIR DATA DA EMISSÃO DA CEI.</p>
+					<p style="text-indent: 20px; font-size: 16px;" align="justify">A MP 612 introduziu alterações determinando que nos casos de obra de construção civil obrigada à Inscrição no Cadastro Específico de INSS - CEI o procedimento é o seguinte:</p>
+					<ul style="margin-left: 60px;"><li><p style="font-size: 16px;" align="justify">CEI aberta até 31 de março de 2013 - Não muda nada. Retenção de 11% e pagamento da contribuição (INSS) de 20% sobre a folha de salários de todos os serviços, até o seu término.</p></li></ul>
+					<ul style="margin-left: 60px;"><li><p style="font-size: 16px;" align="justify">CEI aberta após 1º de abril de 2013 - Retenção de 3,5% e pagamento da contribuição de 2% sobre a receita bruta dos serviços classificados nos CNAEs abrangidos pela desoneração, até o seu término.</p></li></ul>
+					<p style="font-size: 16px; font-weight:600;" align="justify">2ª - O PRAZO DA VIGÊNCIA VAI ATÉ A CONCLUSÃO DA OBRA ABRANGIDA PELA DESONERAÇÃO</p>
+					<p style="text-indent: 20px; font-size: 16px;" align="justify">Assim, se a obra iniciar em abril de 2013 a desoneração deverá ser praticada até o término da obra, mesmo que concluída após 31 de dezembro de 2014.</p>
+					<p style="font-size: 16px;" align="justify">O procedimento para emissão de CND não deve ser alterado, pois continua obrigatório para todas as empresas que executam obras de construção civil a GFIP - Guia do Fundo de Garantia e Informação à Previdência elaborada por obra com a utilização do CEI - Cadastro Específico do INSS.</p>
+					<p style="font-size: 16px; font-weight:600;" align="justify">3º - PROCEDIMENTO PARA ENQUADRAMENTO NO CNAE</p>
+					<p style="text-indent: 20px; font-size: 16px;" align="justify">Outra alteração significativa da MP 612 de 4 de abril de 2013 é a conceituação do CNAE para enquadramento, não é mais por serviço e sim por empresa, considerando que estará abrangido pela desoneração pela atividade principal da empresa.</p>
+					<p style="font-size: 16px;" align="justify">Importante averiguar a correta classificação do CNAE fiscal perante a Receita Federal. O CNAE principal é dos serviços cujo faturamento representar mais de 50% da receita total da empresa.</p>
+					<p style="font-size: 16px;" align="justify">É aconselhável que as empresas façam uma revisão no CNAE para o correto enquadramento e correção quando estiver inadequado à atividade exercida.</p>
+					<p style="font-size: 16px; font-weight:600;" align="justify">4ª - AMPLIOU OS SERVIÇOS ABRANGIDOS PELA DESONERAÇÃO - A partir de 1º de janeiro de 2014.</p>
+					<p style="text-indent: 20px; font-size: 16px;" align="justify">São beneficiadas as empresas que executam serviços de construção civil exclusivamente do CNAE 412, 432, 433 e 439 (MP 601).</p>
+					<p style="font-size: 16px;" align="justify">Foi incluído pela MP 612 de 04 de abril de 2013 o CNAE <b>421</b>, <b>422</b>, <b>429</b> e <b>431</b> favorecendo também as empresas que executam obras de infraestrutura.</p>
+					<p style="font-size: 16px;" align="justify">A divisão <b>412</b> compreende a construção de edifícios residenciais, comerciais, industriais e públicos, estações para trens e metropolitanos, estádios esportivos e quadras cobertas, shopping centers, armazéns, depósitos etc. As reformas e montagens de edifícios e casas pré-fabricadas ou pré-moldadas quando não realizadas pelo próprio fabricante.</p>
+					<p style="font-size: 16px;" align="justify">A divisão <b>432</b> e <b>433</b> consistem nos serviços especializados da construção civil, incluindo instalações e manutenções elétricas, hidráulicas e sanitárias, de sistemas de ventilação e refrigeração. Este grupo compreende também a montagem, instalação e reparação de equipamentos incorporados às construções, como elevadores, escadas rolantes, etc., por unidades especializadas, exceto quando realizada pelo próprio fabricante.</p>
+					<p style="font-size: 16px;" align="justify">Estão inclusos os serviços de acabamento, ou seja, todas as atividades que contribuem para a conclusão da construção bem como para a sua manutenção, tais como: pintura, revestimentos, polimento, colocação de esquadrias e vidros, limpeza de fachadas, colocação de pisos, etc., compreende também o aluguel, com operador, de máquinas e equipamentos destinados aos serviços de acabamento.</p>
+					<p style="font-size: 16px;" align="justify">No grupo <b>439</b> estão compreendidos os serviços especializados que se aplicam a diferentes tipos de construção e que requerem habilidade ou equipamentos específicos, como execução de todos os tipos de fundações.</p>
+					<p style="font-size: 16px;" align="justify">Compreende também os serviços de gerenciamento e execução de qualquer tipo de construção por contrato de administração e o aluguel, com operador, de máquinas e equipamentos destinados a outros serviços especializados para construção.</p>
+					<p style="font-size: 16px;" align="justify">As divisões abaixo foram incluídas pela MP 612 de 04 de abril de 2013 Divisão <b>431</b> compreende os serviços de demolição, preparação de terreno, drenagem, sondagem e terraplenagem.</p>
+					<p style="font-size: 16px;" align="justify">Divisão <b>421</b> construção de rodovias e ferrovias que compreende a construção e recuperação de autoestradas, rodovias, e outras vias não urbanas para passagem de veículos. Construção e recuperação de vias férreas de superfície ou de subterrâneos, inclusive para metropolitanos (preparação de leito, colocação dos trilhos, etc) e construção e recuperação de pistas de aeroportos.</p>
+					<p style="font-size: 16px;" align="justify">Compreende também a pavimentação de auto estradas, rodovias e outras vias não urbanas, pontes viadutos e túneis inclusive em pistas de aeroportos etc.</p>
+					<p style="font-size: 16px;" align="justify">Divisão <b>422</b> compreende as obras para geração e distribuição de energia elétrica e para telecomunicações, construção de redes de abastecimento de coleta de esgoto e construções correlatas e a construção de redes de transportes por duto oleodutos, gasodutos, minerodutos, exceto para água e esgoto.</p>
+					<p style="font-size: 16px;" align="justify">Divisão <b>429</b> Obras portuárias, marítimas e fluviais, montagem de instalações industriais e de estruturas metálicas e ouras obras de engenharia civil não especificadas anteriormente.</p>
+					<p style="font-size: 16px; font-weight:600;" align="justify">Divisão 711</p>
+					<p style="text-indent: 20px; font-size: 16px;" align="justify">A novidade foi a inclusão dos serviços de arquitetura e engenharia e atividades técnicas relacionadas da divisão 711 do CNAE que compreende as atividades de serviços de arquitetura e engenharia. Compreende também a consultoria e de prestação de serviços técnicos de arquitetura, tais como os projetos de arquitetura de prédios (projetos conceituais, projetos de detalhamento, etc.</p>
+					<p style="font-size: 16px; font-weight:600;" align="justify">Quem está fora da medida?</p>
+					<p style="text-indent: 20px; font-size: 16px;" align="justify">As incorporadoras não se beneficiarão da medida, somente as empresas prestadoras de serviços que executam as obras e serviços.</p>
+					<p style="font-size: 16px;" align="justify">Incorporadora é a empresa que vende bens, imóveis, casas apartamentos ou salas (divisão 411 do CNAE).</p>
+					<p style="font-size: 16px;" align="justify">Ainda estão fora a produção de materiais de construção ou de elementos mais complexos destinados a obras de edifícios e de infraestrutura, tais como estruturas metálicas (divisão 25), elementos pré-fabricados de madeira (divisão 16), cimento ou outros materiais pré-moldados (divisão 23), a instalação e reparação de equipamentos incorporados a edificações, como elevadores, escadas rolantes etc, quando realizadas pelas unidades fabricantes (divisão 28), os serviços de paisagismo (divisão 81) e a retirada de entulho e refugos de obra e de demolições (divisão 38), entre outros.</p>
+					<p style="font-size: 16px;" align="justify"><b>Martelene Carvalhaes Pereira e Souza</b><br>MLF CONSULTORIA TRIBUTÁRIA LTDA<br>Especializada na construção civil "</p>
+					<br>
+					<p style="font-size: 16px;" align="justify">O Informativo SBC já está com sua Base de Dados alterada, no que tange aos Encargos Sociais, a fim de atender aos dispositivos da MP612.</p>
+					<p style="font-size: 16px;" align="justify">Ao consultar o Informativo SBC o usuário encontrará a diferenciação dos Encargos Sociais, cidade a cidade.</p>
+					<p style="font-size: 16px;" align="justify">Foram utilizados os cálculos do SINAPI a fim de que todos os orçamentos gerados no Informativo SBC sigam a nova Lei de Diretrizes Orçamentárias - <a href="http://legislacao.planalto.gov.br/legisla/legislacao.nsf/Viw_Identificacao/lei%2012.798-2013?OpenDocument" target="blank" style="text-decoration: underline;"><b>LEI Nº 12.798, DE 4 DE ABRIL DE 2013.</b></a></p>
+					<br>
+					<center>
+					<table style="width: 55%;" cellspacing="0" cellpadding="0">
+						<tbody><tr><td colspan="3" style="font-align=center; text-align:center"><b>NOVA TABELA DE ENCARGOS SOCIAIS</b></td></tr>
+						<tr><td>
+							<table class="table table-striped">
+								<thead>
+									<tr><th colspan="2">Cidade</th>
+									<th>%</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr><td>AJU</td><td>Aracajú</td><td>87.86</td></tr>
+									<tr><td>BHE</td><td>Belo Horizonte</td><td>90.64</td></tr>
+									<tr><td>BLM</td><td>Belém</td><td>89.96</td></tr>
+									<tr><td>BSA</td><td>Brasília</td><td>84.87</td></tr>
+									<tr><td>CBA</td><td>Cuiabá</td><td>87.37</td></tr>  
+									<tr><td>CPE</td><td>Campo Grande</td><td>88.46</td></tr>  
+									<tr><td>CTA</td><td>Curitiba</td><td>88.52</td></tr>  
+									<tr><td>FLA</td><td>Fortaleza</td><td>88.81</td></tr>
+									<tr><td>FNS</td><td>Florianópolis</td><td>85.09</td></tr>
+									<tr><td>GNA</td><td>Goiânia</td><td>92.27</td></tr>
+									<tr><td>JFA</td><td>Juiz de Fora</td><td>90.64</td></tr>
+									<tr><td>JPA</td><td>João Pessoa</td><td>87.31</td></tr>
+									<tr><td>MCO</td><td>Maceió</td><td>85.62</td></tr>
+									<tr><td>MNS</td><td>Manaus</td><td>85.34</td></tr>
+									<tr><td>MPA</td><td>Macapé</td><td>87.21</td></tr>
+									<tr><td>NTL</td><td>Natal</td><td>88.97</td></tr>
+								</tbody>
+							</table>
+						</td>
+						<td> </td>
+						<td>
+							<table class="table table-striped">
+								<thead>
+									<tr><th colspan="2">Cidade</th>
+									<th>%</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr><td>PAE</td><td>Porto Alegre</td><td>84.66</td></tr>
+									<tr><td>PMG</td><td>Palmas</td><td>93.89</td></tr>
+									<tr><td>PVO</td><td>Porto Velho</td><td>93.90</td></tr>
+									<tr><td>RCE</td><td>Recife</td><td>92.52</td></tr>
+									<tr><td>RBO</td><td>Rio Branco</td><td>86.74</td></tr>
+									<tr><td>RBC</td><td>Acre</td><td>86.74</td></tr>
+									<tr><td>RJO</td><td>Rio de Janeiro</td><td>88.81</td></tr>  
+									<tr><td>RPO</td><td>Ribeirão Preto</td><td>88.93</td></tr>  
+									<tr><td>SDR</td><td>Salvador</td><td>91.70</td></tr>  
+									<tr><td>SLS</td><td>São Luis</td><td>87.49</td></tr>  
+									<tr><td>SPO</td><td>São Paulo</td><td>88.93</td></tr>
+									<tr><td>TSA</td><td>Teresina</td><td>89.46</td></tr>
+									<tr><td>ULA</td><td>Urberlândia</td><td>90.64</td></tr>
+									<tr><td>VTA</td><td>Vitória</td><td>90.43</td></tr>
+									<tr><td>BVA</td><td>Boa Vista</td><td>89.83</td></tr>
+									<tr><td><br></td><td><br></td><td><br></td></tr>
+								</tbody>
+							</table>					
+						</td></tr>
+					</tbody></table>
+					</center>
+				</div>
+			</div>
+		</div>
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<h4 class="panel-title">
+					<a href="http://www.paineldetrabalho.com.br/informativosbc/SBC/NBR15575.pdf" target="blank" style="text-transform: none;">NBR 15575 - Norma de Desempenho</a> - <a href="http://www.paineldetrabalho.com.br/informativosbc/SBC/NBR15575.pdf" target="blank" style="text-decoration:none"><img src="http://www.paineldetrabalho.com.br/informativosbc/SBC/images/ico_pdf.png" style="float: none; border-style:none; text-transform: none;"> NBR15575.pdf</a>
+				</h4>
+			</div>
+		</div>
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<h4 class="panel-title">
+					<a data-toggle="collapse" href="#collapse8" style="text-decoration: none; text-transform: none;">Contratação de engenharia: o “menor preço” não é o “melhor preço”</a>
+				</h4>
+			</div>
+			<div id="collapse8" class="panel-collapse collapse">
+				<div class="panel-body">
+					<p style="text-indent: 20px; font-size: 16px;" align="justify">São frequentes as lamentações da administração para justificar fracassos na execução de obras públicas: “culpa de projetos de engenharia deficientes”, afirmam. Assim, os gestores procuram isentar-se de responsabilidade em paralisações e necessidade de revisões de contratos para corrigir as falhas na execução das obras, sempre atrasadas, como vemos nestes dias de Copa do Mundo.</p>
+					<p style="font-size: 16px;" align="justify">A origem desses problemas reais é conhecida: a forma perversa de contratação de engenharia de projetos. São serviços de natureza técnica profissional especializada que não podem ser contratados por licitações baseadas em competição de preços. Pior ainda o que se pratica atualmente, com a utilização de pregão e disputa nos preços propostos pelos concorrentes, com lances de descontos sucessivos que afetarão necessariamente a qualidade dos trabalhos a contratar.</p>
+					<p style="font-size: 16px;" align="justify">Nessa questão, não há milagres. O melhor projeto resulta em obras melhores, cumprimento de prazos e reduções significativas de custos na sua execução. O projeto contratado por melhor técnica pode custar um pouco mais, mas conduz a economia muitas vezes superior ao seu custo. O que vemos, entretanto, é a negação dessa realidade. Contrata-se o projeto com a empresa menos qualificada tecnicamente para economizar na disputa absurda de no máximo um por cento do valor final do empreendimento a ser projetado e perde-se a possibilidade de redução dez vezes maior na execução das obras, contratadas com projetos de melhor engenharia.</p>
+					<p style="font-size: 16px;" align="justify">Essa equação é inquestionável, mas alguns contratantes insistem nessa prática de má aplicação de recursos públicos, festejando a enganosa e irrelevante economia que afetará os custos, qualidade e prazos dos investimentos, especialmente de infraestrutura – rodoferroviária e de saneamento básico, de sistemas elétricos e instalações de petróleo e gás, portos e aeroportos, planejamento urbano e urbanização...</p>
+					<p style="font-size: 16px;" align="justify">Além da condenação vigorosa da prática predatória de pregões e disputas por lances de descontos de preços propostos, a engenharia brasileira exige mais nessa questão. Requer a adoção generalizada de licitações do tipo “de melhor técnica” ou “de técnica e preço” para a contratação de estudos de viabilidade técnica e ambiental, projetos básicos e executivos, supervisão e gerenciamento da execução das obras, como indicado no Artigo 46 da Lei 8666/93, vigente e sempre atualizada há mais de vinte anos. Com efeito, repetimos: os serviços de consultoria de engenharia, por sua natureza, conduzirão à otimização do investimento que concretizará o empreendimento projetado. Da qualidade técnica desses serviços resultará a minimização dos custos da execução, operação e manutenção das obras e instalações do empreendimento, e a maximização da qualidade dos serviços oferecidos aos seus usuários.</p>
+					<p style="font-size: 16px;" align="justify">As entidades da engenharia, especialmente a ABCE que congrega as empresas de engenharia de projetos, condenam a utilização de qualquer alternativa, ainda que legal, que se substitua à lógica da pura e saudável contratação com base na qualidade, mantendo em segundo plano a consideração de preços nas licitações públicas.</p>
+					<p style="font-size: 16px;" align="right">Mauro Ribeiro Viegas Filho<br>Presidente do Conselho Diretor<br>ABCE - Associação Brasileira de Consultores de Engenharia</p>
+				</div>
+			</div>
+		</div>
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<h4 class="panel-title">
+					<a data-toggle="collapse" href="#collapse9" style="text-decoration: none; text-transform: none;">Qualidade dos investimentos públicos</a>
+				</h4>
+			</div>
+			<div id="collapse9" class="panel-collapse collapse">
+				<div class="panel-body">
+					<p style="text-indent: 20px; font-size: 16px;" align="justify">O calcanhar de Aquiles da administração pública é chegar ao equilíbrio entre a eficiência na aplicação de recursos e a missão de democratizar o bem-estar e diminuir as diferenças sociais da população, com transparência e eficácia.</p>					<p style="font-size: 16px;" align="justify">E o que vemos nos últimos anos é justamente esse esforço nas diversas esferas do poder de expurgar os entraves de uma máquina conhecida por sua burocracia e morosidade. No entanto, essa eficiência não pode e não deve dispensar a qualidade e as medidas de segurança.</p>
+					<p style="font-size: 16px;" align="justify">A Associação Brasileira de Consultores de Engenharia chama a atenção para o retrocesso que representa a aprovação da MP 630. Esta semana, em votação simbólica, a Medida Provisória 630 passou pelo crivo do Senado. Essa MP impõe restrições ao Regime Diferenciado de Contratações 3 Públicas (RDC) apenas para obras de presídios.</p>
+					<p style="font-size: 16px;" align="justify">Nós da Associação Brasileira de Consultores de Engenharia vemos com temor a adoção do sistema de "contratação integrada", que determina que uma mesma construtora projete e construa uma obra. Para isso, seria necessário apenas um anteprojeto, dispensando a apresentação de um projeto básico.</p>
+					<p style="font-size: 16px;" align="justify">O RDC limita a aplicação da modalidade da “contratação integrada”, um dispositivo que agilizava a contratação de empresas para obras de serviços altamente especializados de engenharia, como por exemplo aqueles que exigem e apliquem inovação tecnológica ou de metodologias de uso exclusivo.</p>
+					<p style="font-size: 16px;" align="justify">Nós da ABCE e de demais entidades da engenharia combatemos a falsa ideia de que chegar a patamares cada vez mais baixos em orçamentos de licitações de obras técnicas é uma boa prática de gestão. Ao contrário, garantir preços baixos nem sempre significa chegar à excelência. Em vez disso, estaríamos estimulando uma prática danosa de mercado. Queremos, sim, garantir qualidade e eficiência que muitas vezes custam alto pela aplicação de métodos e técnicas mais modernas e seguras.</p>
+					<p style="font-size: 16px;" align="justify">É por isso que lutamos pela alteração do RDC, a fim de impedir lances sucessivos de redução dos preços das licitações para serviços técnicos de engenharia e a falsa impressão de serem necessariamente orçamentos superfaturados.</p>
+					<p style="font-size: 16px;" align="justify">A Associação continuará combatendo essas práticas danosas para a sociedade quanto aos custos e à qualidade dos investimentos públicos. A contratação de serviços de consultoria deve ser prévia e independente da contratação das obras. Os prazos adequados para a maturação do projeto e precificação visam a garantir riscos mínimos, custos adequados e segurança de contratos, como impõe a Lei 8.666/93 vigentes e se pratica mundo afora.</p>
+					<p style="font-size: 16px;" align="justify">A MP 630 aprovada no Senado volta agora para a Câmara dos Deputados e caduca no dia 2 de junho. É hora de o setor voltar sua atenção ao PL 559/2013, que pretende “modernizar” a lei 8.666/93. A ABCE já encaminhou à relatora, a senadora Kátia Abreu, sua avaliação de vários dispositivos do PL. O texto deverá passar pelas Comissões do Congresso – Economia, Infraestrutura e Constituição e Justiça. É hora de a sociedade civil conhecer nossa luta que interessa a todos os cidadãos de bem.</p>
+					<p style="font-size: 16px;" align="right">Mauro Ribeiro Viegas Filho,<br>Presidente do Conselho Diretor<br>ABCE - Associação Brasileira de Consultores de Engenharia</p>
+				</div>
+			</div>
+		</div>
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<h4 class="panel-title">
+					<a data-toggle="collapse" href="#collapse10" style="text-decoration: none; text-transform: none;">Desonerar salários gera emprego formal e pode ser vantajoso para a Previdência</a>
+				</h4>
+			</div>
+			<div id="collapse10" class="panel-collapse collapse">
+				<div class="panel-body">
+					<p style="font-size: 16px;" align="justify">Helio Amorim</p>
+					<p style="font-size: 16px;" align="justify">"</p>
+					<p style="text-indent: 20px; font-size: 16px;" align="justify">No Brasil, ainda convivemos com 50% de emprego informal, sem carteira assinada. Com isso, mais da metade dos trabalhadores empregados não contribuem e não podem usufruir dos benefícios da Previdência Social. Não contam tempo para a aposentadoria e sequer são segurados contra acidentes. A falta do vínculo formal é uma modalidade comum de sonegação fiscal, de difícil controle e fiscalização, praticada pelo empregador. Para que predomine o vínculo empregatício formal dos trabalhadores com o empregador, há uma solução factível, já adotado para algumas atividades econômicas.</p>
+					<p style="font-size: 16px;" align="justify">O empregador foge à obrigação legal do registro do empregado, não para se eximir das obrigações e encargos trabalhistas, normalmente cumpridos indiretamente ao se fixar a remuneração. Não formalizar o registro do empregado visa, portanto, à sonegação da contribuição do empregador à Previdência Social, calculada sobre o montante da folha de pagamento dos salários.</p>
+					<p style="font-size: 16px;" align="justify">Estudos demonstram que o montante da arrecadação dessa contribuição do empregador à Previdência seria a mesma se calculada e cobrada pela aplicação de uma alíquota de 2% sobre a receita operacional bruta de todas as empresas, desonerando-se a sua folha de pagamento de salários. Este percentual já está adotado nas desonerações praticadas.</p>
+					<p style="font-size: 16px;" align="justify">Se adotada essa medida, resultará uma simplificação notável para a fiscalização do recolhimento, uma redução certa da sonegação e um incentivo óbvio à formalização do vínculo empregatício - que dá mais segurança ao empregador, então liberado dos encargos previdenciários sobre os salários. Passa a ser indiferente financeiramente para o empregador registrar ou não registrar o empregado. É mais seguro e tranqüilo tê-lo registrado, permitindo contabilizar regularmente o custo da mão-de-obra, tendo a cobertura do seguro de acidentes e o empregado amparado pelo sistema de seguridade social, além de reduzir as reclamações trabalhistas em busca de direitos sonegados pela fuga ao vínculo formal.</p>
+					<p style="font-size: 16px;" align="justify">Estima-se que para implantar essa metodologia, bastaria acrescentar aqueles 2% à alíquota do COFINS, aproveitando a estrutura de arrecadação e fiscalização existente para essa contribuição, também destinada à Previdência Social, e que justamente incide sobre a receita do empregador.</p>
+					<p style="font-size: 16px;" align="justify">A conseqüência imediata desse deslocamento do cálculo para o faturamento seria o aumento de contribuintes da Previdência, aqueles empregados que atualmente não têm a carteira assinada. Com a entrada desses milhões de trabalhadores no mercado formal, cresceria significativamente a parcela da arrecadação que corresponde à contribuição dos empregados.</p>
+					<p style="font-size: 16px;" align="justify">Haverá ganho financeiro para as atividades que usam mão-de-obra intensiva e prejuízo relativamente pequeno para as empresas que faturam muito com poucos empregados. É justificável assumir-se esse desequilíbrio perfeitamente assimilável, que afinal beneficiaria os maiores geradores de emprego. Haverá oposição dos setores empresariais que investiram fortemente na automação, robotização e informatização da sua atividade reduzindo a mão-de-obra empregada.</p>
+					<p style="font-size: 16px;" align="justify">"</p>
+					<p style="font-size: 16px;" align="right">Engenheiro, diretor da ABCE</p>
+				</div>
+			</div>
+		</div>
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<h4 class="panel-title">
+					<a data-toggle="collapse" href="#collapse11" style="text-decoration: none; text-transform: none;">Obra sem projeto - Maurício de Lana</a>
+				</h4>
+			</div>
+			<div id="collapse11" class="panel-collapse collapse">
+				<div class="panel-body">
+					<p style="font-size: 16px;" align="justify">EDITORIAL</p>
+					<p style="font-size: 16px;" align="justify">Autor: Mauricio de Lana, membro do conselho-diretor da ABCE­ Associação Brasileira de Consultores de Engenharia</p>
+					<br>
+					<p style="font-size: 16px; font-weight:600;" align="justify">O equívoco de se licitar obra sem projeto</p>
+					<p style="text-indent: 20px; font-size: 16px;" align="justify">A Presidente da República atribui a um relatório técnico e juridicamente falho a compra, com valor elevado, da Refinaria Pasadena, no Texas, Estados Unidos.</p>
+					<p style="font-size: 16px;" align="justify">Um ex-diretor da Petrobrás revela que a obra da Refinaria Abreu e Lima teve seu valor multiplicado por ter sido contratada sem projeto.</p>
+					<p style="font-size: 16px;" align="justify">Várias autoridades e o Tribunal de Contas da União atribuem como causa de problemas em obras públicas as falhas de projeto, projetos sem detalhamento.</p>
+					<p style="font-size: 16px;" align="justify">As empreiteiras se afastam das contratações pelo RDC (Regime Diferenciado de Contratação), principalmente na modalidade de Contratação Integrada, devido á modalidade de preço global com informações imprecisas dos anteprojetos.</p>
+					<p style="font-size: 16px;" align="justify">Diante das situações descritas acima, torna-se incompreensível justificar, como solução para resolver os gargalos de execução das obras públicas, a adoção do RDC Contratação Integrada.</p>
+					<p style="font-size: 16px;" align="justify">Mesmo porque, como já devidamente constatado e amplamente noticiado, o regime não apressou a execução das obras anunciadas para serem concluídas antes da Copa do Mundo. E a necessidade de se elaborar e aprovar os Projetos Básico e Executivo, após contratação, retarda o início das obras.</p>
+					<p style="font-size: 16px;" align="justify">Por outro lado, na modalidade de Contratação Integrada é admitida a alteração do preço contratual devido à necessidade de alteração de projeto ou das especificações para melhor adequação técnica aos objetivos da contratação, a pedido da administração pública, desde que não decorrentes de erros ou omissões por parte do contratado, observados os limites previstos em lei.</p>
+					<p style="font-size: 16px;" align="justify">No RDC Contratação Integrada, cabem ao contratado para executar as obras os encargos de elaboração do Projeto Básico e do Projeto Executivo.</p>
+					<p style="font-size: 16px;" align="justify">Ora, se a licitação é realizada com informações imprecisas obtidas de um anteprojeto, onde os estudos e projetos não são completos nem detalhados, é maior a probabilidade de ocorrer a necessidade de alteração de projeto ou das especificações para melhor adequação técnica aos objetivos da contratação. Como a administração pública poderá negar a alteração do preço contratual, se o Projeto Básico ou o Projeto Executivo evidenciar que a falha foi do anteprojeto fornecido pelo órgão contratante como elemento de referência para a licitação.</p>
+					<p style="font-size: 16px;" align="justify">Por outro lado, é impossível a uma projetista produzir um bom projeto se forçada a reduzir o preço proposto em licitações com disputa de preços por lances sucessivos de descontos de suas propostas pelas empresas concorrentes. Resultariam trabalhos técnicos de baixa qualidade com as consequências negativas inevitáveis na execução das obras.</p>
+					<p style="font-size: 16px;" align="justify">A experiência histórica e o bom senso exigem um retorno à lógica das contratações de empreendimentos públicos e privados. A execução das obras é contratada com base em estudos e projetos de engenharia previamente contratados, elaborados e aprovados pelos contratantes e por todos os organismos públicos e privados envolvidos no empreendimento.</p>
+					<p style="font-size: 16px;" align="justify">Conclusão: o melhor antídoto para problemas nos investimentos públicos e privados é a existência de um bom projeto, com estudos completos e bem detalhados, aprovados em todas as instâncias, prévios à contratação das obras.</p>
+					<p style="font-size: 16px;" align="justify">http://www.abceconsultoria.org.br</p>
+					<p style="font-size: 16px; font-weight:600;" align="justify">Informações para a imprensa:</p>
+					<p style="font-size: 16px;" align="justify">LEAD Comunicação<br>(21) 2222-9450 / 9348-9189<br>leadcom@terra.com.br</p>
+				</div>
+			</div>
+		</div>
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<h4 class="panel-title">
+					<a data-toggle="collapse" href="#collapse12" style="text-decoration: none; text-transform: none;">Perspectivas 2015 para o setor de engenharia consultiva - Maurício de Lana</a>
+				</h4>
+			</div>
+			<div id="collapse12" class="panel-collapse collapse">
+				<div class="panel-body">
+					<p style="text-indent: 20px; font-size: 16px;" align="justify">Em publicação recente, a revista "O Empreiteiro" informou que "na sequência de oito anos de alta consecutiva no faturamento bruto das empresas de projetos e consultoria, a queda iniciada em 2012 continuou no ano seguinte (2013) quando as 40 maiores empresas do setor tiveram uma queda de 2.77% na sua receita bruta (a queda foi de 5,5% em 2012)". Na realidade a perda de receita do setor foi maior pois uma parte foi corroída pela inflação.</p>
+					<p style="font-size: 16px;" align="justify">Em 2014, continuamos ao que tudo indica com uma retração de nossas atividades, tanto em função da redução dos investimentos privados quanto da dificuldade das administrações públicas em executar os seus planos de investimentos, mais por total incapacidade gerencial do que por falta de recursos.</p>
+					<p style="font-size: 16px;" align="justify">Estamos terminando um ano de grandes gastos não produtivos, política monetária de pouco rigor, crescimento praticamente nulo (0,1%!) e com uma série de incentivos que estão com os dias contados. A política anticíclica “criativa”, fundamentada nos incentivos ao consumo, fracassou. O governo que se inicia está no meio de um intenso debate quanto às medidas a serem tomadas em relação à chamada “política fiscal”. As intenções da nova equipe econômica são claras: elevar o superavit primário e controlar a inflação.</p>
+					<p style="font-size: 16px;" align="justify">O ano 2015 será um ano de ajustes, com crescimento ainda baixo, aumento de tarifas e juros mais elevados. Resumidamente, se conseguirmos fazer os ajustes e ainda ter um ano 2015 um pouco melhor do que 2014, estaremos no lucro. Esperamos que, após os ajustes necessários, seja praticada oficialmente uma política anticíclica verdadeira que somente pode ter sucesso via aumento do investimento em infraestrutura e redução dos subsídios e das despesas de custeio. Para ser eficaz, está política requer que sejam devidamente planejados e controlados estes investimentos.</p>
+					<p style="font-size: 16px;" align="justify">Para isto, o país precisa de empresas de engenharia consultiva fortalecidas capazes de projetar e fiscalizar a implantação destas obras de infraestrutura. Nosso setor deve mostrar que somente desta maneira é possível evitar descontrole nos orçamentos e melhorar a qualidade dos investimentos.</p>
+					<p style="font-size: 16px;" align="justify">No primeiro ano do novo mandato da presidente, com nova liderança e estilo próprio na gestão da economia, o governo poderá frear investimentos na infraestrutura física do país para adotar uma estratégia de arrumação da casa, sem prejuízo dos seus programas sociais. Assim foi anunciado.</p>
+					<p style="font-size: 16px;" align="justify">Se confirmada essa política, surge a oportunidade de recuperar a lógica dos investimentos públicos abandonada temerariamente nos últimos anos no país.</p>
+					<p style="font-size: 16px;" align="justify">Dos setores que demandam recursos maiores podemos destacar dentre outros os de transportes rodoferroviários e aquaviários, portos e aeroportos, construção de barragens e geração de energia, expansão da extração de petróleo e refinarias, equipamento urbano e meio-ambiente.</p>
+					<p style="font-size: 16px;" align="justify">A execução desses empreendimentos é necessariamente precedida de estudos e projetos de engenharia de qualidade que exigem tempo adequado de elaboração com base em amplo conhecimento técnico e experiência de empresas do setor de engenharia consultiva. Essa etapa dos programas de investimento é o momento crítico que definirá o seu êxito. Não pode ser produto de ansiedades políticas e eleitorais com prejuízo da inteligência e das mais adequadas tecnologias requeridas no planejamento responsável de cada setor de investimentos – públicos e privados.</p>
+					<p style="font-size: 16px;" align="justify">A nova face da área econômica do governo recomenda ou mesmo impõe que nos primeiros anos da nova gestão os investimentos públicos sejam focados com vigor na produção de estudos de pré-investimento em todos os setores demandantes de engenharia, com o desenvolvimento de projetos que custam pouco mas definem o êxito ou fracasso das obras públicas projetadas.</p>
+					<p style="font-size: 16px;" align="justify">Por coerência com essas premissas, deve ser definitivamente corrigida a prática temerária de contratação integrada de obras públicas sem projetos, uma agressão à lógica da engenharia e à economia do país.</p>
+					<p style="font-size: 16px;" align="justify">Podemos apontar as demandas mais sensíveis da população e das organizações profissionais e empresariais. Será oportuna uma pesquisa preliminar ágil para estabelecer uma agenda de prioridades de cada setor para o primeiro ano deste período que se inicia. Logo acontecerão as licitações para a contratação segura de empresas especializadas de engenharia consultiva para trabalharem com prazos viáveis e garantia de melhores soluções para os empreendimentos públicos e privados, estes incentivados para iniciativas de PPPs.</p>
+					<p style="font-size: 16px;" align="justify">Devemos prosseguir em nosso esforço de valorização da engenharia consultiva, continuando com a nossa oposição ao uso de pregão para contratação de serviços de consultoria em licitações públicas, assim como a soluções “criativas” que limitam a concorrência.</p>
+					<p style="font-size: 16px;" align="justify">São essas as expectativas realistas da engenharia de projetos e obras para este momento de mudanças políticas em nosso país.</p>
+					<p style="font-size: 16px;" align="right">Mauro Ribeiro Viegas Filho<br>Presidente do Conselho Diretor<br>ABCE - Associação Brasileira de Consultores de Engenharia</p>
+				</div>
+			</div>
+		</div>
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<h4 class="panel-title">
+					<a href="http://www.paineldetrabalho.com.br/informativosbc/SBC/ARTIGO_PAULO_DIAS_01_2017.pdf" target="blank" style="text-transform: none;">A Importância do Projeto de Engenharia e A Fase Atual do BDI nas Licitações Públicas - Professor Paulo Dias, Presidente do IBEC.</a> - <a href="http://www.paineldetrabalho.com.br/informativosbc/SBC/ARTIGO_PAULO_DIAS_01_2017.pdf" target="blank" style="text-decoration:none"><img src="http://www.paineldetrabalho.com.br/informativosbc/SBC/images/ico_pdf.png" style="float: none; border-style:none; text-transform: none;"> ARTIGO_PAULO_DIAS_01_2017.pdf</a>
+				</h4>
+			</div>
+		</div>
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<h4 class="panel-title">
+					<a data-toggle="collapse" href="#collapse13" style="text-decoration: none; text-transform: none;">Obras Públicas – Orçamento Com ou Sem Desoneração da Folha de Pagamento</a>
+				</h4>
+			</div>
+			<div id="collapse13" class="panel-collapse collapse">
+				<div class="panel-body">
+					<p style="text-indent: 20px; font-size: 16px;" align="justify"> A desoneração da folha de pagamento foi criada pela lei 12.546/2011 regulamentada e normatizada pelo decreto 7.828/2012 e Instrução Normativa RFB 1.436/2013. Sendo que a Construção Civil somente começou efetivamente a fazer parte através da MP 601 de 28/12/2012.</p>
+					<p style="font-size: 16px;" align="justify">Ficaram de fora da possibilidade de desoneração as incorporadoras bem como diversos outro serviço tal como demolição e preparação de terreno, drenagem, sondagem e terraplenagem, obras de construção de autoestradas, vias urbanas, pontes, túneis, ferrovias, metrô e outros.</p>
+					<p style="font-size: 16px;" align="justify">A desoneração consiste na substituição da contribuição previdenciária de 20% da folha de pagamento das empresas pela CPRB (Contribuição Previdenciária Sobre a Receita Bruta) que no mesmo decreto foi instituída em 2% e paga não mais sobre a folha de pagamento e sim sobre a receita bruta das empresas. (Tal fato gerou a incidência da taxa de 2% no Cálculo do BDI no caso de obras públicas de construção civil, imposto pelo TCU em Acórdão 2622/2013).</p>
+					<p style="font-size: 16px;" align="justify">A principal razão para a adoção dessa alteração tributária é reduzir os custos de produção no Brasil, na indústria e construção civil em especial.</p>
+					<p style="font-size: 16px;" align="justify">Com base nas referidas leis e decretos lançados pelo governo durante o período anteriormente citado, principalmente depois dos decretos 12.844/13 e 13.043/14, o TCU fez algumas ponderações em seus acórdãos e também na Cartilha de Orientação de Obras Públicas, tais como se segue:</p><br>
+					<p style="font-size: 16px;" align="justify">1 – Jurisprudência de Licitações e Contratos TCU Número 166; Sessões: 27 e 28 de agosto de 2013 que diz textualmente: <i>“Os orçamentos de licitações em obras e serviços de engenharia devem considerar a desoneração instituída pela Lei 12.844/13, que possibilita a redução de custos previdenciários das empresas de construção civil, caracterizando sobre preço a fixação de valores em contrato que desconsidere tal dedução”.</i></p><br>
+					<p style="font-size: 16px;" align="justify">2 – CARTILHA TCU - ORIENTAÇÕES PARA ELABORAÇÃO DE PLANILHAS ORÇAMENTÁRIAS DE OBRAS PÚBLICAS DE 2014:</p>
+					<p style="text-indent: 60px; font-size: 16px;" align="justify">Em sua página 84, a referida cartilha informa textualmente:</p>
+					<p style="font-size: 16px;" align="justify">“Erros mais frequentes na elaboração de um Orçamento”</p>
+					<p style="font-size: 16px;" align="justify">A – Elaborar orçamentos sem considerar os efeitos da desoneração dos encargos sociais promovidas pelas leis 12.844/2013 e 13.043/2014.</p>
+					<p style="font-size: 16px;" align="justify">Em 2015, mais precisamente por obra da lei 13.161/2015, o governo fez algumas alterações no sistema de desoneração da folha de pagamento; entre elas o aumento da CPRB de 2,0% para 4,5%, a exclusão de diversas atividades industriais e comerciais de efetuar a desoneração e também a possibilidade (no caso da construção civil e outros setores) de optar pelo que fosse mais conveniente para cada empresa desoneração ou não desoneração da folha de pagamento.</p>
+					<p style="font-size: 16px;" align="justify">Diante do exposto no parágrafo anterior, podemos concluir com base em entendimentos de renomados engenheiros de custos que a opção pelo sistema de desoneração da folha de pagamento continua sendo a mais vantajosa para obras públicas em função de que apenas nos casos de terceirização total da mão de obra de construção ou empresas que também são incorporadoras – onde a contribuição substitutiva incide sobre a receita da venda de imóveis além da venda de serviços; sendo estes dois casos não comuns em obras públicas.</p>
+					<p style="font-size: 16px;" align="justify">Enfim, o não pronunciamento do TCU sob a forma de acórdãos, jurisprudências ou outros meios corrobora de maneira inequívoca que o sistema de desoneração da folha de pagamento ainda é o mais vantajoso quando se trata de obras públicas.</p>
+					<p style="font-size: 16px;" align="justify">É bom lembrar que esse regime de desoneração é provisório e segundo a maioria dos economistas, com a nova reforma da previdência – ou até mesmo antes dela – em função do péssimo momento das contas públicas, este regime vai ser abolido e voltará tudo como antes, ou seja contribuição das empresas sobre a folha de pagamento e preços “SEM DESONERAÇÃO”.</p><br>
+					<p style="font-size: 16px;" align="justify">Nazareno Luiz da Rocha Maiolino</p>
+					<p style="font-size: 16px;" align="justify">Arquiteto – 58 anos, formado pela Faculdade de Arquitetura e Urbanismo Silva e Souza em 1983, atuando como orçamentista desde 1985 em empresa do setor privado e depois como Consultor do SENAC E SESC Nacionais; atualmente sócio proprietário da Empresa ENARC ENGENHARIA E ARQUITETURA LTDA., especializada em consultoria de custos e orçamentos de construção civil para obras públicas e privadas desde 2005.</p>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+
+
+
+
+
+
+
+			<div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Fechar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<script>
+	var countChecked = function() {
+
+		var total = 0;
+
+		var total_licenca = 0;	
+
+		var licenca = $('#numero-licencas').val();
+
+		var n = $( "input:checked" ).length;
+
+		if (licenca > 2) {
+			total_licenca = (licenca - 2) * 15;
+		}
+
+		total = total_licenca + (n * 100);
+
+	  $( ".quantidade" ).text( "R$ " + total);
+
+	  var allVals = [];
+    $('input:checked').each(function() {
+      allVals.push($(this).val());
+    });
+
+    console.log(allVals);
+    console.log(licenca);
+    console.log(total);
+
+
+    $('#estados-selecionados').val('ola mundo');
+
+  };
+
+	countChecked();
+	
+
+
+	$( "input[type=checkbox]" ).on( "click", countChecked );
+
+	console.log("oi to aqui js");
+
+	$("#numero-licencas").on('change', countChecked );
+
+	$("#btn-limpar").on('click', function(){
+		$('#form-dados')[0].reset();
+		countChecked();
+	});
+
+	
+</script>

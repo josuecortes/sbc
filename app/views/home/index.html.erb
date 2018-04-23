@@ -1,0 +1,96 @@
+<% content_for :breadcrumbs do %>
+	
+<% end %>
+
+<% content_for :titulo do %>
+	<div class="sh-pagetitle-icon"><i class="icon ion-ios-home mg-t-3"></i></div>
+	<div class="sh-pagetitle-title">
+	  <span>Seja bem vindo(a)</span>
+	  <h2>Home</h2>
+	</div><!-- sh-pagetitle-left-title -->
+<% end %>
+
+<div class="row row-sm">
+  <div class="col-lg-8">
+    
+    <div class="row">
+      <div class="col-md">
+        <div class="card card-body tx-white-8 bg-success bd-0">
+          <center>
+          	<h3>ATIVOS</h3>
+          	<h1><%= @ativos %></h1>
+        	</center>
+        </div><!-- card -->
+      </div><!-- col -->
+      <div class="col-md mg-t-20 mg-md-t-0">
+        <div class="card card-body tx-white-8 bg-warning bd-0">
+          <center>
+          	<h3>EXPIRADOS</h3>
+          	<h1><%= @expirados %></h1>
+        	</center>
+        </div><!-- card -->
+      </div><!-- col -->
+      <div class="col-md mg-t-20 mg-md-t-0">
+        <div class="card card-body tx-white-8 bg-primary bd-0">
+          <center>
+          	<h3>TODOS</h3>
+          	<h1><%= @planos %></h1>
+        	</center>
+        </div><!-- card -->
+      </div><!-- col -->
+    </div><!-- row -->
+
+  </div>
+  <div class="col-lg-4">
+  	<div class="card bd-primary">
+      <div class="card-header bg-primary tx-white"><%= @empresa.nome %></div>
+      <div class="card-body">
+      	<dl>
+	        <dt>Nome/Razão Social</dt>
+	        <dd><%= @empresa.nome %></dd>
+	        <dt>CNPJ</dt>
+	        <dd><%= @empresa.cnpj %></dd>
+	        <dt>Area de Atuação</dt>
+	        <dd><%= @empresa.area %></dd>
+	        <dt>Usuários</dt>
+	        <dd><%= @empresa.users.count %></dd>
+	        <dt>Estado</dt>
+	        <dd><%= @empresa.estado %></dd>
+	        <dt>Cep</dt>
+	        <dd><%= @empresa.cep %></dd>
+	        <dt>Número</dt>
+	        <dd><%= @empresa.numero %></dd>
+	      </dl>
+        <% if current_user.permissao != "CLIENTE" %>
+	        <%= link_to "Atualizar Dados", home_minha_empresa_path, class: 'btn btn-primary btn-block' %>
+        <% end %>
+      </div><!-- card-body -->
+    </div><!-- card -->
+  </div>
+</div>  
+
+
+<% if current_user.bem_vindo == true %>
+ 
+  <!-- Modal -->
+  <div class="modal fade" id="bemVindoModal" tabindex="-1" role="dialog" aria-labelledby="memberModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="memberModalLabel">Obrigado por se cadastrar!</h4>
+        </div>
+        <div class="modal-body">
+          <p>Nosso sistema é bla bla bla.<BR>
+          e mais bla bla bla bla bla</p>
+
+          <p>Nosso sistema é o melhor com ele bla bla bla bla bla.</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" data-dismiss="modal" onclick = 'fecharBemVindo();'>Fechar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<% end %>

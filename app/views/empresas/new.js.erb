@@ -1,0 +1,16 @@
+$(function(){
+
+	let $formModal = $('#form-modal');
+
+	<% if @empresa.errors.none? %>
+		$('#form-modal-titulo').html('<h3><i class="fa fa-industry"></i> Nova Empresa</h3>');
+		$('#form-modal-corpo').html('<%= j render("form", hide_buttons: true) %>');
+		//$('#form-modal').modal('show');
+		$formModal.modal();
+		
+	<% else %>
+		$('#form-modal-error').html('<div class="alert alert-danger">Corrija os erros abaixo:</div>');
+		$('#form-modal-corpo').html('<%= j render("form", hide_buttons: true) %>');
+	<% end %>
+
+});

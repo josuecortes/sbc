@@ -1,0 +1,15 @@
+<% content_for :breadcrumbs do %>
+	<a class="breadcrumb-item" href="<%= banco_sbc_insumos_path %>">Insumos</a>
+	<a class="breadcrumb-item" href="#"><%= @insumo.codigo %></a>
+  <span class="breadcrumb-item active">Editar Valores</span>	
+<% end %>
+
+<% content_for :titulo do %>
+	<div class="sh-pagetitle-icon"><i class="fa fa-file mg-t-3"></i></div>
+	<div class="sh-pagetitle-title">
+	  <span></span>
+	  <h2>Editando Valores do Insumo</h2>
+	</div>
+<% end %>
+
+<%= render "form_valores" %>

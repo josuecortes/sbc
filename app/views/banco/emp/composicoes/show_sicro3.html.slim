@@ -1,0 +1,275 @@
+//= stylesheet_link_tag "orc/medicoes", 'data-turbolinks-track' => true
+
+- estado = @composicao.estado
+
+#composicao_id composicao_id="#{ @composicao.id }"
+
+/ Modais
+#new_modal
+
+#modal-copiar.modal.hide.fade.in aria-hidden="false" aria-labelledby="myModalLabel" role="dialog" tabindex="-1"
+  = form_tag copiar_banco_emp_composicoes_path(:id => @composicao.id) do
+    
+    = modal_header("Copiar")
+    .modal-body
+      h4 Formulário para criar uma copia desta composição
+      br
+      p
+        = label_tag :descricao, "Descricao para a Cópia"
+        span.field = text_field_tag :descricao, "Copia - #{@composicao.descricao}", :class => "input-block-level"
+    = modal_footer("Copiar")
+/ Modais
+
+ul.breadcrumbs
+  li
+    = link_to "<i class='flaticon-home168'></i>".html_safe, home_index_path
+    span.separator
+  li
+    = link_to "<i class='flaticon-bricks3'></i>".html_safe, banco_composicoes_path
+    span.separator
+  li Composição Própria Modelo SICRO 3
+
+.pageheader
+  .pageicon
+    span.flaticon-bricks3
+  .pagetitle
+    h5 detalhamento do composiçẽos com preços de todos os estados
+    h1
+      i.flaticon-airplane49
+      = @composicao.codigo
+
+.maincontent
+  .maincontentinner
+
+    .widget
+      h4.widgettitle = @composicao.descricao.html_safe
+      .widgetcontent.nopadding
+        .row-fluid
+          table.table.table-no-border
+            tr
+              th        Data
+              th.center Unidade
+              th.right  Produção da Equipe
+              th.right  Fator de Influencia da Chuva - FIC
+            tr 
+              td        = @composicao.data
+              td.center = @composicao.unidade
+              td.right  #{@composicao.producao_da_equipe.trocar_ponto_por_virgula} #{@composicao.unidade}
+              td.right  = @composicao.fic.trocar_ponto_por_virgula if @composicao.fic
+
+    / .accordion
+    h3
+      a href="#"
+        .row-fluid
+          .span6
+            b #{estado.uf_to_nome}
+          .span6.right
+            b.self_pr_un = @composicao.estados[estado]["pnd"].real_contabil
+    div style="padding: 0;"
+      table.table
+        / Equipamentos
+        tr.tr_th_equipamentos style="display: #{ @composicao.sicro3_equipamentos_provisorios.count > 0 ? "table-row" : "none"};"
+          th                    A
+          th colspan="2"        Equipamentos
+          th.right              Coeficiente
+          th.center colspan="2" Utilização
+          th.center colspan="2" Custo Operacional
+          th.right  rowspan="2" Custo Horário
+          th
+        tr.tr_th_equipamentos style="display: #{ @composicao.sicro3_equipamentos_provisorios.count > 0 ? "table-row" : "none"}"
+          th
+          th colspan="2"
+          th
+          th.right Operativa
+          th.right Improdutiva
+          th.right Operativa
+          th.right Improdutiva
+          th
+        - @composicao.sicro3_equipamentos_provisorios.each do |e|
+          - pr_un = e.is_a?(Banco::Sicro::Insumo) ? e.estados[estado]["nd"]["operativo"] : e.estados[estado]["pnd"]
+          - pr_uni = e.is_a?(Banco::Sicro::Insumo) ? e.estados[estado]["nd"]["improdutivo"] : e.estados[estado]["pndi"]
+          - custo_nao_desonerado_operacional_operativo = e.quantidade * e.utilizacao_operativa * pr_un
+          - custo_nao_desonerado_operacional_improdutivo = e.quantidade * e.utilizacao_improdutiva * pr_uni
+          - custo_horario_nao_desonerado = (custo_nao_desonerado_operacional_operativo + custo_nao_desonerado_operacional_improdutivo).round(4)
+          tr.item_equipamento.item_insumo.item_para_timpo_fixo data-id_intermediario="#{e.id_intermediario}" data-id="#{e.id}" data-descricao="#{e.descricao}" data-codigo="#{e.codigo}" classe="insumo" data-quantidade="#{e.quantidade}"
+            td.td_codigo                = e.codigo
+            td.td_descricao colspan="2" = e.descricao
+            td.td_quantidade.right      = link_to e.quantidade.real(7), "#", class: 'editar_coeficientes', title: 'Edita Coeficientes'
+            td.td_operativa.right       = e.utilizacao_operativa.real
+            td.td_improdutiva.right     = e.utilizacao_improdutiva.real
+            td.td_pnd.right             = pr_un.real(4)
+            td.td_pndi.right            = pr_uni.real(4)
+            td.td_pnd_total.right       = custo_horario_nao_desonerado.real(4)
+            td.td_excluir
+              i.flaticon-garbage1.icone-18 onclick="AtivarBotaoDeExclusao(jQuery(this));"
+        
+        tr.tr_th_equipamentos style="display: #{ @composicao.sicro3_equipamentos_provisorios.count > 0 ? "table-row" : "none"}"
+          td.right colspan="8"
+            b Custo Horário de Equipamentos
+          td.ch_de_eq.right = @composicao.estados[estado]["ch_de_eq"].real(4)
+
+        / Mãos de Obra
+        tr.tr_th_maos_de_obra style="display: #{ @composicao.sicro3_maos_de_obra_provisorias.count > 0 ? "table-row" : "none"}"
+          th                    B
+          th colspan="2"        Mão-de-Obra
+          th.right              Coeficiente
+          th.center             Unidade
+          th.right colspan="3"  Preço Unitário
+          th.right              Custo Unitário
+          th
+        - @composicao.sicro3_maos_de_obra_provisorias.each do |mo|
+          - pr_un = (mo.is_a?(Banco::Sicro::Insumo) ? mo.estados[estado]["nd"]["pr_un"] : mo.estados[estado]["pnd"])
+          - custo_horario_nao_desonerado = mo.quantidade * pr_un.round(4)
+          tr.item_mao_de_obra.item_insumo.item_para_timpo_fixo data-id_intermediario="#{mo.id_intermediario}" data-id="#{mo.id}" data-descricao="#{mo.descricao}" data-codigo="#{mo.codigo}" classe="insumo" data-quantidade="#{mo.quantidade}"
+            td.td_codigo                = mo.codigo
+            td.td_descricao colspan="2" = mo.descricao
+            td.td_quantidade.right      = link_to mo.quantidade.real(7), "#", class: 'editar_coeficientes', title: 'Edita Coeficientes'
+            td.td_unidade.center        = mo.unidade
+            td.td_pnd.right colspan="3" = pr_un.real(4)
+            td.td_pnd_total.right       = custo_horario_nao_desonerado.real(4)
+            td.td_excluir
+              i.flaticon-garbage1.icone-18 onclick="AtivarBotaoDeExclusao(jQuery(this));"
+        
+        tr.tr_th_maos_de_obra style="display: #{ @composicao.sicro3_maos_de_obra_provisorias.count > 0 ? "table-row" : "none"}"
+          td.right colspan="8"
+            b Custo horário total de mão de obra
+          td.ch_da_mo.right = @composicao.estados[estado]["ch_da_mo"].real(4)
+        tr
+          td.right colspan="8"
+            b Custo horário total de execução
+          td.che.right = @composicao.estados[estado]["che"].real(4)
+        tr
+          td.right colspan="8"
+            b Custo Unitário de Execução
+            td.cue.right = (@composicao.estados[estado]["che"] / @composicao.producao_da_equipe).real(4)
+        - if @composicao.fic
+          tr
+            td.right colspan="8"
+              b Fator de Influencia da Chuva - FIC
+              td.right = ((@composicao.estados[estado]["che"] / @composicao.producao_da_equipe).round(4) * @composicao.fic).real(4) 
+
+        / Materiais
+        tr.tr_th_materiais style="display: #{ @composicao.sicro3_materiais_provisorios.count > 0 ? "table-row" : "none"}"
+          th                    C
+          th colspan="2"        Material
+          th.right              Coeficiente
+          th.center             Unidade
+          th.right colspan="3"  Preço Unitário
+          th.right              Custo Unitário
+          th
+        - custo_total_do_material = 0.0
+        - @composicao.sicro3_materiais_provisorios.each do |m|
+          - pr_un = (m.is_a?(Banco::Sicro::Insumo) ? m.estados[estado]["pr_un"] : m.estados[estado]["pnd"])
+          - custo_horario_nao_desonerado = (m.quantidade * pr_un).round(4)
+          - custo_total_do_material += custo_horario_nao_desonerado
+          tr.item_material.item_insumo.item_para_timpo_fixo data-id_intermediario="#{m.id_intermediario}" data-id="#{m.id}" data-descricao="#{m.descricao}" data-codigo="#{m.codigo}" classe="insumo" data-quantidade="#{m.quantidade}"
+            td.td_codigo                = m.codigo
+            td.td_descricao colspan="2" = m.descricao
+            td.td_quantidade.right      = link_to m.quantidade.real(7), "#", class: 'editar_coeficientes', title: 'Edita Coeficientes'
+            td.td_unidade.center        = m.unidade
+            td.td_pnd.right colspan="3" = pr_un.real(4)
+            td.td_pnd_total.right       = custo_horario_nao_desonerado.real(4)
+            td.td_excluir
+              i.flaticon-garbage1.icone-18 onclick="AtivarBotaoDeExclusao(jQuery(this));"
+        
+        tr.tr_th_materiais style="display: #{ @composicao.sicro3_materiais_provisorios.count > 0 ? "table-row" : "none"}"
+          td.right colspan="8"
+            b Custo unitário total de material
+          td.custo_total_do_material.right = custo_total_do_material.real(4)
+
+        / Composições Auxiliares
+        tr.tr_th_composicoes style="display: #{ @composicao.sicro3_composicoes_provisorias.count > 0 ? "table-row" : "none"}"
+          th                    D
+          th colspan="2"        Atividades Auxiliares
+          th.right              Coeficiente
+          th.center             Unidade
+          th.right colspan="3"  Preço Unitário
+          th.right              Custo Horário
+          th
+        - custo_total_das_atividades = 0.0
+        - @composicao.sicro3_composicoes_provisorias.each do |aa|
+          - pr_un = (aa.is_a?(Banco::Sicro::Composicao) ? aa.estados[estado]["nd"]["cud"] : aa.estados[estado]["pnd"])
+          - custo_horario_nao_desonerado = aa.quantidade * pr_un
+          - custo_total_das_atividades += custo_horario_nao_desonerado
+          tr.item_composicao.item_para_timpo_fixo data-id_intermediario="#{aa.id_intermediario}" data-id="#{aa.id}" data-descricao="#{aa.descricao}" data-codigo="#{aa.codigo}" classe="composicao" data-quantidade="#{aa.quantidade}"
+            td.td_codigo                = link_to aa.codigo, banco_sicro3_composicao_path(aa, estado_sicro3: estado)
+            td.td_descricao colspan="2" = aa.descricao
+            td.td_quantidade.right      = link_to aa.quantidade.real(7), "#", class: 'editar_coeficientes', title: 'Edita Coeficientes'
+            td.td_unidade.center        = aa.unidade
+            td.td_pnd.right colspan="3" = pr_un.real(4)
+            td.td_pnd_total.right        = custo_horario_nao_desonerado.real(4)
+            td.td_excluir
+              i.flaticon-garbage1.icone-18 onclick="AtivarBotaoDeExclusao(jQuery(this));"
+        
+        tr.tr_th_composicoes style="display: #{ @composicao.sicro3_composicoes_provisorias.count > 0 ? "table-row" : "none"}"
+          td.right colspan="8"
+            b Custo Total das Atividades
+          td.custo_total_das_atividades.right = custo_total_das_atividades.real(4)
+
+        / Tempos Fixos
+        tr.tr_th_tempos_fixos style="display: #{ @composicao.sicro3_tempos_fixos_provisorios.count > 0 ? "table-row" : "none"}"
+          th                    E
+          th                    Tempo Fixo
+          th.center             Código
+          th.right              Coeficiente
+          th.center             Unidade
+          th.right colspan="3"  Preço Unitário
+          th.right              Custo Unitário
+          th
+        
+        - custo_total_do_tempos_fixos = 0.0
+        - @composicao.sicro3_tempos_fixos_provisorios.each do |m|
+          - custo_horario_nao_desonerado = (m.quantidade * m.estados[estado]["pnd"]).round(4)
+          - custo_total_do_tempos_fixos += custo_horario_nao_desonerado
+          tr.item_tempo_fixo data-id_intermediario="#{m.id_intermediario}" classe="Tempo Fixo" data-quantidade="#{m.quantidade}"
+            td.td_codigo_tempo_fixo     = link_to m.ref, banco_sicro3_composicao_path(m.ref, estado_sicro3: estado)
+            td.td_descricao             = m.descricao_completa
+            td.td_codigo.center         = m.codigo
+            td.td_quantidade.right      = link_to m.quantidade.real(7), "#", class: 'editar_coeficientes', title: 'Edita Coeficientes'
+            td.td_unidade.center        = m.unidade
+            td.td_pnd.right colspan="3" = m.estados[estado]["pnd"].real(4)
+            td.td_pnd_total.right        = custo_horario_nao_desonerado.real(4)
+            td.td_excluir
+              i.flaticon-garbage1.icone-18 onclick="AtivarBotaoDeExclusao(jQuery(this));"
+        
+        tr.tr_th_tempos_fixos style="display: #{ @composicao.sicro3_tempos_fixos_provisorios.count > 0 ? "table-row" : "none"}"
+          td.right colspan="8"
+            b Custo unitário total de tempo fixo
+          td.custo_total_do_tempos_fixos.right = custo_total_do_tempos_fixos.real(4)
+
+        / Insumos de Outros Tipos
+        tr.tr_th_outros_tipos style="display: #{ @composicao.sicro3_outros_insumos.count > 0 ? "table-row" : "none"}"
+          th                    G
+          th colspan="2"        Outros Tipos
+          th.right              Coeficiente
+          th.center             Unidade
+          th.right colspan="3"  Preço Unitário
+          th.right              Custo Unitário
+          th
+        - custo_total_de_outros_tipos = 0.0
+        - @composicao.sicro3_outros_insumos.each do |m|
+          - custo_horario_nao_desonerado = (m.quantidade * m.estados[estado]["pnd"]).round(4)
+          - custo_total_de_outros_tipos += custo_horario_nao_desonerado
+          tr.item_outro_tipo.item_insumo.item_para_timpo_fixo data-id_intermediario="#{m.id_intermediario}" data-id="#{m.id}" data-descricao="#{m.descricao}" data-codigo="#{m.codigo}" classe="insumo" data-quantidade="#{m.quantidade}"
+            td.td_codigo                = m.codigo
+            td.td_descricao colspan="2" = m.descricao
+            td.td_quantidade.right      = link_to m.quantidade.real(7), "#", class: 'editar_coeficientes', title: 'Edita Coeficientes'
+            td.td_unidade.center        = m.unidade
+            td.td_pnd.right colspan="3" = m.estados[estado]["pnd"].real(4)
+            td.td_pnd_total.right       = custo_horario_nao_desonerado.real(4)
+            td.td_excluir
+              i.flaticon-garbage1.icone-18 onclick="AtivarBotaoDeExclusao(jQuery(this));"
+
+        tr.tr_th_outros_tipos style="display: #{ @composicao.sicro3_outros_insumos.count > 0 ? "table-row" : "none"}"
+          td.right colspan="8"
+            b Custo unitário total dos outros insumos
+          td.custo_total_de_outros_tipos.right = custo_total_de_outros_tipos.real(4)
+
+
+        tr#CustoUnitarioDiretoTotal
+          td.right colspan="8"
+            b Custo Unitário Direto Total
+          td.right
+            b.self_pr_un = (@composicao.estados[estado]["pnd"]).real
+
+= javascript_include_tag 'banco/emp/composicoes'

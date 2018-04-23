@@ -1,0 +1,49 @@
+<% content_for :breadcrumbs do %>
+	<span class="breadcrumb-item active">Usuários</span>	
+<% end %>
+
+<% content_for :search do %>
+  <%= simple_form_for(:pesquisa, url: usuarios_path, :method=>"get", remote: true) do |f| %>
+    <div class="row">        
+      <%= f.input :conteudo, label: false, placeholder: "Nome ou E-mail", input_html: {class: "form-control"} %>
+      <button type="submit" class="btn">
+        <i class="fa fa-search"></i>
+      </button>        
+      <div class="col-lg-2">
+      </div>  
+    </div>
+  <% end %>      
+<% end %>
+
+<% content_for :titulo do %>
+	<div class="sh-pagetitle-icon"><i class="icon ion-ios-people mg-t-3"></i></div>
+	<div class="sh-pagetitle-title">
+	  <span></span>
+	  <h2>Usuários <%= link_to link_icone("novo"), new_usuario_path, class: "btn btn-success", title: "Novo Usuário", remote: true %></h2>
+	</div><!-- sh-pagetitle-left-title -->
+<% end %>
+
+<div class="usuarios">
+  <% if :hide_buttons != true %>
+    <%= render partial: "usuarios" %>
+  <% end %>
+</div>
+
+<div class="modal hide fade in" id="form-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content bd-0 tx-14">
+      <div class="modal-header pd-x-20" id="form-modal-titulo">
+
+      </div>
+      <div id="form-modal-error">
+      </div>
+      <div class="modal-body pd-20" id="form-modal-corpo">
+        
+      </div><!-- modal-body -->
+      
+    </div>
+  </div><!-- modal-dialog -->
+</div><!-- modal -->
+
+
+

@@ -1,0 +1,41 @@
+<label class="sh-sidebar-label">Navegação</label>
+<ul class="nav">
+  <li class="nav-item">
+    <a href="<%= home_index_path %>" class="nav-link">
+      <i class="icon ion-ios-home"></i>
+      <span>Home</span>
+    </a>
+  </li><!-- nav-item -->
+  <% if current_user.permissao == "ADMINISTRADOR" %>
+    <li class="nav-item">
+      <a href="<%= empresas_path %>" class="nav-link">
+        <i class="icon ion-ios-box"></i>
+        <span>Empresas</span>
+      </a>
+    </li><!-- nav-item -->
+  <% end %>
+  <% if current_user.permissao != "CLIENTE" %>
+    <li class="nav-item">
+      <a href="<%= usuarios_path %>" class="nav-link">
+        <i class="icon ion-ios-people"></i>
+        <span>Usúarios</span>
+      </a>
+    </li><!-- nav-item -->
+  <% end %>
+
+
+  <li class="nav-item">
+    <a href="<%= banco_sbc_composicoes_path %>" class="nav-link">
+      <i class="fa fa-list"></i>
+      <span>Composições</span>
+    </a>
+  </li><!-- nav-item -->
+
+  <li class="nav-item">
+    <a href="<%= banco_sbc_insumos_path %>" class="nav-link">
+      <i class="fa fa-file"></i>
+      <span>Insumos</span>
+    </a>
+  </li><!-- nav-item -->
+
+</ul>

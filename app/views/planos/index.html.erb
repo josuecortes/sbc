@@ -1,0 +1,59 @@
+<% content_for :breadcrumbs do %>
+  <a class="breadcrumb-item" href="<%= empresas_path %>">Empresas</a>
+  <a class="breadcrumb-item" href="#"><%= @empresa.nome %></a>
+  <span class="breadcrumb-item active">Planos</span>
+<% end %>
+
+<% content_for :titulo do %>
+  <div class="sh-pagetitle-icon"><i class="icon ion-ios-list-outline mg-t-3"></i></div>
+  <div class="sh-pagetitle-title">
+    <span></span>
+    <h2>Planos <%= link_to link_icone('novo'), new_empresa_plano_path(@empresa), class: "btn btn-success", title: "Novo Plano" %></h2>
+  </div><!-- sh-pagetitle-left-title -->
+<% end %>
+
+<% if @planos.count > 0 %>
+  <div class="table-responsive">
+    <table class="table table-hover responsive display nowrap">
+      <thead>
+        <tr>
+          <th class="wd-15p">Status</th>
+          <th class="wd-15p">Expira em</th>
+          <th class="wd-5p">Licenças</th>
+          <th class="wd-35p">Estados</th>
+          <th class="wd-15p"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @planos.each do |p| %>
+          <% if p.ativo %> 
+            <tr>
+              <th class="bg-info">ATIVO</th>    
+          <% else %>  
+            <tr>
+              <td>EXPIROU</td>
+          <% end %>      
+            <td><%= p.fim.to_s_br %></td>
+            <td><%= p.users.count %>/<%= p.licencas %></td>
+            <td>
+              <% p.estados.sort.each do |e| %>
+                <%= e %>  
+              <% end %>
+            </td>
+            <td>
+              <% if p.ativo %>
+                <%= link_to link_icone('editar'), edit_empresa_plano_path(@empresa,p), :class=>"btn btn-primary", title: "Editar Plano" %>
+                <%= link_to link_icone('usuario-texto'), empresa_plano_usuarios_path(@empresa,p), :class=>"btn btn-primary", title: "Gerenciar Usuários" %>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>           
+      </tbody>
+    </table>
+  </div><!-- table-wrapper -->
+<% else %>
+  
+<% end %>
+
+
+<%= link_to link_icone('voltar-texto'), empresas_path, :class=>"btn btn-secondary" %>

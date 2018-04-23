@@ -1,0 +1,92 @@
+<% content_for :breadcrumbs do %>
+  <a class="breadcrumb-item" href="<%= banco_sbc_composicoes_path %>">Composições</a>
+  <span class="breadcrumb-item active"><%= @composicao.descricao %></span>  
+<% end %>
+
+<% content_for :titulo do %>
+  <div class="sh-pagetitle-icon"><i class="icon ion-ios-search mg-t-3"></i></div>
+  <div class="sh-pagetitle-title">
+    <span></span>
+    <h2>Composição</h2>
+  </div><!-- sh-pagetitle-left-title -->
+<% end %>
+
+
+<table class="table">
+  <tr>
+    <th class="bg-info" colspan="2"><%= @composicao.descricao %></th>
+  </tr>
+  <tr>
+    <th class="bg-secondary wd-15p">Codigo</th>
+    <td><%= @composicao.codigo %></td>
+  </tr>
+  <tr>
+    <th class="bg-secondary">Unidade</th>
+    <td><%= @composicao.unidade %></td>
+  </tr>
+  <tr>
+    <th class="bg-secondary">Estados</th>
+    <td><%= @estado %></td>
+  </tr>
+  <tr>
+    <th class="bg-secondary">PND</th>
+    <td><%= @composicao.estados[@estado]['pnd'].real_contabil %></td>
+  </tr>
+  <tr>
+    <th class="bg-secondary">PD</th>
+    <td><%= @composicao.estados[@estado]['pd'].real_contabil %></td>
+  </tr>
+  <tr>
+    <th class="bg-secondary">Data</th>
+    <td><%= @composicao.data %></td>
+  </tr>
+  <tr>
+    <th class="bg-secondary">Tipo</th>
+    <td><%= tipo_de_composicao_por_extenso(@composicao.tipo) %></td>
+  </tr>
+</table>
+
+<hr/>
+
+<div class="table-responsive">
+  <table class="table table-hover">
+    <thead>
+        <tr>
+            <th>Codigo</th>
+            <th>Descrição</th>
+            <th>Unidade</th>
+            <th>Estado</th>
+            <th>PND</th>
+            <th>PD</th>
+            <th>Data</th>
+            <th>Tipo</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% @composicao.composicoes_auxiliares_provisorias.each do |composicao| %>
+          <tr>
+            <td><%= link_to composicao.codigo, banco_sbc_composicao_path(composicao, estado: @estado), target: '_blank' %></td>
+            <td><%= composicao.descricao %></td>
+            <td><%= composicao.unidade %></td>
+            <td><%= @estado %></td>
+            <td><%= composicao.estados[@estado]['pnd'].real %></td>
+            <td><%= composicao.estados[@estado]['pd'].real %></td>
+            <td><%= composicao.data %></td>
+            <td title = "<%= tipo_de_composicao_por_extenso(composicao.tipo) %>"><%= composicao.tipo %></td>
+          </tr>
+        <% end %>
+        <% @composicao.insumos_provisorios.each do |insumo| %>
+          <tr>
+            <td><%= insumo.codigo %></td>
+            <td><%= insumo.descricao %></td>
+            <td><%= insumo.unidade %></td>
+            <td><%= @estado %></td>
+            <td><%= insumo.estados[@estado]['pnd'].real %></td>
+            <td><%= insumo.estados[@estado]['pd'].real %></td>
+            <td><%= insumo.data %></td>
+            <td title = "<%= tipo_de_insumo_sbc_por_extenso(insumo.tipo) %>"><%= tipo_de_insumo_sbc_por_extenso(insumo.tipo) %></td>
+          </tr>
+        <% end %>
+    </tbody>
+  </table>
+</div>

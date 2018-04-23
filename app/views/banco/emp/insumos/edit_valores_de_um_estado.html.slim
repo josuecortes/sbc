@@ -1,0 +1,58 @@
+ul class="breadcrumbs"
+  li
+    = link_to "<i class='flaticon-home168'></i>".html_safe, home_index_path
+    span class="separator"
+  li
+    = link_to "<i class='flaticon-bricks9'></i>".html_safe, banco_insumos_path
+    span class="separator"
+  li Editar Valores
+
+.pageheader
+  .pageicon
+    span class="flaticon-bricks9"
+  div class="pagetitle"
+    h5
+      | Editar preços unitários para o estado de&nbsp;
+      = params[:estado].uf_to_nome
+    h1
+      | Editar Valores de&nbsp;
+      = params[:estado]
+
+.maincontent
+  .maincontentinner
+    .widget
+      .widgetcontent
+        = form_tag update_valores_de_um_estado_banco_emp_insumos_path do
+          = hidden_field_tag :estado, params[:estado]
+          button class='btn btn-primary pull-right' Salvar
+          table class='table'
+            tr
+              th        Código
+              th        Descrição
+              th.center Tipo
+              th.center Unidade
+              th.right  Valor Não Desonerado
+              th.right  Valor Desonerado
+              th.right  Valor Não Desonerado Improdutivo
+              th.right  Valor Desonerado Improdutivo
+            - @insumos.each do |insumo|
+              - unless insumo.tipo == 8
+                tr.warning
+                  td        = insumo.codigo 
+                  td        = insumo.descricao.html_safe
+                  td.center = insumo.tipo_por_extenso
+                  td.center = insumo.unidade
+                  td = text_field_tag "pnd_#{insumo.id}", (insumo.estados[params[:estado]] ? insumo.estados[params[:estado]]["pnd"].real : ""), {:class=>'input-block-level text-right'}
+                  - if insumo.tipo == 3 or insumo.tipo == 1
+                    td = text_field_tag "pd_#{insumo.id}", (insumo.estados[params[:estado]] ? insumo.estados[params[:estado]]["pd"].real : ""), {:class=>'input-block-level text-right'}
+                  - else
+                    td
+                  - if insumo.tipo == 1
+                    td = text_field_tag "pndi_#{insumo.id}", (insumo.estados[params[:estado]] ? insumo.estados[params[:estado]]["pndi"].real : ""), {:class=>'input-block-level text-right'}
+                    td = text_field_tag "pdi_#{insumo.id}", (insumo.estados[params[:estado]] ? insumo.estados[params[:estado]]["pdi"].real : ""), {:class=>'input-block-level text-right'}
+                  - else
+                    td
+                    td
+                  
+          button class='btn btn-primary pull-right' Salvar
+        br

@@ -1,0 +1,68 @@
+<% content_for :breadcrumbs do %>
+  <span class="breadcrumb-item active">Composições</span>  
+<% end %>
+
+<% content_for :titulo do %>
+  <div class="sh-pagetitle-icon"><i class="icon ion-ios-search mg-t-3"></i></div>
+  <div class="sh-pagetitle-title">
+    <span></span>
+    <h2>Consultar Composições</h2>
+  </div><!-- sh-pagetitle-left-title -->
+<% end %>
+
+<div class="row">
+  <div class="col-lg-12">
+      <div class="panel panel-default">
+          <!-- /.panel-heading -->
+
+          <div class="panel-body">
+
+            <%= simple_form_for :search, :url=>banco_sbc_composicoes_path, :method=>"get", remote: true do |f| %>
+              <div class="row">
+                <div class="col-lg-3">
+                  <%= f.input :data_atualizacao, collection: array_data_atualizacao, as: :select, label: "Data", include_blank: false, selected: @data, :input_html => {class: "form-control"} %>
+                </div>
+                <div class="col-lg-3">
+                  <%= f.input :estados, collection: @estados.sort, as: :select, label: "Estado", include_blank: false, selected: @estado, :input_html => {class: "form-control" } %>
+                </div>
+                <div class="col-lg-6 item_orcamentario">
+                  <%= f.input :item, collection: array_item_orcamentario, as: :select, label: "Item Orçamentario", include_blank: false, selected: @item, :input_html => {class: "form-control"} %>
+                </div>
+              </div>
+
+              <br/>
+
+              <div class="row">
+                <div class="col-lg-12">
+                  <%= f.input :chave, label: "Palavra Chave", placeholder: "Codigo ou Descrição", :input_html => {class: "form-control", value: @chave} %>
+                </div>
+              </div>
+
+              <br/>
+
+              <center>
+                <button type="submit" class="btn btn-success" onclick='carregandoComposicoes();'><span class='fa fa-search'></span> Consultar</button>
+              </center>
+            <% end %>
+
+
+          </div>
+
+          <div class="composicoes">
+            <%= render partial: "composicoes" %>
+          </div>  
+
+          <script>
+            $(function(){
+               $('.pagination a').attr('data-remote', 'true')
+            });
+          </script>
+                
+      </div>
+      <!-- /.panel -->
+
+  </div>
+  <!-- /.col-lg-12 -->
+</div>
+
+

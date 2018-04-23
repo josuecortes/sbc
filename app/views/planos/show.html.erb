@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Preco:</strong>
+  <%= @plano.preco %>
+</p>
+
+<p>
+  <strong>Status:</strong>
+  <%= @plano.status %>
+</p>
+
+<p>
+  <strong>Desconto:</strong>
+  <%= @plano.desconto %>
+</p>
+
+<p>
+  <strong>Estados:</strong>
+  <%= @plano.estados %>
+</p>
+
+<p>
+  <strong>Contratado em:</strong>
+  <%= @plano.contratado_em %>
+</p>
+
+<p>
+  <strong>Expira em:</strong>
+  <%= @plano.expira_em %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @plano.user_id %>
+</p>
+
+<%= link_to 'Edit', edit_plano_path(@plano) %> |
+<%= link_to 'Back', planos_path %>

@@ -1,0 +1,82 @@
+ul.breadcrumbs
+  li
+    = link_to "<i class='flaticon-home168'></i>".html_safe, home_index_path
+    span.separator
+  li
+    = link_to "<i class='flaticon-bricks3'></i>".html_safe, banco_emp_composicao_path
+    span.separator
+  li Editar
+
+.pageheader
+  .pageicon
+    span.flaticon-bricks3
+  .pagetitle
+    h5 Formulário de edição de composição
+    h1 Editar Composição
+
+.maincontent
+  .maincontentinner
+
+    .widget
+      h4.widgettitle Passo 1 / 2 - Dados da Composição
+      .widgetcontent
+        .row-fluid
+
+          = form_for @composicao, html: {class: "stdform"} do |f|
+            = error_messages(@composicao).html_safe
+            
+            p
+              = f.label :codigo, "Código", :class => "col-sm-2 control-label"
+              span.field = f.text_field :codigo, :class => "input-block-level"
+              small.desc style="margin-top: -10px;" Opcional
+            p
+              = f.label :descricao, "Descrição", :class => "col-sm-2 control-label"
+              span.field = f.text_field :descricao, :class => "input-block-level"
+            p
+              span.field = f.label :modelo_sicro3_false, "#{f.radio_button :modelo_sicro3, false, :checked => !@composicao.modelo_sicro3} Modelo SINAPI".html_safe, style: "text-align: left;"
+            br
+            p
+              span.field = f.label :modelo_sicro3_true, "#{f.radio_button :modelo_sicro3, true, :checked => @composicao.modelo_sicro3} Modelo SICRO 3".html_safe, style: "text-align: left;"
+            br
+            #modelo_sicro3 style="display: #{ @composicao.modelo_sicro3 ? "block" : "none"}"
+              p
+                = f.label :producao_da_equipe, "Produção de Equipe"
+                span.field = f.text_field :producao_da_equipe, :class => "input-block-level"
+              p
+                = f.label :fic, "Fator de Influência de Chuvas - FIC"
+                span.field = f.text_field :fic, :class => "input-block-level"
+            #modelo_sinapi style="display: #{ !@composicao.modelo_sicro3 ? "block" : "none"}"
+              p
+                = f.label :mao_de_obra, "Mão de Obra", :class => "col-sm-2 control-label"
+                span.field = f.check_box :mao_de_obra, :class => "input-block-level"
+            p
+              = f.label :tipo
+              span.field = f.select :tipo, select_tipo_composicao(TIPOSDECOMPOSICOES, @composicao), {}, {:class=>'input-block-level'}
+            p
+              = f.label :unidade
+              span.field = f.text_field :unidade, :class => "input-block-level"
+            p
+              = f.label :data
+              span.field = f.select :data, select_datas_form_tag("SINAPI", @composicao.data), {}, {:class=>'input-block-level'}
+            p
+              = f.label :estado
+              span.field = f.select :estado, option_select_estado, {}, {:class=>'input-block-level'}
+            p
+              = f.label :observacao, "Observação"
+              span.field = f.text_area :observacao, class: "input-block-level"
+            p.stdformbutton
+              button.btn.btn-w-m.btn-primary type="submit" Salvar as Alterações
+              | &nbsp; 
+              a.btn.btn-danger href="/banco/emp/composicoes/#{ @composicao.id }" type="submit" style="color: #FFF;" Cancelar
+
+javascript:
+  var checkbox = document.getElementById('banco_emp_composicao_modelo_sicro3_false');
+  checkbox.onchange = function() {
+    jQuery("#modelo_sicro3").fadeOut();
+    jQuery("#modelo_sinapi").fadeIn();
+  };
+  var checkbox = document.getElementById('banco_emp_composicao_modelo_sicro3_true');
+  checkbox.onchange = function() {
+    jQuery("#modelo_sicro3").fadeIn();
+    jQuery("#modelo_sinapi").fadeOut();
+  };             

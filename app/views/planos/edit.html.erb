@@ -1,0 +1,130 @@
+<% content_for :breadcrumbs do %>
+  <a class="breadcrumb-item" href="<%= empresas_path %>">Empresas</a>
+  <a class="breadcrumb-item" href="#"><%= @empresa.nome %></a>
+  <a class="breadcrumb-item" href="<%= empresa_planos_path(@empresa) %>">Planos</a>
+  <span class="breadcrumb-item active">Editar</span>
+<% end %>
+
+<% content_for :titulo do %>
+  <div class="sh-pagetitle-icon"><i class="icon ion-ios-list-outline mg-t-3"></i></div>
+  <div class="sh-pagetitle-title">
+    <span></span>
+    <h2>Editar Plano</h2>
+  </div><!-- sh-pagetitle-left-title -->
+<% end %>
+
+
+<%= simple_form_for([@empresa,@plano], url: empresa_plano_path(@empresa,@plano), method: :put) do |f| %>
+
+	<div class="form-layout">
+    
+    <div class="row mg-b-25">
+      <div class="col-lg-2">
+        <div class="form-group">
+          <label class="form-control-label">Norte: </label>
+        </div>
+      </div>
+      <% for i in 0..array_estados('norte').count - 1 %>
+        <div class="col-lg-1">
+          <%= f.input :estados, collection: [array_estados('norte')[i]], as: :check_boxes, include_blank: false, :label=>false, :prompt=>"Selecione os estados a contratar:", :input_html => {:class=>"form-control"} %>
+        </div>    
+      <% end %>
+    </div>
+
+    <div class="row mg-b-25">
+      <div class="col-lg-2">
+        <div class="form-group">
+          <label class="form-control-label">Nordeste: </label>
+        </div>
+      </div>
+      <% for i in 0..array_estados('nordeste').count - 1 %>
+        <div class="col-lg-1">
+          <%= f.input :estados, collection: [array_estados('nordeste')[i]], as: :check_boxes, include_blank: false, :label=>false, :prompt=>"Selecione os estados a contratar:", :input_html => {:class=>"form-control"} %>
+        </div>    
+      <% end %>
+    </div>
+
+    <div class="row mg-b-25">
+      <div class="col-lg-2">
+        <div class="form-group">
+          <label class="form-control-label">Centro-Oeste: </label>
+        </div>
+      </div>
+      <% for i in 0..array_estados('centro').count - 1 %>
+        <div class="col-lg-1">
+          <%= f.input :estados, collection: [array_estados('centro')[i]], as: :check_boxes, include_blank: false, :label=>false, :prompt=>"Selecione os estados a contratar:", :input_html => {:class=>"form-control"} %>
+        </div>    
+      <% end %>
+    </div>
+
+    <div class="row mg-b-25">
+      <div class="col-lg-2">
+        <div class="form-group">
+          <label class="form-control-label">Sudeste: </label>
+        </div>
+      </div>
+      <% for i in 0..array_estados('sudeste').count - 1 %>
+        <div class="col-lg-1">
+          <%= f.input :estados, collection: [array_estados('sudeste')[i]], as: :check_boxes, include_blank: false, :label=>false, :prompt=>"Selecione os estados a contratar:", :input_html => {:class=>"form-control"} %>
+        </div>    
+      <% end %>
+    </div>
+
+    <div class="row mg-b-25">
+      <div class="col-lg-2">
+        <div class="form-group">
+          <label class="form-control-label">Sul: </label>
+        </div>
+      </div>
+      <% for i in 0..array_estados('sul').count - 1 %>
+        <div class="col-lg-1">
+          <%= f.input :estados, collection: [array_estados('sul')[i]], as: :check_boxes, include_blank: false, :label=>false, :prompt=>"Selecione os estados a contratar:", :input_html => {:class=>"form-control"} %>
+        </div>    
+      <% end %>
+    </div>
+
+    <div class="row mg-b-25">
+      <div class="col-lg-2">
+        <div class="form-group">
+          <label class="form-control-label">Início: </label>
+          <%= f.input :inicio, required: true, label: false, placeholder: "Digite a data", input_html: {class: "form-control", value: @plano.inicio.to_s_br} %>
+        </div>
+      </div>
+      <div class="col-lg-2">
+        <div class="form-group">
+          <label class="form-control-label">Fim: </label>
+          <%= f.input :fim, required: true, label: false, placeholder: "Digite a data", input_html: {class: "form-control", value: @plano.fim.to_s_br} %>
+        </div>
+      </div>
+      <div class="col-lg-2">
+        <div class="form-group">
+          <label class="form-control-label">Licenças: </label>
+          <%= f.input :licencas, required: true, label: false, placeholder: "Digite quant. lice.", input_html: {class: "form-control"} %>
+        </div>
+      </div>
+      <div class="col-lg-3">
+        <div class="form-group">
+          <label class="form-control-label">Desconto: </label>
+          <%= f.input :desconto, required: true, label: false, placeholder: "Digite o percentual do desconto", input_html: {class: "form-control"} %>
+        </div>
+      </div>
+      <div class="col-lg-3">
+        <div class="form-group">
+          <label class="form-control-label">Preço: </label>
+          <%= f.input :preco, required: true, label: false, placeholder: "Digite o preço final", input_html: {class: "form-control"} %>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-layout-footer">
+      <%= link_to link_icone('voltar-texto'), empresa_planos_path(@empresa), class: "btn btn-secondary mg-r-5" %>
+      <button type="submit" class="btn btn-success mg-r-5">
+          <i class="fa fa-save"></i> Salvar
+      </button>
+    </div><!-- form-layout-footer -->
+
+  </div>
+
+<% end %>  
+
+      

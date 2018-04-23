@@ -1,0 +1,283 @@
+- estado = @composicao.estado
+
+#composicao_id composicao_id="#{ @composicao.id }"
+
+css:
+  | tbody tr.hover { cursor: pointer; }
+
+#modal-criar-insumo.modal.hide.fade.in aria-hidden="false" aria-labelledby="myModalLabel" role="dialog" tabindex="-1"
+  = form_tag criar_insumo_banco_emp_composicoes_path(id: @composicao.id.to_s) do
+
+    = modal_header("Criar Insumo")
+    .modal-body
+      h4 Formulário para criação de um novo insumo para esta composição
+      br
+
+      = hidden_field_tag :user_id, current_user.id
+      //= hidden_field_tag :setor_id, @setor_logado.id
+      = hidden_field_tag :empresa_id, current_user.empresa_id
+      p
+        = label_tag :codigo, "Código"
+        span.field = text_field_tag :codigo, @insumo.sugestao_de_codigo(current_user.empresa_id), class: "input-block-level"
+      p
+        = label_tag :descricao, "Descrição"
+        span.field = text_field_tag :descricao, "", class: "input-block-level"
+      p
+        = label_tag :unidade
+        span.field = text_field_tag :unidade, "", class: "input-block-level"
+      p Estado: #{ estado.uf_to_nome }
+      //p
+      //  = label_tag :tipo
+      //  span.field = select_tag :tipo, select_tipo_insumo(TIPOSDEINSUMOS, @insumo), {class: 'input-block-level', onchange: "MudarValores();"}
+
+      p
+        .tipo_equipamento.trocar
+          = label_tag :pnd, "Valor não Desonerado Operativo"
+        .tipo_mao_de_obra.trocar.oculto
+          = label_tag :pnd, "Valor não Desonerado"
+        .outros_tipos.trocar.oculto
+          = label_tag :pnd, "Valor"
+        span.field = text_field_tag :pnd, "", class: "input-block-level"
+      .tipo_mao_de_obra.tipo_equipamento.trocar
+        p
+          .tipo_equipamento.trocar
+            = label_tag :pd, "Valor Desonerado Operativo"
+          .tipo_mao_de_obra.trocar.oculto
+            = label_tag :pd, "Valor Desonerado"
+          span.field = text_field_tag :pd, "", class: "input-block-level", placeholder: "Opcional"
+      .tipo_equipamento.trocar
+        p
+          = label_tag :pndi, "Valor não Desonerado Improdutivo"
+          span.field = text_field_tag :pndi, "", class: "input-block-level", placeholder: "Opcional"
+        p
+          = label_tag :pdi, "Valor Desonerado Improdutivo"
+          span.field = text_field_tag :pdi, "", class: "input-block-level", placeholder: "Opcional"
+      
+      p
+        = label_tag :quantidade, "Coeficiente deste insumo para esta composição"
+        span.field = text_field_tag :quantidade, "", class: "input-block-level"
+
+    = modal_footer("Salvar e Adicionar na Composição")
+
+ul class="breadcrumbs"
+  li
+    = link_to "<i class='flaticon-home168'></i>".html_safe, home_index_path
+    span class="separator"
+  li
+    = link_to "<i class='flaticon-bricks3'></i>".html_safe, banco_composicoes_path
+    span class="separator"
+  li NOVO
+
+.pageheader
+  .pageicon
+    span class="flaticon-bricks3"
+  .pagetitle
+    h5 Formulário para inserção de insumos e composições auxiliares
+    h1 = @composicao.codigo
+
+.maincontent
+  .maincontentinner
+
+    .widget
+      h4 class="widgettitle" Passo 2 / 2 - Inserção de INSUMOS e COMPOSIÇÕES AUXILIARES
+      .widgetcontent
+        .row-fluid
+          .row-fluid
+            .span4
+              table.table
+                tr
+                  th Código
+                  td
+                    b = @composicao.codigo
+                tr
+                  th Descrição
+                  td
+                    b = @composicao.descricao.html_safe
+                tr
+                  th Estado
+                  td = estado.uf_to_nome
+                tr
+                  th              Valor Não Desonerado 
+                  td.td_pnd_total = @composicao.estados[estado]["pnd"].real_contabil
+                tr
+                  th              Valor Desonerado
+                  td.td_pd_total  = @composicao.estados[estado]["pd"].real_contabil
+
+          br
+          .row-fluid
+            .wrapper1
+              .div1
+
+            .wrapper2
+              table#table_itens.table
+                thead
+                  tr#th style="display: #{ @composicao.composicoes.count >0 || @composicao.insumos.count > 0 ? "" : "none"};"
+                    th        Banco
+                    th        Código
+                    th        Descrição
+                    th        Tipo
+                    th.center Unidade
+                    th.right  Valor Unitário Não Desonerado
+                    th.right  Valor Unitário Desonerado
+                    th.right  Coeficiente
+                    th.right  Valor Não Desonerado
+                    th.right  Valor Desonerado
+                    th.center Excluir
+                tbody
+                  - contador_composicao = 0
+                  - @composicao.composicoes_auxiliares_provisorias.each do |composicao|
+                    - puts composicao["b"]
+                    
+                    - quantidade =  composicao.quantidade
+                    - if composicao["b"] == "SETOP"
+                      - pr_un_pnd = composicao.estados["MG"]["central"]["pnd"]
+                      - pr_un_pd =  composicao.estados["MG"]["central"]["pd"]
+                    - elsif composicao["b"] == "SICRO2"
+                      - pr_un_pnd = composicao.estados[estado]["nd"]["pr_un"]
+                      - pr_un_pd =  composicao.estados[estado]["d"]["pr_un"]
+                    - else
+                      - pr_un_pnd = composicao.estados[Banco::Busca.banco_estado(composicao["b"], estado)]["pnd"]
+                      - pr_un_pd =  composicao.estados[Banco::Busca.banco_estado(composicao["b"], estado)]["pd"]
+                    - pr_pnd =      pr_un_pnd * quantidade
+                    - pr_pd =       pr_un_pd * quantidade
+                    
+                    tr.tr_item.tr_composicao.success id="tr_item_#{@contador}" nitem="#{ @contador }" classe="composicao" banco="#{ composicao["b"] }" id_do_item="#{ composicao.id }" quantidade="#{ quantidade }" codigo="#{composicao.codigo}" pr_un_pnd="#{ pr_un_pnd }" pr_un_pd="#{ pr_un_pd }" pr_pnd="#{ pr_pnd }" pr_pd="#{ pr_pd }" contador="#{contador_composicao}"
+                    
+                      td.td_banco             = composicao["b"].banco
+                      td.td_codigo            = composicao.codigo
+                      td.td_descricao         = composicao.descricao
+                      td.td_tipo              = composicao.tipo_por_extenso if composicao.tipo
+                      td.td_unidade.center    = composicao.unidade
+                      td.td_pr_un_pnd.right   = pr_un_pnd.real
+                      td.td_pr_un_pd.right    = pr_un_pd.real
+                      td.td_quantidade.right  = link_to quantidade.trocar_ponto_por_virgula, "#", class: "editar_quantidades",  title: "Edita Coeficientes"
+                      td.td_pr_pnd.right      = pr_pnd.real
+                      td.td_pr_pd.right       = pr_pd.real
+                      
+                      td.td_excluir.center
+                        a.remove-box href="#" title="Excluir"
+                          i.flaticon-garbage1.icone-20
+                      
+                    - @contador += 1
+                    - contador_composicao += 1
+                  
+                  - contador_insumo = 0
+                  - @composicao.insumos_provisorios.each do |insumo|
+                    
+                    - quantidade =  0.0 unless quantidade = insumo.quantidade
+
+                    - if insumo.estados[Banco::Busca.banco_estado(insumo["b"], estado)]
+                      - if insumo["b"] == "SETOP"
+                        - pr_un_pnd = insumo.estados["MG"]["central"]["pnd"]
+                        - pr_un_pd =  insumo.estados["MG"]["central"]["pd"]
+                      - else
+                        - pr_un_pnd = insumo.estados[Banco::Busca.banco_estado(insumo["b"], estado)]["pnd"]
+                        - pr_un_pd =  insumo.estados[Banco::Busca.banco_estado(insumo["b"], estado)]["pd"]
+                    - else
+                      - pr_un_pnd = 0.0
+                      - pr_un_pd =  0.0
+                    
+                    - pr_pnd =      pr_un_pnd * quantidade
+                    - pr_pd =       pr_un_pd * quantidade
+                    
+                    tr.tr_item.tr_insumo.warning id="tr_item_#{@contador}" nitem="#{ @contador }" classe="insumo" banco="#{ insumo["b"] }" id_do_item="#{ insumo.id }" quantidade="#{ quantidade }" codigo="#{insumo.codigo}" pr_un_pnd="#{ pr_un_pnd }" pr_un_pd="#{ pr_un_pd }" pr_pnd="#{ pr_pnd }" pr_pd="#{ pr_pd }" contador="#{contador_insumo}"
+                    
+                      td.td_banco             = insumo["b"].banco
+                      td.td_codigo            = insumo.codigo
+                      td.td_descricao         = insumo.descricao
+                      td.td_tipo              = insumo.tipo_por_extenso
+                      td.td_unidade.center    = insumo.unidade
+                      td.td_pr_un_pnd.right   = pr_un_pnd.real
+                      td.td_pr_un_pd.right    = pr_un_pd.real
+                      td.td_quantidade.right  = link_to quantidade.trocar_ponto_por_virgula, "#", class: "editar_quantidades",  title: "Edita Coeficientes"
+                      td.td_pr_pnd.right      = pr_pnd.real
+                      td.td_pr_pd.right       = pr_pd.real
+                      
+                      td.td_excluir.center
+                        a.remove-box href="#" title="Excluir"
+                          i.flaticon-garbage1.icone-20
+                      
+                    - @contador += 1
+                    - contador_insumo += 1
+              
+            .row-fluid.after_itens
+            .row-fluid.text-center
+              .btn-group
+                a class="btn dropdown-toggle btn-success add_no_fim" data-toggle="dropdown"
+                  | adicionar
+                  br
+                  i class='flaticon-bricks3 icone-50'
+                  br
+                  b COMPOSIÇÃO
+                ul class="dropdown-menu text-left"
+                  
+                  li
+                    a class="add-item" classe="composicao" banco="Emp" Própria
+                  
+                  li
+                    a class="add-item" classe="composicao" banco="SBC"  SBC
+                
+                  - BASESADICIONAIS.each do |banco|
+                    li
+                      a class="add-item" classe="composicao" banco="#{banco}" = banco
+                  
+              .btn-group
+                a class="btn dropdown-toggle btn-warning add_no_fim" data-toggle="dropdown"
+                  | adicionar
+                  br
+                  i class='flaticon-bricks9 icone-50'
+                  br
+                  b INSUMO
+                ul class="dropdown-menu text-left"
+                  
+                  li
+                    a class="add-item" classe="insumo" banco="Emp"  Próprio
+                  
+                  li
+                    a class="add-item" classe="insumo" banco="SBC"  SBC
+                  
+                  - BASESADICIONAIS.each do |banco|
+                    - unless banco == "SICRO2"
+                      li
+                        a class="add-item" classe="insumo" banco="#{banco}" = banco 
+                  
+                  
+                  li
+                    = link_to "Criar Novo (caso ainda não tenha na Empresa)", "#modal-criar-insumo", "data-toggle" => "modal"
+            .row-fluid
+              | &nbsp;
+            .row-fluid
+              = link_to "<i class='iconfa-backward'></i> Passo 1".html_safe, edit_banco_emp_composicao_path(@composicao), class: "btn btn-w-m btn-white", type: "button"
+              a.btn.btn-w-m.btn-primary.pull-right href="#{banco_emp_composicao_path(@composicao)}"
+                | Finalizar 
+                i.iconfa-forward
+            br
+            br
+            br
+            br
+            br
+            br
+            br
+            br
+            br
+            br
+
+//= javascript_include_tag 'uteis'
+//= javascript_include_tag 'composicoes'
+//= javascript_include_tag 'convertemoeda'
+
+javascript:
+  function MudarValores() {
+    var myselect = document.getElementById('tipo');
+    var tipo = myselect.options[myselect.selectedIndex].value;
+    if (tipo == '1') {
+      jQuery(".trocar").css( "display", "none");
+      jQuery(".tipo_equipamento").fadeIn();
+    } else if (tipo == '3') {
+      jQuery(".trocar").css( "display", "none");
+      jQuery(".tipo_mao_de_obra").fadeIn();
+    } else  {
+      jQuery(".trocar").css( "display", "none");
+      jQuery(".outros_tipos").fadeIn();
+    }
+  }

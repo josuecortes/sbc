@@ -1,0 +1,130 @@
+<%= simple_form_for :insumo, :url=>"#", id: "form_insumos" do |f| %>
+   <div class="row">
+    
+    <div class="col-lg-9">
+      <%= f.input :chave, label: "Codigo ou Descrição", placeholder: "Codigo ou Descrição", :input_html => {class: "form-control", id: "chave", onkeyup: "carregarInsumos();" } %>
+    </div>
+
+    <%= f.input :composicao_id, as: :hidden, input_html: {value: @composicao.id, id: "composicao_id"} %>
+
+		<div class="col-lg-3">
+      <%= f.input :quantidade, label: "Coeficiente", placeholder: "Quantidade", :input_html => {class: "form-control", id: "coeficiente"} %>
+    </div>
+
+  </div>	
+
+  <br/>
+
+<% end %>
+
+<table class="table table-hover table-bordered" id="tabela-carregada">
+  <thead>
+    <tr>
+      <td>Codigo</td>
+      <td>Descrição</td>
+      <td>UN</td>
+      <td>Preço</td>
+      <td>Tipo</td>
+      <td>Incluir</td>
+    </tr>
+  </thead>
+  <tbody id = 'b_id'>
+  </tbody>  
+</table>
+
+<script>
+  function carregarInsumos() {
+      var x = document.getElementById("chave").value;
+      var html = "";
+      var estado = "<%= @composicao.estado %>";
+
+      if (x.length > 2) {
+        insumos = $.getJSON( "/banco/emp/composicoes/autocomplete_dados_insumos_proprios", { term: x, estado: estado, id: '<%= @composicao.id %>' }, function(test) {
+          for(var i =0 ; i < test.length; i++){
+            html = html + "<tr id='insumo-"+test[i].id+"'>";
+            html = html + "<td id='"+test[i].id+"-codigo'>" + test[i].codigo + "</td>";
+            html = html + "<td id='"+test[i].id+"-descricao'>" + test[i].descricao + "</td>";
+            html = html + "<td id='"+test[i].id+"-unidade'>" + test[i].unidade + "</td>";
+            html = html + "<td id='"+test[i].id+"-preco'>" + test[i].preco + "</td>";
+            html = html + "<td id='"+test[i].id+"-tipo'>" + test[i].tipo_texto + "</td>";
+            html = html + "<td class='esconder' id='"+test[i].id+"-tipo-oculto'>" + test[i].tipo + "</td>";
+            html = html + "<td id='insumo-btn'><button class='btn btn-success' id='" + test[i].id + "'><span class='fa fa-reply'></span> Incluir </button></td>";
+            html = html + "</tr>";
+          }
+          //$("#b_id").html(html);
+          if (test.length > 0){
+            document.getElementById("b_id").innerHTML = html;  
+          } else {
+            document.getElementById("b_id").innerHTML = "";
+          }
+          
+        });
+      } else {
+        document.getElementById("b_id").innerHTML = html;
+      }
+  };
+
+  function verificarQuantidade() {
+    var c = document.getElementById("coeficiente").value;
+    console.log(c);
+    var regra = /^[0-9]+$/;
+
+    if (c == "") {
+      alert("Adicione um Coeficiente");
+      console.log("Adicione um Coeficiente");
+      document.getElementById("coeficiente").focus();
+      return false;
+    } else if (c.match(regra) && c > 0) {
+      return true;
+    }else{
+      alert("Permitido somente número inteiro positivo!");
+      console.log("Permitido somente número inteiro positivo!");
+      document.getElementById("coeficiente").focus();
+      return false;
+    }
+  };    
+
+
+  var tabela = document.querySelector("#tabela-carregada");
+
+  tabela.addEventListener("click", function(event){
+
+    event.preventDefault();
+
+    if (event.target.tagName == "BUTTON") {
+      console.log(event.target.id);
+      var id = event.target.id;
+
+      if (verificarQuantidade() == true){
+        gerarInsumo(id)
+      }
+
+    }
+  });
+
+  function gerarInsumo(id){
+    var i = id+"-preco";
+    var preco = document.getElementById(i).innerHTML;
+    //var tdPreco = document.querySelector("#"+i);
+    //var preco = tdPreco.textContent;
+    console.log(preco);
+
+    var insumo = {
+        quantidade: document.getElementById("coeficiente").value,
+        classe: "insumo",
+        id_do_item: id,
+        banco: "Emp",
+        tipo: document.getElementById(id+"-tipo-oculto").innerHTML
+    }
+
+    console.log(insumo);
+
+    var composicao_id = document.getElementById("composicao_id").value;
+
+    console.log(composicao_id);
+
+    jQuery.post('/banco/emp/composicoes/add_subitem', {id: composicao_id, quantidade: insumo.quantidade, classe: insumo.classe, id_do_item: insumo.id_do_item, banco: insumo.banco, tipo: insumo.tipo});
+
+  }
+  
+</script>

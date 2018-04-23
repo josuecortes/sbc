@@ -1,0 +1,61 @@
+ul class="breadcrumbs"
+  li
+    = link_to "<i class='flaticon-home168'></i>".html_safe, home_index_path
+    span class="separator"
+  li
+    = link_to "<i class='flaticon-bricks9'></i>".html_safe, banco_emp_insumo_path(@insumo)
+    span class="separator"
+  li Editar Valores
+
+.pageheader
+  .pageicon
+    span class="flaticon-bricks9"
+  div class="pagetitle"
+    h5 Editar preços unitários já cadastrados
+    h1
+      |Editar Valores&nbsp;
+      = @insumo.codigo
+
+.maincontent
+  .maincontentinner
+    .widget
+      .widgetcontent
+        h4 = @insumo.descricao.html_safe
+        br
+        table class='table table-no-border'
+          tr
+            th style="width: 60px;" Tipo
+            td = @insumo.tipo_por_extenso
+          tr
+            th Unidade
+            td = @insumo.unidade
+          tr
+            th Observação
+            td = @insumo.observacao
+        = form_tag update_valores_de_um_insumo_banco_emp_insumos_path do
+          = hidden_field_tag :id, @insumo.id 
+          table class='table'
+            = salvar_lista(banco_emp_insumo_path(@insumo))
+            tr
+              th Estado
+              - if @insumo.tipo == 1
+                th.right Valor Não Desonerado Operativo
+                th.right Valor Desonerado Operativo
+                th.right Valor Não Desonerado Improdutivo
+                th.right Valor Desonerado Improdutivo
+              - elsif @insumo.tipo == 3
+                th.right Valor Não Desonerado
+                th.right Valor Desonerado
+              - else
+                th.right Valor
+            - ESTADOS.each do |estado|
+              tr
+                td = estado.uf_to_nome
+                td = text_field_tag "pnd_#{estado}", (@insumo.estados[estado] ? @insumo.estados[estado]["pnd"].real : ""), {:class=>'input-block-level text-right'}
+                - if @insumo.tipo == 1 or @insumo.tipo == 3
+                  td = text_field_tag "pd_#{estado}", (@insumo.estados[estado] ? @insumo.estados[estado]["pd"].real : ""), {:class=>'input-block-level text-right'}
+                - if @insumo.tipo == 1
+                  td = text_field_tag "pndi_#{estado}", (@insumo.estados[estado] ? @insumo.estados[estado]["pndi"].real : ""), {:class=>'input-block-level text-right'}
+                  td = text_field_tag "pdi_#{estado}", (@insumo.estados[estado] ? @insumo.estados[estado]["pdi"].real : ""), {:class=>'input-block-level text-right'}
+
+            = salvar_lista(banco_emp_insumo_path(@insumo))

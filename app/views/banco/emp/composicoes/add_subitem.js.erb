@@ -1,0 +1,25 @@
+$(function(){
+	$('#form-modal').modal('hide');
+
+	var banco = "<%= @composicao.insumos.last['b'].banco %>";
+	var codigo = "<%= @composicao.insumos.last['c'] %>";
+	var descricao = "<%= Banco::Emp::Insumo.find(@composicao.insumos.last['id']).descricao %>";
+	var tipo = "<%= Banco::Emp::Insumo.find(@composicao.insumos.last['id']).tipo_por_extenso %>";
+	var unidade = "<%= Banco::Emp::Insumo.find(@composicao.insumos.last['id']).unidade %>";
+	var pnd = "<%= Banco::Emp::Insumo.find(@composicao.insumos.last['id']).pnd %>";
+	var pd = "<%= Banco::Emp::Insumo.find(@composicao.insumos.last['id']).pd %>";
+	var quantidade = "<%= @composicao.insumos.last['q'] %>";
+	var tpnd = "";
+	var tpd = "";
+
+	$('#tabela-mae tbody').append("<tr><td>"+banco+
+																"</td><td>"+codigo+
+																"</td><td>"+descricao+
+																"</td><td>"+tipo+
+																"</td><td>"+unidade+
+																"</td><td>"+pnd+
+																"</td><td>"+pd+
+																"</td><td>"+quantidade+
+																"</td><td><%= Banco::Emp::Insumo.find(@composicao.insumos.last['id']).pnd %></td><td><%= Banco::Emp::Insumo.find(@composicao.insumos.last['id']).pd%></td><td>BTN EXCLUIR</td></tr>");
+
+});

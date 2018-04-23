@@ -1,0 +1,57 @@
+wb = xlsx_package.workbook
+wb.styles do |s|
+  orc_relatorio_em_excel_estilos(s)
+  setup = {:paper_size => 8}
+
+  wb.add_worksheet(
+    name: "Composições do OrçaFascio",
+    header_footer: {
+                      different_first: false,
+                      odd_header: "#{@empresa_logada.nome}\r\nCNPJ: #{@empresa_logada.cnpj}",
+                      odd_footer: "#{ @empresa_logada.end_logradouro } #{ @empresa_logada.end_complemento } - #{ @empresa_logada.end_bairro } - #{ @empresa_logada.end_cidade } / #{ @empresa_logada.end_estado }\n#{ @usuario_logado.telefone } / #{ @usuario_logado.email }"
+                    },
+    page_margins: orc_relatorio_em_excel_margins,
+    page_setup: orc_relatorio_em_excel_setup(paisagem = true)) do |sheet|
+    
+    # Título
+    sheet.add_row ["Composições do OrçaFascio"], style: @class_cabacalho_titulos_center_bottom
+    sheet.merge_cells("a1:c1")
+
+    # th
+    @composicoes.each do |composicao|
+      array_de_celulas =  ["Código", " #{composicao.codigo} ", nil]
+      array_de_estilos =  [@class_branco_negrito_left, @class_branco_left, @class_branco_left]
+      sheet.add_row array_de_celulas, style: array_de_estilos
+      sheet.merge_cells("b#{sheet.rows.count}:c#{sheet.rows.count}")
+      array_de_celulas =  ["Descrição", Nokogiri::HTML(composicao.descricao).text, nil]
+      array_de_estilos =  [@class_branco_negrito_left, @class_branco_left, @class_branco_left]
+      sheet.add_row array_de_celulas, style: array_de_estilos, :height => composicao.descricao.html_safe.tamanho_da_linha_do_excel
+      sheet.merge_cells("b#{sheet.rows.count}:c#{sheet.rows.count}")
+      array_de_celulas =  ["Tipo", composicao.tipo_por_extenso, nil]
+      array_de_estilos =  [@class_branco_negrito_left, @class_branco_left, @class_branco_left]
+      sheet.add_row array_de_celulas, style: array_de_estilos
+      sheet.merge_cells("b#{sheet.rows.count}:c#{sheet.rows.count}")
+      array_de_celulas =  ["Unidade", composicao.unidade, nil]
+      array_de_estilos =  [@class_branco_negrito_left, @class_branco_left, @class_branco_left]
+      sheet.add_row array_de_celulas, style: array_de_estilos
+      sheet.merge_cells("b#{sheet.rows.count}:c#{sheet.rows.count}")
+
+      array_de_celulas =  ["Estado",         "Valor Não Desonerado", "Valor Desonerado"]
+      array_de_estilos =  [@class_th_center,  @class_th_right,        @class_th_right]
+      sheet.add_row array_de_celulas, style: array_de_estilos
+      ESTADOS.each do |estado|
+        if composicao.estados[estado] and ((composicao.estados[estado]["pnd"] != 0.0) or (composicao.estados[estado]["pd"] != 0.0))
+          array_de_celulas = [estado, composicao.estados[estado]["pnd"].real, composicao.estados[estado]["pd"].real]
+          array_de_estilos = [@class_verde_left, @class_verde_right, @class_verde_right]
+          sheet.add_row array_de_celulas, style: array_de_estilos
+        end
+      end
+      array_de_celulas =  [nil, nil, nil]
+      array_de_estilos =  [@class_branco_left, @class_branco_left, @class_branco_left]
+      sheet.add_row array_de_celulas, style: array_de_estilos
+    end
+
+    sheet.column_widths 10, 30, 30
+  end
+end
+

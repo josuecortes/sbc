@@ -1,0 +1,59 @@
+<% if user_signed_in? %>
+	<% controller.redirect_to home_index_path %> 
+<% else %>
+	<div class="signpanel-wrapper">
+	  <div class="signbox signup" >
+	    <div class="signbox-header">
+	      <h2>SBC</h2>
+	      <p class="mg-b-0">Cadastre-se</p>
+	    </div><!-- signbox-header -->
+	    <div class="signbox-body">
+	    	<%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+	    			    		
+					<% if resource.errors.any? %>
+						<div class="alert alert-danger">
+							<h5> 
+								Erro ao tentar concluir seu cadastro
+							</h5>
+							<h6> 
+								Por favor corrija os erros abaixo:
+							</h6>						
+						</div>	
+					<% end %>
+	    		
+	    		<div class="form-group">
+		        
+		        <%= f.input :nome, label: "Nome", placeholder: 'Digite seu Nome', input_html: {class: 'form-control'} %>
+		      </div><!-- form-group -->
+	    		<div class="form-group">
+		        
+		        <%= f.input :email, label: "E-mail", placeholder: 'Digite seu e-mail', input_html: {class: 'form-control'} %>
+		      </div><!-- form-group -->
+		      <div class="form-group">
+		        
+		        <%= f.input :password, label: "Senha", placeholder: 'Digite uma senha', input_html: {class: 'form-control'}, hint: ("Minimo de #{@minimum_password_length} Caracteres " if @minimum_password_length) %>
+		      </div><!-- form-group -->
+		      <div class="form-group">
+		        
+		        <%= f.input :password_confirmation, label: "Confirme a senha", placeholder: 'Confirme sua senha', input_html: {class: 'form-control'} %>
+		      </div><!-- form-group -->
+		      <div class="form-group">
+		        <a href="">Perdeu sua senha?</a>
+		      </div><!-- form-group -->
+		      <%= f.input :criar_empresa, as: :hidden, input_html: {value: true} %>
+		      <%= f.input :permissao, as: :hidden, input_html: {value: "EMPRESA"} %>
+		      <%= f.button :submit, "Cadastrar", class: 'btn btn-primary btn-block' %>	
+		      <br/>
+		      <center>
+		      	Já possui cadastro? <%= link_to 'Entrar', new_user_session_path %>
+		    	</center>
+		      <br/>
+		      <center>
+		      	<i class="fa fa-arrow-left"></i> <%= link_to 'Voltar', site_index_path %>
+		    	</center>
+
+		    <% end %>
+	    </div><!-- signbox-body -->
+	  </div><!-- signbox -->
+	</div><!-- signpanel-wrapper -->
+<% end %>

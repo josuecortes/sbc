@@ -1,0 +1,92 @@
+<div class="sh-headpanel-left">
+
+  <!-- START: HIDDEN IN MOBILE -->
+  <a href="<%= home_meus_planos_path %>" class="sh-icon-link">
+    <div>
+      <i class="icon ion-ios-list-outline"></i>
+      <span>Planos</span>
+    </div>
+  </a>
+
+  <% if current_user.permissao != "CLIENTE" %>
+    <a href="<%= home_minha_empresa_path %>" class="sh-icon-link">
+      <div>
+        <i class="icon ion-ios-box"></i>
+        <span>Minha Empresa</span>
+      </div>
+    </a>
+  <% end %>
+  <!-- END: HIDDEN IN MOBILE -->
+
+  <!-- START: DISPLAYED IN MOBILE ONLY -->
+  <div class="dropdown dropdown-app-list">
+    <a href="" data-toggle="dropdown" class="dropdown-link">
+      <i class="icon ion-ios-keypad tx-18"></i>
+    </a>
+    <div class="dropdown-menu">
+      <div class="row no-gutters">
+        
+        <div class="col-4">
+          <a href="<%= home_meus_planos_path %>" class="dropdown-menu-link">
+            <div>
+              <i class="icon ion-ios-list-outline"></i>
+              <span>Planos</span>
+            </div>
+          </a>
+        </div><!-- col-4 -->
+
+        <% if current_user.permissao != "CLIENTE" %>
+          <div class="col-4">
+            <a href="<%= home_minha_empresa_path %>" class="dropdown-menu-link">
+              <div>
+                <i class="fa ion-ios-box"></i>
+                <span>Minha Empresa</span>
+              </div>
+            </a>
+          </div><!-- col-4 -->
+        <% end %>
+          
+      </div><!-- row -->
+    </div><!-- dropdown-menu -->
+  </div><!-- dropdown -->
+  <!-- END: DISPLAYED IN MOBILE ONLY -->
+
+</div><!-- sh-headpanel-left -->
+
+<div class="sh-headpanel-right">
+  <div class="dropdown dropdown-profile">
+    <a href="" data-toggle="dropdown" class="dropdown-link">
+      <% if current_user.avatar.blank? %>
+        <img src="/assets/default.png" class="wd-60 rounded-circle" alt="">
+      <% else %>
+        <%= image_tag(current_user.avatar.url(:perfil), class: "wd-60 rounded-circle") %>
+      <% end %>
+    </a>
+    <div class="dropdown-menu dropdown-menu-right">
+      <div class="media align-items-center">
+        
+        <% if current_user.avatar.blank? %>
+          <img src="/assets/default.png" class="wd-60 ht-60 rounded-circle bd pd-5" alt="">
+        <% else %>
+          <%= image_tag(current_user.avatar.url(:perfil), class: "wd-60 ht-60 rounded-circle bd pd-5") %>
+        <% end %>
+
+
+        <div class="media-body">
+          <h6 class="tx-inverse tx-15 mg-b-5"><%= current_user.nome %></h6>
+          <p class="mg-b-0 tx-12"><%= current_user.email %></p>
+        </div><!-- media-body -->
+      </div><!-- media -->
+      <hr>
+      <ul class="dropdown-profile-nav">
+        <li><a href="<%= edit_user_registration_path %>"><i class="icon ion-ios-person"></i> Editar Perfil</a></li>
+        <li><a data-method="delete" href="<%= destroy_user_session_path %>"><i class="icon ion-power"></i> Sair</a></li>
+      </ul>
+    </div><!-- dropdown-menu -->
+  </div>
+</div><!-- sh-headpanel-right -->
+
+
+
+
+

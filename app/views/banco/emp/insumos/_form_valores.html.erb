@@ -1,0 +1,116 @@
+
+<table class="table">
+  <tr>
+    <th class="bg-info" colspan="2"><%= @insumo.descricao %></th>
+  </tr>
+  <tr>
+    <th class="bg-secondary wd-15p">Codigo</th>
+    <td><%= @insumo.codigo %></td>
+  </tr>
+  <tr>
+    <th class="bg-secondary">Unidade</th>
+    <td><%= @insumo.unidade %></td>
+  </tr>
+  <tr>
+    <th class="bg-secondary">Tipo</th>
+    <td><%= tipo_de_insumo_sbc_por_extenso(@insumo.tipo) %></td>
+  </tr>
+  <tr>
+    <th class="bg-secondary">Descrição</th>
+    <td><%= @insumo.observacao %></td>
+  </tr>
+</table>
+
+<%= simple_form_for(@insumo, url: update_valores_banco_emp_insumo_path(@insumo), method: :post, remote: local_assigns[:hide_buttons]) do |f| %> 
+  
+  <div class="">
+    <div class="">
+      
+      <%= hidden_field_tag 'id', @insumo.id %>
+      
+      <% if @insumo.tipo == 1 %>
+        
+      	<table class="table">
+			    <thead>
+			      <tr>
+			        <th>Estado</th>
+			        <th>Valor Não Desonerado Operativo</th>
+			        <th>Valor Desonerado Operativo</th>
+			        <th>Valor Não Desonerado Improdutivo</th>
+			        <th>Valor Desonerado Improdutivo</th>
+			      </tr>
+			    </thead>
+			    <tbody>
+			    	<% ESTADOS.each do |e| %>
+	      			<tr>
+			          <td><%= e.uf_to_nome %></th>
+			          <td><%= text_field_tag "pnd_#{e}", (@insumo.estados[e] ? @insumo.estados[e]["pnd"].real : "") %>
+			          <td><%= text_field_tag "pd_#{e}", (@insumo.estados[e] ? @insumo.estados[e]["pd"].real : "") %>
+			         	<td><%= text_field_tag "pndi_#{e}", (@insumo.estados[e] ? @insumo.estados[e]["pndi"].real : "") %>
+			          <td><%= text_field_tag "pdi_#{e}", (@insumo.estados[e] ? @insumo.estados[e]["pdi"].real : "") %>
+			        </tr>
+			      <% end %>  
+			    </tbody>
+  			</table>   
+        
+      <% elsif @insumo.tipo == 3 %>
+        
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Estado</th>
+              <th>Valor Não Desonerado</th>
+              <th>Valor Desonerado</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% ESTADOS.each do |e| %>
+              <tr>
+                <td><%= e.uf_to_nome %></th>
+                <td><%= text_field_tag "pnd_#{e}", (@insumo.estados[e] ? @insumo.estados[e]["pnd"].real : "") %>
+                <td><%= text_field_tag "pd_#{e}", (@insumo.estados[e] ? @insumo.estados[e]["pd"].real : "") %>
+              </tr>
+            <% end %>  
+          </tbody>
+        </table>   
+       
+      <% else %>
+        
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Estado</th>
+              <th>Valor</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% ESTADOS.each do |e| %>
+              <tr>
+                <td><%= e.uf_to_nome %></th>
+                <td><%= text_field_tag "pnd_#{e}", (@insumo.estados[e] ? @insumo.estados[e]["pnd"].real : "") %>
+              </tr>
+            <% end %>  
+          </tbody>
+        </table>   
+        
+      <% end %>
+
+    </div>  
+
+    <% unless local_assigns[:hide_buttons] %>
+      <div class="form-layout-footer">
+        <%= link_to link_icone('voltar-texto'), banco_emp_insumo_path(@insumo), class: "btn btn-secondary mg-r-5" %>
+        <button type="submit" class="btn btn-success mg-r-5">
+            <i class="fa fa-save"></i> Salvar
+        </button>
+      </div><!-- form-layout-footer -->
+    <% else %>
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-success pd-x-20" id="form-modal-save-btn">Salvar</button>
+        <button type="button" class="btn btn-secondary pd-x-20" id="form-modal-close-btn" data-dismiss="modal" href="#form-modal" onclick="removerMensagens();">Fechar</button>
+      </div>
+    <% end %>
+      
+  </div>
+<% end %>
+

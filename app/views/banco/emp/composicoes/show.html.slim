@@ -1,0 +1,206 @@
+- estado = @composicao.estado
+
+/ Modais
+#modal-copiar.modal.hide.fade.in aria-hidden="false" aria-labelledby="myModalLabel" role="dialog" tabindex="-1"
+  = form_tag copiar_banco_emp_composicoes_path(:id => @composicao.id) do
+    
+    = modal_header("Copiar")
+    .modal-body
+      h4 Formulário para criar uma copia desta composição
+      br
+      p
+        = label_tag :descricao, "Descricao para a Cópia"
+        span.field = text_field_tag :descricao, "Copia - #{@composicao.descricao}", :class => "input-block-level"
+    = modal_footer("Copiar")
+/ Modais
+
+ul.breadcrumbs
+  li
+    = link_to "<i class='flaticon-home168'></i>".html_safe, home_index_path
+    span.separator
+  li
+    = link_to "<i class='flaticon-bricks3'></i>".html_safe, banco_composicoes_path
+    span.separator
+  li Banco Próprio
+
+.pageheader
+  .pageicon
+    span.flaticon-bricks3
+  .pagetitle
+    h5 detalhamento do composiçẽos com preços de todos os estados
+    h1 
+      i.flaticon-airplane49
+      = @composicao.codigo
+
+.maincontent
+  .maincontentinner
+
+    .widget
+      h4.widgettitle = @composicao.descricao.html_safe
+      .widgetcontent
+        .row-fluid
+          table.table.table-no-border
+            tr
+              th style="width: 85px;" Tipo
+              td = @composicao.tipo_por_extenso
+            tr
+              th Unidade
+              td = @composicao.unidade
+            - if @composicao.mao_de_obra
+              tr
+                th Mão de obra
+                td Sim
+            - if !@composicao.observacao.blank?
+              tr
+                th style="width: 85px;" Observação
+                td = @composicao.observacao
+
+    .accordion
+      h3
+        a href="#"
+          .row-fluid
+            .span4
+              b = @composicao.estado.uf_to_nome
+            .span4
+              b Valor Não Desonerado #{ @composicao.estados[estado]["pnd"].real_contabil }
+            .span4
+              b Valor Desonerado #{ @composicao.estados[estado]["pd"].real_contabil }
+      div style="padding: 0;"
+        table.table
+          thead
+            th
+            th        Banco
+            th        Código
+            th        Descrição
+            th.center Tipo
+            th.center Unidade
+            th.right  Valor Unitário Não Desonerado
+            th.right  Valor Unitário Desonerado
+            th.right  Coeficiente
+            th.right  Valor Não Desonerado
+            th.right  Valor Desonerado
+          tbody.composicao_anlitica id="analitica_#{ estado }"
+            - @composicao.composicoes_auxiliares_provisorias.each do |x|
+              tr.success
+                td        C
+                td        = x["b"].banco
+                td        = link_to(x.codigo, link_aux_bases(x["b"], x["id"], estado))
+                td        = x.descricao
+                td.center = x.tipo_por_extenso if x.tipo
+                td.center = x.unidade
+                - if x["b"] == "SETOP"
+                  td.right  = x.estados["MG"][@composicao.regiao_da_setop]["pnd"].real
+                  td.right  = x.estados["MG"][@composicao.regiao_da_setop]["pd"].real
+                - elsif x["b"] == "SICRO2"
+                  td.right  = x.estados[estado]["nd"]["pr_un"].real
+                  td.right  = x.estados[estado]["d"]["pr_un"].real
+                - else
+                  td.right  = x.estados[Banco::Busca.banco_estado(x["b"], estado)]["pnd"].real
+                  td.right  = x.estados[Banco::Busca.banco_estado(x["b"], estado)]["pd"].real
+                td.right  = x.quantidade
+                - if x["b"] == "SETOP"
+                  td.right  = (x.estados["MG"][@composicao.regiao_da_setop]["pnd"] * x.quantidade).real
+                  td.right  = (x.estados["MG"][@composicao.regiao_da_setop]["pd"] * x.quantidade).real
+                - elsif x["b"] == "SICRO2"
+                  td.right  = (x.estados[estado]["nd"]["pr_un"] * x.quantidade).real
+                  td.right  = (x.estados[estado]["d"]["pr_un"] * x.quantidade).real
+                - else
+                  td.right  = (x.estados[Banco::Busca.banco_estado(x["b"], estado)]["pnd"] * x.quantidade).real
+                  td.right  = (x.estados[Banco::Busca.banco_estado(x["b"], estado)]["pd"] * x.quantidade).real
+            - @composicao.insumos_provisorios.each do |x|
+              tr.warning
+                td        I
+                td        = x["b"].banco
+                td        = x.codigo
+                td        = x.descricao
+                td.center = x.tipo_por_extenso if x.tipo
+                td.center = x.unidade
+                - if x["b"] == "SETOP"
+                  td.right  = x.estados["MG"][@composicao.regiao_da_setop]["pnd"].real if x.estados["MG"]
+                  td.right  = x.estados["MG"][@composicao.regiao_da_setop]["pd"].real if x.estados["MG"]
+                - else
+                  td.right  = x.estados[Banco::Busca.banco_estado(x["b"], estado)]["pnd"].real if x.estados[Banco::Busca.banco_estado(x["b"], estado)]
+                  td.right  = x.estados[Banco::Busca.banco_estado(x["b"], estado)]["pd"].real if x.estados[Banco::Busca.banco_estado(x["b"], estado)]
+                td.right  = x.quantidade
+                - if x["b"] == "SETOP"
+                  td.right  = (x.estados["MG"][@composicao.regiao_da_setop]["pnd"] * x.quantidade).real if x.estados["MG"]
+                  td.right  = (x.estados["MG"][@composicao.regiao_da_setop]["pd"] * x.quantidade).real if x.estados["MG"]
+                - else
+                  td.right  = (x.estados[Banco::Busca.banco_estado(x["b"], estado)]["pnd"].to_f * x.quantidade.to_f).to_f.real if x.estados[Banco::Busca.banco_estado(x["b"], estado)]
+                  td.right  = (x.estados[Banco::Busca.banco_estado(x["b"], estado)]["pd"].to_f * x.quantidade.to_f).to_f.real if x.estados[Banco::Busca.banco_estado(x["b"], estado)]
+
+      - ESTADOS.each do |estado|
+        h3
+          a href="#"
+            .row-fluid
+              .span4
+                b = estado.uf_to_nome
+              .span4
+                b Valor Não Desonerado #{ @composicao.estados[estado]["pnd"].real_contabil }
+              .span4
+                b Valor Desonerado #{ @composicao.estados[estado]["pd"].real_contabil }
+        div style="padding: 0;"
+          table.table
+            thead
+              th
+              th        Banco
+              th        Código
+              th        Descrição
+              th.center Tipo
+              th.center Unidade
+              th.right  Valor Unitário Não Desonerado
+              th.right  Valor Unitário Desonerado
+              th.right  Coeficiente
+              th.right  Valor Não Desonerado
+              th.right  Valor Desonerado
+            tbody.composicao_anlitica id="analitica_#{ params[:estado] }"
+              - @composicao.composicoes_auxiliares_provisorias.each do |x|
+                tr.success
+                  td        C
+                  td        = x["b"].banco
+                  td        = x.codigo
+                  td        = x.descricao
+                  td.center = x.tipo_por_extenso if x.tipo
+                  td.center = x.unidade
+                  - if x["b"] == "SETOP"
+                    td.right  = x.estados["MG"][@composicao.regiao_da_setop]["pnd"].real
+                    td.right  = x.estados["MG"][@composicao.regiao_da_setop]["pd"].real
+                  - elsif x["b"] == "SICRO2"
+                    td.right  = x.estados[estado]["nd"]["pr_un"].real
+                    td.right  = x.estados[estado]["d"]["pr_un"].real
+                  - else
+                    td.right  = x.estados[Banco::Busca.banco_estado(x["b"], estado)]["pnd"].real if x.estados[Banco::Busca.banco_estado(x["b"], estado)]
+                    td.right  = x.estados[Banco::Busca.banco_estado(x["b"], estado)]["pd"].real if x.estados[Banco::Busca.banco_estado(x["b"], estado)]
+                  td.right  = x.quantidade.trocar_ponto_por_virgula if x.quantidade
+                  - if x["b"] == "SETOP"
+                    td.right  = (x.estados["MG"][@composicao.regiao_da_setop]["pnd"] * x.quantidade).real
+                    td.right  = (x.estados["MG"][@composicao.regiao_da_setop]["pd"] * x.quantidade).real
+                  - elsif x["b"] == "SICRO2"
+                    td.right  = (x.estados[estado]["nd"]["pr_un"] * x.quantidade).real
+                    td.right  = (x.estados[estado]["d"]["pr_un"] * x.quantidade).real
+                  - else
+                    td.right  = (x.estados[Banco::Busca.banco_estado(x["b"], estado)]["pnd"] * x.quantidade).real if x.estados[Banco::Busca.banco_estado(x["b"], estado)]
+                    td.right  = (x.estados[Banco::Busca.banco_estado(x["b"], estado)]["pd"] * x.quantidade).real if x.estados[Banco::Busca.banco_estado(x["b"], estado)]
+              - @composicao.insumos_provisorios.each do |x|
+                tr.warning
+                  td        I
+                  td        = x["b"].banco
+                  td        = x.codigo
+                  td        = x.descricao
+                  td.center = x.tipo_por_extenso if x.tipo
+                  td.center = x.unidade
+                  - if x["b"] == "SETOP"
+                    td.right  = x.estados["MG"][@composicao.regiao_da_setop]["pnd"].real if x.estados["MG"]
+                    td.right  = x.estados["MG"][@composicao.regiao_da_setop]["pd"].real if x.estados["MG"]
+                  - else
+                    td.right  = x.estados[Banco::Busca.banco_estado(x["b"], estado)]["pnd"].real if x.estados[Banco::Busca.banco_estado(x["b"], estado)]
+                    td.right  = x.estados[Banco::Busca.banco_estado(x["b"], estado)]["pd"].real if x.estados[Banco::Busca.banco_estado(x["b"], estado)]
+                  td.right  = x.quantidade.trocar_ponto_por_virgula if x.quantidade
+                  - if x["b"] == "SETOP"
+                    td.right  = (x.estados["MG"][@composicao.regiao_da_setop]["pnd"] * x.quantidade).real if x.estados["MG"]
+                    td.right  = (x.estados["MG"][@composicao.regiao_da_setop]["pd"] * x.quantidade).real if x.estados["MG"]
+                  - else
+                    td.right  = (x.estados[Banco::Busca.banco_estado(x["b"], estado)]["pnd"].to_f * x.quantidade.to_f).real if x.estados[Banco::Busca.banco_estado(x["b"], estado)]
+                    td class='right' = (x.estados[Banco::Busca.banco_estado(x["b"], estado)]["pd"].to_f * x.quantidade.to_f).real if x.estados[Banco::Busca.banco_estado(x["b"], estado)]
+
+

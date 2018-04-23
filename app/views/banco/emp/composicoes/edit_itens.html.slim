@@ -1,0 +1,41 @@
+= content_for :breadcrumbs
+  = link_to "Composicões", banco_sbc_composicoes_path, class: "breadcrumb-item"
+  = link_to @composicao.codigo, banco_sbc_composicoes_path, class: "breadcrumb-item"
+  span.breadcrumb-item.active Inserir Auxliliares
+= content_for :titulo
+  .sh-pagetitle-icon
+    i.fa.fa-list.mg-t-3
+  .sh-pagetitle-title
+    span 
+    h2 Inserir Insumos e Composições Auxiliares
+
+
+.tudo
+  = render partial: "tudo"
+
+center
+
+  = link_to "+ Composição SBC", '#' , class: 'btn btn-primary'
+
+  |  
+
+  = link_to "+ Composição PROPRIA", '#' , class: 'btn btn-primary'
+
+  |  
+
+  = link_to "+ Insumo SBC", '#' , class: 'btn btn-success'
+
+  |  
+
+  = link_to "+ Insumo PROPRIO", adiconar_insumo_proprio_banco_emp_composicao_path(@composicao), class: 'btn btn-success', remote: true
+
+#form-modal.modal.hide.fade.in[tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"]
+  .modal-dialog.modal-lg[role="document"]
+    .modal-content.bd-0.tx-14
+      #form-modal-titulo.modal-header.pd-x-20
+
+      #form-modal-error
+
+      #form-modal-corpo.modal-body.pd-20
+
+      #form-modal-tabela.modal-body.pd-20

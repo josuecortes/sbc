@@ -1,0 +1,17 @@
+$(function(){
+
+	let $formModal = $('#form-modal');
+
+	
+		$('#form-modal-titulo').html('<h3><i class="fa fa-file"></i> Adicionar Insumo Proprio</h3>');
+		$('#form-modal-corpo').html('<%= j render("form_adicionar_insumo_proprio", hide_buttons: true) %>');
+		//$('#form-modal').modal('show');
+		$formModal.modal();
+	
+
+});
+
+console.log("oi");
+
+
+

@@ -1,0 +1,98 @@
+<% content_for :breadcrumbs do %>
+	<a class="breadcrumb-item" href="<%= home_meus_planos_path %>">Planos</a>
+	<span class="breadcrumb-item active"><%= current_user.empresa.nome %></span>	
+<% end %>
+
+<% content_for :titulo do %>
+	<div class="sh-pagetitle-icon"><i class="icon ion-ios-list-outline mg-t-3"></i></div>
+	<div class="sh-pagetitle-title">
+	  <span></span>
+	  <h2>Planos <a href="/site/index#planos" target="_blank" class='btn btn-success'><i class="fa fa-plus"></i> Assinar Novo Plano </a></h2>
+	</div><!-- sh-pagetitle-left-title -->
+<% end %>
+
+<% if current_user.permissao == "CLIENTE" %>
+	<% if @meus_planos.count > 0 %>
+		<div class="table-responsive">
+			<div class="card-header bg-primary tx-white">
+				Planos de <%= current_user.nome %>
+			</div>
+		  <table class="table table-hover responsive display nowrap">
+		    <thead>
+		      <tr>
+		        <th class="wd-15p">Status</th>
+		        <th class="wd-15p">Expira em</th>
+		        <th class="wd-5p">Licenças</th>
+		        <th class="wd-35p">Estados</th>
+		      </tr>
+		    </thead>
+		    <tbody>
+		      <% @planos.each do |p| %>
+		        <% if p.ativo %> 
+		          <tr>
+		            <th class="bg-info">ATIVO</th>    
+		        <% else %>  
+		          <tr>
+		            <td>EXPIROU</td>
+		        <% end %>      
+		          <td><%= p.fim.to_s_br %></td>
+		          <td><%= p.users.count %>/<%= p.licencas %></td>
+		          <td>
+		            <% p.estados.sort.each do |e| %>
+		              <%= e %>  
+		            <% end %>
+		          </td>
+		        </tr>
+		      <% end %>           
+		    </tbody>
+		  </table>
+		</div><!-- table-wrapper -->
+	<% else %>
+		Você nao tem planos ativos no momento!
+	<% end %>
+<% else %>
+	<% if @planos.count > 0 %>
+		<div class="table-responsive">
+			<div class="card-header bg-primary tx-white">
+				Planos da <%= current_user.empresa.nome %>
+			</div>
+		  <table class="table table-hover responsive display nowrap">
+		    <thead>
+		      <tr>
+		        <th class="wd-15p">Status</th>
+		        <th class="wd-15p">Expira em</th>
+		        <th class="wd-5p">Licenças</th>
+		        <th class="wd-35p">Estados</th>
+		        <th class="wd-35p"></th>
+		      </tr>
+		    </thead>
+		    <tbody>
+		      <% @planos.each do |p| %>
+		        <% if p.ativo %> 
+		          <tr>
+		            <th class="bg-info">ATIVO</th>    
+		        <% else %>  
+		          <tr>
+		            <th class="bg-danger">EXPIROU</td>
+		        <% end %>      
+		          <td><%= p.fim.to_s_br %></td>
+		          <td><%= p.users.count %>/<%= p.licencas %></td>
+		          <td>
+		            <% p.estados.sort.each do |e| %>
+		              <%= e %>  
+		            <% end %>
+		          </td>
+		          <td>
+		          	<% if p.ativo %>
+		          		<%= link_to link_icone('usuario-texto'), home_usuario_planos_path(plano_id: p.id), class: 'btn btn-primary' %>  
+		          	<% end %>	
+		          </td>
+		        </tr>
+		      <% end %>           
+		    </tbody>
+		  </table>
+		</div><!-- table-wrapper -->
+	<% else %>
+		Você nao tem planos ativos no momento!
+	<% end %>
+<% end %>

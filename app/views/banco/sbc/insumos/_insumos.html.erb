@@ -1,0 +1,63 @@
+<% if !@insumos.blank? %>
+
+  <br/>
+  <div class="pull-right">
+    <%= will_paginate @insumos %>
+  </div>
+  <table class="table table-responsive table-hover">
+    <thead>
+        <tr>
+            <th>Codigo</th>
+            <th>Descrição</th>
+            <th>Unidade</th>
+            <th>Estado</th>
+            <th>PND</th>
+            <th>PD</th>
+            <th>Data</th>
+            <th>Tipo</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        <% @insumos.each do |insumo| %>
+          <tr>
+            <% if @base == "PROPRIO" %>
+              <td><%= link_to insumo.codigo, banco_emp_insumo_path(insumo) %></td>
+            <% else %>
+              <td><%= insumo.codigo %></td>
+            <% end %> 
+            <td><%= insumo.descricao %></td>
+            <td><%= insumo.unidade %></td>
+            <% if @base == "SBC" %>
+              <td><%= @estado %></td>
+              <td><%= insumo.estados[@estado]['pnd'].real %></td>
+              <td><%= insumo.estados[@estado]['pd'].real %></td>
+              <td><%= insumo.data %></td>
+            <% else %>
+              <td><%= @estado %></td>
+              <td><%= insumo.estados[@estado]['pnd'].real if insumo.estados[@estado] %></td>
+              <td><%= insumo.estados[@estado]['pd'].real  if insumo.estados[@estado]%></td>
+              <td></td>
+            <% end %>
+            <td title = "<%= tipo_de_insumo_sbc_por_extenso(insumo.tipo) %>"><%= tipo_de_insumo_sbc_por_extenso(insumo.tipo) %></td>
+          </tr>
+        <% end %>
+    </tbody>
+  </table>
+  <!-- /.table-responsive -->
+  <div class="pull-right">
+    <%= will_paginate @insumos %>
+  </div>
+
+<% else %>
+  <% if @chave %>
+    <div class="row">
+      <br/>
+    </div>  
+    <div class="alert alert-info">
+      <h6> 
+        Sem Resultados!!
+      </h6>           
+    </div>
+  <% end %>
+<% end %>

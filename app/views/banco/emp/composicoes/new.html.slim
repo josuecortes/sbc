@@ -1,0 +1,62 @@
+= content_for :breadcrumbs
+  = link_to "Composicões", banco_sbc_composicoes_path, class: "breadcrumb-item"
+  span.breadcrumb-item.active Criar
+= content_for :titulo
+  .sh-pagetitle-icon
+    i.fa.fa-list.mg-t-3
+  .sh-pagetitle-title
+    span 
+    h2 Criar Composição
+
+= form_for @composicao, html: {class: ""} do |f|
+  = f.hidden_field :user_id, :value => current_user.id
+  = f.hidden_field :empresa_id, :value => current_user.empresa_id
+ 
+  .form-layout
+    .row.mg-b-25
+      .col-lg-12
+        .form-group
+          = f.label :codigo, "Codigo"
+          = f.text_field :codigo, value: (@composicao.codigo ? @composicao.codigo : @composicao.sugestao_de_codigo(current_user.empresa_id)), class: "form-control"
+      .col-lg-12   
+        .form-group  
+          = f.label :descricao, "Descrição"
+          = f.text_field :descricao, :class => "form-control"
+      .col-lg-12   
+        .form-group    
+          = f.check_box :mao_de_obra, :class => ""
+          = f.label :mao_de_obra, "Mão de Obra"          
+      .col-lg-12   
+        .form-group
+          = f.label :tipo
+          = f.select :tipo, options_for_select(array_item_orcamentario_por_extenso), {}, {class: "form-control"}
+          
+      .col-lg-12   
+        .form-group
+          = f.label :unidade
+          = f.text_field :unidade, :class => "form-control"
+      .col-lg-12   
+        .form-group          
+          = f.label :estado
+          = f.select :estado, option_select_estado, {}, {:class=>'form-control'}
+      .col-lg-12   
+        .form-group              
+          = f.label :observacao, "Observação"
+          = f.text_area :observacao, class: "form-control"
+      .col-lg-12   
+        .form-group
+          button.btn.btn-w-m.btn-primary type="submit"
+            | Criar Composição 
+            i class="iconfa-forward"
+
+javascript:
+  var checkbox = document.getElementById('banco_emp_composicao_modelo_sicro3_false');
+  checkbox.onchange = function() {
+    jQuery("#modelo_sicro3").fadeOut();
+    jQuery("#modelo_sinapi").fadeIn();
+  };
+  var checkbox = document.getElementById('banco_emp_composicao_modelo_sicro3_true');
+  checkbox.onchange = function() {
+    jQuery("#modelo_sicro3").fadeIn();
+    jQuery("#modelo_sinapi").fadeOut();
+  }; 

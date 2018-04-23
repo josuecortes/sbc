@@ -1,0 +1,115 @@
+<% if !@usuarios.blank? %>
+  
+  <div class="pull-right">
+    <%= will_paginate @usuarios, remote: true, renderer: WillPaginate::ActionView::BootstrapLinkRenderer %>
+  </div>
+  <div class="table-responsive">
+    <table class="table" id="usuarios">
+      <thead>
+        <tr>
+          <th class="wd-25p">Nome</th>
+          <th class="wd-20p">Email</th>
+          <th class="wd-20p">Empresa</th>
+          <th class="wd-20p">Planos Ativos</th>
+          <th class="wd-25p"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @usuarios.each do |u| %>
+          <tr>
+            <td><%= u.nome %></td>
+            <td><%= u.email %></td>
+            <td><%= u.empresa.nome %></td>
+            <td><%= u.planos.gerenciaveis.count %></td>
+            <td>
+            	<% if u.ativo == true %>
+            		<a href="" class="btn btn-secondary" data-toggle="modal" data-target="#modal<%= "#{u.id}" %>" title="Detalhes do Usuário"><span class='fa fa-eye'></span></a>
+                <%= link_to link_icone('editar'), edit_usuario_path(u), class: 'btn btn-primary', title: "Editar Usuário", remote: true %>
+            		<%= link_to link_icone('desativar'), usuario_path(u), method: :delete, data: { confirm: 'Você está certo disso?' }, class: 'btn btn-danger', title: "Desativar Usuário" %>
+            		<% if u.mudar_senha == false and current_user.id != u.id %>
+  						    <%= link_to link_icone('resetar'), usuario_redefinir_senha_path(u), :class=>"btn btn-warning", data: { confirm: 'Você está certo disso?' }, title: "Resetar Senha do Usuário" %>
+  	            <% end %>
+  	          <% else %>
+  	            <%= link_to link_icone('ativar'), usuario_path(u), :method=>"delete", :class=>"btn btn-success", data: { confirm: 'Você está certo disso?' }, title: "Ativar Usuário" %>
+  	          <% end %>
+            </td>
+          </tr>
+        <% end %>           
+      </tbody>
+    </table>
+  </div>
+</div>
+
+  <div class="pull-right">
+    <%= will_paginate @usuarios, remote: true, renderer: WillPaginate::ActionView::BootstrapLinkRenderer %>
+  </div>
+
+ <% else %>
+  <div class="alert alert-info">
+    <h6> 
+      Sem Resultados!!
+    </h6>           
+  </div>
+<% end %>
+
+
+<% @usuarios.each do |u| %>
+  <% if u.ativo == true %>  
+    <div id="modal<%= "#{u.id}" %>" class="modal fade">
+      <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content tx-size-sm">
+          <div class="modal-header pd-x-20">
+            <h6 class="tx-14 mg-b-0 tx-uppercase tx-inverse tx-bold"><%= u.nome %></h6>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body pd-20">
+           
+            <table class="table">
+              <tr>
+                <th class="bg-secondary">E-mail</th>
+                <td><%= u.email %></td>
+              </tr>
+              <tr>
+                <th class="bg-secondary">Empresa</th>
+                <td>
+                  <%= u.empresa.nome %>
+                  <% if current_user.permissao == "ADMINISTRADOR" %>
+                    &nbsp; 
+                    <%= link_to empresa_planos_path(u.empresa), target: 'blank', class: 'btn btn-primary' do %>
+                      Planos da Empresa <i class="fa fa-arrow-right"></i> 
+                    <% end %>
+                  <% end %>
+                </td>
+              </tr>
+              <tr>
+                <th class="bg-secondary">Permissão</th>
+                <td><%= u.permissao %></td>
+              </tr>
+              <tr>
+                <th class="bg-secondary">Estados</th>
+                <td>
+                  <% u.planos.gerenciaveis.each do |p| %>
+                    <% p.estados.sort.each do |e| %>
+                      <%= e %> -
+                    <% end %>  
+                  <% end %>
+                </td>
+              </tr>
+              <tr>
+                <th class="bg-secondary">Criado em</th>
+                <td><%= u.created_at.to_s_br %></td>
+              </tr>
+            </table>
+
+          </div><!-- modal-body -->
+          <div class="modal-footer">
+            <%= link_to link_icone('editar-texto'), edit_usuario_path(u), class: 'btn btn-primary pd-x-20', remote: true %>
+            <button type="button" class="btn btn-danger pd-x-20" data-dismiss="modal"><span class='fa fa-close'></span> Fechar</button>
+          </div>
+        </div>
+      </div><!-- modal-dialog -->
+    </div><!-- modal -->
+  <% end %>
+<% end %>

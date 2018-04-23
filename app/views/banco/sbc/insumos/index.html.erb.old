@@ -1,0 +1,98 @@
+<% content_for :breadcrumbs do %>
+  <span class="breadcrumb-item active">Insumos</span>  
+<% end %>
+
+<% content_for :titulo do %>
+  <div class="sh-pagetitle-icon"><i class="icon ion-ios-search mg-t-3"></i></div>
+  <div class="sh-pagetitle-title">
+    <span></span>
+    <h2>Consultar Insumos</h2>
+  </div><!-- sh-pagetitle-left-title -->
+<% end %>
+
+
+<div class="row">
+  <div class="col-lg-12">
+      <div class="panel panel-default">
+          <!-- /.panel-heading -->
+
+          <div class="panel-body">
+
+            <%= simple_form_for :search, :url=>banco_sbc_insumos_path, :method=>"get", remote: true do |f| %>
+              <div class="row">
+                <div class="col-lg-3">
+                  <%= f.input :base, collection: ['SBC','PROPRIO'], as: :select, label: "Base", include_blank: false, selected: @base, :input_html => {class: "form-control", onchange: 'MudarValores();'} %>
+                </div>
+                <div class="col-lg-3">
+                  <div class="estados_sigla">
+                    <%= f.input :estados, collection: @estados.sort, as: :select, label: "Estado", include_blank: false, selected: @estado, :input_html => {class: "form-control" } %>
+                  </div>
+                  <div class="estados_nome">
+                    <%= f.input :estado_proprio, collection: array_nome_estados_do_brasil, as: :select, label: "Estado", include_blank: false, selected: @estado_proprio, :input_html => {class: "form-control" } %>
+                  </div>
+                </div>
+                
+                <div class="col-lg-3 item_orcamentario">
+                  <%= f.input :tipo, collection: array_tipo_insumos, as: :select, label: "Tipo", include_blank: false, selected: @tipo, :input_html => {class: "form-control"} %>
+                </div>
+
+                <div class="col-lg-3">
+                  <div class="esconder">
+                    <%= f.input :data_atualizacao, collection: array_data_atualizacao, as: :select, label: "Data", include_blank: false, selected: @data, :input_html => {class: "form-control"} %>
+                  </div>
+                </div>
+                
+              </div>
+
+
+              <br/>
+
+              <div class="row">
+                <div class="col-lg-12">
+                  <%= f.input :chave, label: "Palavra Chave", placeholder: "Codigo ou Descrição", :input_html => {class: "form-control", value: @chave} %>
+                </div>
+              </div>
+
+              <br/>
+
+              <center>
+                <button type="submit" class="btn btn-success" onclick='carregandoInsumos();'><span class='fa fa-search'></span> Consultar</button>
+            <% end %>
+
+
+          </div>
+
+          <div class="insumos">
+            <%= render partial: "insumos" %>
+          </div>  
+
+          <script>
+            $(function(){
+               $('.pagination a').attr('data-remote', 'true')
+            });
+          </script>
+
+      </div>
+      <!-- /.panel -->
+
+  </div>
+  <!-- /.col-lg-12 -->
+</div>
+
+<script>
+  function MudarValores() {
+    var myselect_base = document.getElementById('search_base');
+    var base = myselect_base.value;
+    var myselect_estados = document.getElementById('search_estados');
+    var estados = myselect_estados.value;
+    if (base == 'SBC') {
+      $(".esconder").show();
+      $(".estados_sigla").show();
+      $(".estados_nome").hide();
+    }else{
+      $(".esconder").hide();
+      $(".estados_nome").show();
+      $(".estados_sigla").hide();
+    }    
+  }
+</script>

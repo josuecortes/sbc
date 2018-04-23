@@ -1,0 +1,14 @@
+<%= simple_form_for(@transacao) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.input :estados %>
+    <%= f.input :licencas %>
+    <%= f.input :valor %>
+    <%= f.input :status %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

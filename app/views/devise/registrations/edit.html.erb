@@ -1,0 +1,94 @@
+<% content_for :breadcrumbs do %>
+  <span class="breadcrumb-item active">Perfil</span>  
+<% end %>
+
+<% content_for :titulo do %>
+  <div class="sh-pagetitle-icon"><i class="icon ion-android-contact mg-t-3"></i></div>
+  <div class="sh-pagetitle-title">
+    <span></span>
+    <h2>Meu Perfil</h2>
+  </div><!-- sh-pagetitle-left-title -->
+<% end %>
+
+<%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, multipart: true }) do |f| %>
+  <div class="form-layout">
+    <div class="row mg-b-25">
+
+
+
+      <div class="col-lg-6">
+       
+        <div class="row mg-b-25">
+
+          <div class="col-lg-12">
+            <div class="form-group">
+              <label class="form-control-label">Nome: <span class="tx-danger">*</span></label>
+              <%= f.input :nome, required: true, label: false, placeholder: "Digite seu nome completo", input_html: {class: "form-control"} %>
+            </div>
+          </div><!-- col-6 -->
+          <div class="col-lg-12">
+            <div class="form-group">
+              <label class="form-control-label">E-mail: <span class="tx-danger">*</span></label>
+              <%= f.input :email, required: true, label: false, placeholder: "Digite seu e-mail", input_html: {class: "form-control"} %>
+            </div>
+          </div><!-- col-6 -->
+          
+          
+          <div class="col-lg-12">
+            <div class="form-group">
+              <label class="form-control-label">Senha Atual: <span class="tx-danger">*</span></label>
+              <%= f.input :current_password, required: true, label: false, placeholder: "Digite sua Senha Atual", input_html: {class: "form-control"} %>
+            </div>
+          </div><!-- col-3 -->
+
+          <div class="col-lg-6">
+            <div class="form-group">
+              <label class="form-control-label">Nova Senha: </label>
+              <%= f.input :password, required: true, label: false, placeholder: "Digite sua Nova Senha", input_html: {class: "form-control"} %>
+            </div>
+          </div><!-- col-3 -->
+          <div class="col-lg-6">
+            <div class="form-group">
+              <label class="form-control-label">Confirmar Nova Senha: </label>
+              <%= f.input :password_confirmation, required: true, label: false, placeholder: "Confirme a Nova Senha", input_html: {class: "form-control"} %>
+            </div>
+          </div><!-- col-3 -->
+
+        </div>
+
+      </div>
+
+      <div class="col-lg-6">
+        <div class="row mg-b-25">
+          <div class="col-lg-12">
+            <div class="text-center">
+              <% if current_user.avatar.blank? %>
+                <img src="/assets/default.png" class="rounded-circle">
+                <br/>
+              <% else %>
+                <%= image_tag(current_user.avatar.url(:perfil), class: "rounded-circle") %>
+                <br/>
+              <% end %>
+            </div>
+          </div>
+        </div>
+        <div class="row mg-b-25">
+          <div class="col-lg-12">
+            <div class="text-center">
+              <%= f.input :avatar, as: :file, label: false, :placeholder=>"Selecionar Avatar", input_html: {class: "form-control"} %>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <%= f.input :mudar_senha, as: :hidden, input_html: {value: false} %>
+
+    </div><!-- row -->
+    <div class="form-layout-footer">
+      <button type="submit" class="btn btn-success mg-r-5">
+          <i class="fa fa-save "></i> Atualizar
+      </button>
+    </div><!-- form-layout-footer -->
+  </div><!-- form-layout -->    
+<% end %>
+

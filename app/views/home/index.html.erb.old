@@ -1,0 +1,114 @@
+<% content_for :breadcrumbs do %>
+	<span class="breadcrumb-item active">Home</span>	
+<% end %>
+
+<% content_for :titulo do %>
+	<div class="sh-pagetitle-icon"><i class="icon ion-ios-home mg-t-3"></i></div>
+	<div class="sh-pagetitle-title">
+	  <span>Seja bem vindo(a)</span>
+	  <h2>Home</h2>
+	</div><!-- sh-pagetitle-left-title -->
+<% end %>
+
+<div class="row row-sm">
+  <div class="col-lg-8">
+    <div class="row row-xs">
+      <div class="col-6 col-sm-4 col-md">
+        <a href="#" class="shortcut-icon">
+          <div>
+            <i class="icon ion-ios-people"></i>
+            <span>Usuários (<%= current_user.empresa.users.count %>)</span>
+          </div>
+        </a>
+      </div><!-- col -->
+      <div class="col-6 col-sm-4 col-md">
+        <a href="#" class="shortcut-icon">
+          <div>
+            <i class="icon ion-ios-browsers"></i>
+            <span>Composições (12234)</span>
+          </div>
+        </a>
+      </div><!-- col -->
+      <div class="col-6 col-sm-4 col-md mg-t-10 mg-sm-t-0">
+        <a href="#" class="shortcut-icon">
+          <div>
+            <i class="icon ion-cube"></i>
+            <span>Insumos (1233211)</span>
+          </div>
+        </a>
+      </div><!-- col -->
+      <div class="col-6 col-sm-4 col-md">
+        <a href="#" class="shortcut-icon">
+          <div>
+            <i class="icon ion-ios-browsers"></i>
+            <span>Minhas Composições (31)</span>
+          </div>
+        </a>
+      </div><!-- col -->
+      <div class="col-6 col-sm-4 col-md mg-t-10 mg-sm-t-0">
+        <a href="#" class="shortcut-icon">
+          <div>
+            <i class="icon ion-cube"></i>
+            <span>Meus Insumos (432)</span>
+          </div>
+        </a>
+      </div><!-- col -->
+    </div><!-- row -->
+
+    <br/>
+
+    <div class="row">
+      <div class="col-md">
+        <div class="card card-body tx-white-8 bg-success bd-0">
+          <center>
+          	<h3>ATIVOS</h3>
+          	<h1>5</h1>
+        	</center>
+        </div><!-- card -->
+      </div><!-- col -->
+      <div class="col-md mg-t-20 mg-md-t-0">
+        <div class="card card-body tx-white-8 bg-warning bd-0">
+          <center>
+          	<h3>EXPIRANDO</h3>
+          	<h1>2</h1>
+        	</center>
+        </div><!-- card -->
+      </div><!-- col -->
+      <div class="col-md mg-t-20 mg-md-t-0">
+        <div class="card card-body tx-white-8 bg-primary bd-0">
+          <center>
+          	<h3>TODOS</h3>
+          	<h1>13</h1>
+        	</center>
+        </div><!-- card -->
+      </div><!-- col -->
+    </div><!-- row -->
+
+  </div>
+  <div class="col-lg-4">
+  	<div class="card bd-primary">
+      <div class="card-header bg-primary tx-white"><%= current_user.empresa.nome %></div>
+      <div class="card-body">
+      	<dl>
+	        <dt>Nome/Razão Social</dt>
+	        <dd><%= current_user.empresa.nome %></dd>
+	        <dt>CNPJ</dt>
+	        <dd>Nada Cadastrado</dd>
+	        <dt>Area de Atuação</dt>
+	        <dd>Nada Cadastrado</dd>
+	        <dt>Usuários</dt>
+	        <dd><%= current_user.empresa.users.count %></dd>
+	        <dt>Estado</dt>
+	        <dd>Nada Cadastrado</dd>
+	        <dt>Cep</dt>
+	        <dd>Nada Cadastrado</dd>
+	        <dt>Número</dt>
+	        <dd>Nada Cadastrado</dd>
+	      </dl>
+
+	      <%= link_to "Atualizar Dados", "#", class: 'btn btn-primary btn-block' %>
+
+      </div><!-- card-body -->
+    </div><!-- card -->
+  </div>
+</div>  

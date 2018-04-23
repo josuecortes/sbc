@@ -1,0 +1,75 @@
+<% content_for :breadcrumbs do %>
+  <a class="breadcrumb-item" href="#"><%= @empresa.nome %></a>
+  <a class="breadcrumb-item" href="<%= home_meus_planos_path %>">Planos</a>
+  <span class="breadcrumb-item active">Usuários</span>
+<% end %>
+
+<% content_for :titulo do %>
+  <div class="sh-pagetitle-icon"><i class="icon ion-ios-people mg-t-3"></i></div>
+  <div class="sh-pagetitle-title">
+    <span></span>
+    <h2>Gerenciar Usuários</h2>
+  </div><!-- sh-pagetitle-left-title -->
+<% end %>
+
+<div class="row">
+  <div class="col-lg-6">
+
+    <% if @plano.users.count > 0 %>
+      <div class="card-header bg-success tx-white">USUÁRIOS NO PLANO (<%= @plano.users.count %>)</div>
+      <div class="table-responsive">
+        <table class="table table-hover responsive display nowrap">
+          
+          <tbody>
+            <% @plano.users.each do |u| %>
+              <tr>
+                <td width="90%"><%= u.nome %></td>
+                <td>
+                  <% if u.permissao == "CLIENTE" %>
+                    <%= link_to link_icone("remover"), home_remover_usuario_plano_path(plano_id: @plano.id, user_id: u.id), class: 'btn btn-danger' %>
+                  <% end %>
+                </td>
+              </tr>
+            <% end %>           
+          </tbody>
+        </table>
+      </div><!-- table-wrapper -->
+    <% else %>
+      <div class="card-header bg-danger tx-white">PLANO SEM USUÁRIOS</div>
+    <% end %>
+
+  </div>
+  <div class="col-lg-6">
+
+    <% if @fora.count > 0 %>
+      <div class="card-header bg-primary tx-white">USUÁRIOS FORA DO PLANO (<%= @fora.count %>)</div>
+      <div class="table-responsive">
+        <table class="table table-hover responsive display nowrap">
+          
+          <tbody>
+            <% @fora.each do |u| %>
+              <tr>
+                <td width="90%"><%= u.nome %></td>
+                <td>
+                  <% if @plano.users.count < @plano.licencas %>
+                    <%= link_to link_icone("adicionar"), home_adicionar_usuario_plano_path(plano_id: @plano.id, user_id: u.id), class: 'btn btn-success' %>
+                  <% else %>
+                    Max.
+                  <% end %>                  
+                </td>
+              </tr>
+            <% end %>           
+          </tbody>
+        </table>
+      </div><!-- table-wrapper -->
+    <% else %>
+      
+    <% end %>
+  
+  </div>
+
+</div>
+
+<br/>
+
+<%= link_to link_icone('voltar-texto'), home_meus_planos_path, :class=>"btn btn-secondary" %>

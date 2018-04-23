@@ -1,0 +1,142 @@
+<% content_for :breadcrumbs do %>
+  <a class="breadcrumb-item" href="<%= banco_emp_insumos_path %>">Insumos</a>
+  <span class="breadcrumb-item active"><%= @insumo.codigo %></span> 
+<% end %>
+
+<% content_for :titulo do %>
+  <div class="sh-pagetitle-icon"><i class="fa fa-file mg-t-3"></i></div>
+  <div class="sh-pagetitle-title">
+    <span></span>
+    <h2>Detalhes do Insumo</h2>
+  </div>
+<% end %>
+
+<table class="table">
+  <tr>
+    <th class="bg-info" colspan="2"><%= @insumo.descricao %></th>
+  </tr>
+  <tr>
+    <th class="bg-secondary wd-15p">Codigo</th>
+    <td><%= @insumo.codigo %></td>
+  </tr>
+  <tr>
+    <th class="bg-secondary">Unidade</th>
+    <td><%= @insumo.unidade %></td>
+  </tr>
+  <tr>
+    <th class="bg-secondary">Tipo</th>
+    <td><%= tipo_de_insumo_sbc_por_extenso(@insumo.tipo) %></td>
+  </tr>
+  <tr>
+    <th class="bg-secondary">Descrição</th>
+    <td><%= @insumo.observacao %></td>
+  </tr>
+</table>
+
+<% if @insumo.tipo == 1 %>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Estado</th>
+        <th>Valor Não Desonerado Operativo</th>
+        <th>Valor Desonerado Operativo</th>
+        <th>Valor Não Desonerado Improdutivo</th>
+        <th>Valor Desonerado Improdutivo</th>
+      </tr>
+    </thead>
+    <tbody>
+
+      <% @insumo.estados.sort.each do |e| %>
+        <tr>
+          <td><%= e.first %></th>
+          <td><%= e.last["pnd"].real_contabil %></td>
+          <td><%= e.last["pd"].real_contabil %></td>
+          <td><%= e.last["pndi"].real_contabil if e.last["pndi"] %></td>
+          <td><%= e.last["pdi"].real_contabil if e.last["pdi"] %></td>
+        </tr>
+      <% end %>  
+    </tbody>
+  </table>
+
+<% elsif @insumo.tipo == 3 %>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Estado</th>
+        <th>Valor Não Desonerado</th>
+        <th>Valor Desonerado</th>
+      </tr>
+    </thead>
+    <tbody>
+
+      <% @insumo.estados.sort.each do |e| %>
+        <tr>
+          <td><%= e.first %></th>
+          <td><%= e.last["pnd"].real_contabil %></td>
+          <td><%= e.last["pd"].real_contabil %></td>
+        </tr>
+      <% end %>  
+    </tbody>
+  </table>
+
+<% else %>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Estado</th>
+        <th>Valor Unitário</th>
+      </tr>
+    </thead>
+    <tbody>
+
+      <% @insumo.estados.sort.each do |e| %>
+        <tr>
+          <td><%= e.first %></th>
+          <td><%= e.last["pnd"].real_contabil %></td>
+        </tr>
+      <% end %>  
+    </tbody>
+  </table>
+
+<% end %>
+
+
+<%= link_to 'Editar Informações', edit_banco_emp_insumo_path(@insumo), class: 'btn btn-primary', title: "Editar Insumo", remote: true %>
+
+<%= link_to 'Editar Valores dos Estados', edit_valores_banco_emp_insumo_path(@insumo), class: 'btn btn-primary', title: "Editar Insumo", remote: false %>
+
+<div class="modal hide fade in" id="form-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content bd-0 tx-14">
+      <div class="modal-header pd-x-20" id="form-modal-titulo">
+
+      </div>
+      <div id="form-modal-error">
+      </div>
+      <div class="modal-body pd-20" id="form-modal-corpo">
+        
+      </div><!-- modal-body -->
+      
+    </div>
+  </div><!-- modal-dialog -->
+</div><!-- modal -->
+
+
+<div class="modal hide fade in" id="form-modal-valores" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content bd-0 tx-14">
+      <div class="modal-header pd-x-20" id="form-modal-valores-titulo">
+
+      </div>
+      <div id="form-modal-valores-error">
+      </div>
+      <div class="modal-body pd-20" id="form-modal-valores-corpo">
+        
+      </div><!-- modal-body -->
+      
+    </div>
+  </div><!-- modal-dialog -->
+</div><!-- modal -->

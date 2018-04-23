@@ -1,0 +1,9 @@
+$(function(){
+	$('#form-modal').modal('hide');
+	jQuery("#empresas").empty();
+	//jQuery("#empresas").html('<%= j render("empresas") %>');
+
+	//$('.empresas').DataTable('#datatable1').ajax.reload();
+	$('#empresas').html('<%= j render("empresas") %>');
+
+});

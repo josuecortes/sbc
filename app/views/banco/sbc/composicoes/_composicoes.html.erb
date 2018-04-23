@@ -1,0 +1,50 @@
+<% if !@composicoes.blank? %>
+
+  </br>
+  <div class="pull-right">
+    <%= will_paginate @composicoes %>
+  </div>
+  <table class="table table-responsive table-hover">
+    <thead>
+        <tr>
+            <th>Codigo</th>
+            <th>Descrição</th>
+            <th>Unidade</th>
+            <th>Estado</th>
+            <th>PND</th>
+            <th>PD</th>
+            <th>Data</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        <% @composicoes.each do |composicao| %>
+          <tr>
+            <td><%= link_to composicao.codigo, banco_sbc_composicao_path(composicao, estado: @estado), target: '_blank' %></td>
+            <td><%= composicao.descricao %></td>
+            <td><%= composicao.unidade %></td>
+            <td><%= @estado %></td>
+            <td><%= composicao.estados[@estado]['pnd'].real %></td>
+            <td><%= composicao.estados[@estado]['pd'].real %></td>
+            <td><%= composicao.data %></td>
+
+          </tr>
+        <% end %>
+    </tbody>
+  </table>
+  <div class="pull-right">
+    <%= will_paginate @composicoes %>
+  </div>
+
+<% else %>
+  <% if @chave %>
+    <div class="row">
+      <br/>
+    </div>  
+    <div class="alert alert-info">
+      <h6> 
+        Sem Resultados!!
+      </h6>           
+    </div>
+  <% end %>
+<% end %>

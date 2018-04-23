@@ -1,0 +1,72 @@
+.maincontent
+  .maincontentinner
+
+    .widget
+      h4.widgettitle Formulário
+      .widgetcontent
+        .row-fluid
+          = form_for @insumo, html: {class: "stdform"} do |f|
+            = f.hidden_field :usuario_id, value: current_user.id
+            
+            = f.hidden_field :empresa_id, value: current_user.empresa_id
+            
+            p
+              = f.label :codigo, "Código"
+              span.field = f.text_field :codigo, value: (@insumo.codigo ? @insumo.codigo : @insumo.sugestao_de_codigo(current_user.empresa_id)), class: "input-block-level"
+            p
+              = f.label :descricao, "Descrição"
+              span.field = f.text_field :descricao, class: "input-block-level"
+            p
+              = f.label :unidade
+              span.field = f.text_field :unidade, class: "input-block-level"
+           
+            p
+              = f.label :tipo
+              span.field = f.select :tipo, select_tipo_insumo(TIPOSDEINSUMOS, @insumo), {}, {class: 'input-block-level', onchange: "MudarValores();"}
+
+            
+            p
+              .tipo_equipamento.trocar
+                = f.label :pnd, "Valor não Desonerado Operativo"
+              .tipo_mao_de_obra.trocar.oculto
+                = f.label :pnd, "Valor não Desonerado"
+              .outros_tipos.trocar.oculto
+                = f.label :pnd, "Valor"
+              span.field = f.text_field :pnd, class: "input-block-level"
+            .tipo_mao_de_obra.tipo_equipamento.trocar
+              p
+                .tipo_equipamento.trocar
+                  = f.label :pd, "Valor Desonerado Operativo"
+                .tipo_mao_de_obra.trocar.oculto
+                  = f.label :pd, "Valor Desonerado"
+                span.field = f.text_field :pd, class: "input-block-level"
+                small.desc style="margin-top: -10px;" Opcional
+            .tipo_equipamento.trocar
+              p
+                = f.label :pndi, "Valor não Desonerado Improdutivo"
+                span.field = f.text_field :pndi, class: "input-block-level"
+                small.desc style="margin-top: -10px;" Opcional
+              p
+                = f.label :pdi, "Valor Desonerado Improdutivo"
+                span.field = f.text_field :pdi, class: "input-block-level"
+                small.desc style="margin-top: -10px;" Opcional
+            p
+              = f.label :observacao, "Observação"
+              span.field = f.text_area :observacao, class: "input-block-level"
+            p.stdformbutton = f.submit "Criar Insumo", class: "btn btn-primary"
+
+javascript:
+  function MudarValores() {
+    var myselect = document.getElementById('banco_emp_insumo_tipo');
+    var tipo = myselect.options[myselect.selectedIndex].value;
+    if (tipo == '1') {
+      jQuery(".trocar").css( "display", "none");
+      jQuery(".tipo_equipamento").fadeIn();
+    } else if (tipo == '3') {
+      jQuery(".trocar").css( "display", "none");
+      jQuery(".tipo_mao_de_obra").fadeIn();
+    } else  {
+      jQuery(".trocar").css( "display", "none");
+      jQuery(".outros_tipos").fadeIn();
+    }
+  }

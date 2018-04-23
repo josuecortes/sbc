@@ -1,0 +1,121 @@
+- estado = @composicao.estado
+
+.table-responsive
+  table.table
+    tr
+      th.bg-info[colspan="4"]
+        = @composicao.descricao
+    tr
+      th.bg-secondary.wd-15p Codigo
+      td.wd-35p = @composicao.codigo
+      th.bg-secondary.wd-15p Unidade
+      td.wd-35p = @composicao.unidade 
+    
+    tr
+      th.bg-secondary.wd-15p Estado
+      td.wd-35p = estado.uf_to_nome
+      th.bg-secondary.wd-15p Tipo
+      td.wd-35p = tipo_de_composicao_por_extenso(@composicao.tipo)
+
+    tr
+      th.bg-secondary.wd-15p Valor Não Desonerado
+      td.wd-35p = @composicao.estados[estado]["pnd"].real_contabil
+      th.bg-secondary.wd-15p Valor Desonerado
+      td.wd-35p = @composicao.estados[estado]["pd"].real_contabil
+
+hr
+
+- @composicao.estado
+
+.table-responsive
+  table#tabela-mae.table.table-responsive.table-hover
+    thead
+      tr
+        th        Banco
+        th        Código
+        th        Descrição
+        th        Tipo
+        th.center Unidade
+        th.right  Valor Unitário Não Desonerado
+        th.right  Valor Unitário Desonerado
+        th.right  Coeficiente
+        th.right  Valor Não Desonerado
+        th.right  Valor Desonerado
+        th.center Excluir
+    tbody
+      - contador_composicao = 0
+      - @composicao.composicoes_auxiliares_provisorias.each do |composicao|
+        - puts composicao["b"]
+        
+        - quantidade =  composicao.quantidade
+        - if composicao["b"] == "SETOP"
+          - pr_un_pnd = composicao.estados["MG"]["central"]["pnd"]
+          - pr_un_pd =  composicao.estados["MG"]["central"]["pd"]
+        - elsif composicao["b"] == "SICRO2"
+          - pr_un_pnd = composicao.estados[estado]["nd"]["pr_un"]
+          - pr_un_pd =  composicao.estados[estado]["d"]["pr_un"]
+        - else
+          - pr_un_pnd = composicao.estados[Banco::Busca.banco_estado(composicao["b"], estado)]["pnd"]
+          - pr_un_pd =  composicao.estados[Banco::Busca.banco_estado(composicao["b"], estado)]["pd"]
+        - pr_pnd =      pr_un_pnd * quantidade
+        - pr_pd =       pr_un_pd * quantidade
+        
+        tr
+        
+          td.td_banco             = composicao["b"].banco
+          td.td_codigo            = composicao.codigo
+          td.td_descricao         = composicao.descricao
+          td.td_tipo              = composicao.tipo_por_extenso if composicao.tipo
+          td.td_unidade.center    = composicao.unidade
+          td.td_pr_un_pnd.right   = pr_un_pnd.real
+          td.td_pr_un_pd.right    = pr_un_pd.real
+          td.td_quantidade.right  = quantidade.trocar_ponto_por_virgula
+          td.td_pr_pnd.right      = pr_pnd.real
+          td.td_pr_pd.right       = pr_pd.real
+          
+          td.td_excluir.center
+            a.remove-box href="#" title="Excluir"
+              | Excluir
+          
+        - @contador += 1
+        - contador_composicao += 1
+      
+      - contador_insumo = 0
+      - @composicao.insumos_provisorios.each do |insumo|
+        
+        - quantidade =  0.0 unless quantidade = insumo.quantidade
+
+        - if insumo.estados[Banco::Busca.banco_estado(insumo["b"], estado)]
+          - if insumo["b"] == "SETOP"
+            - pr_un_pnd = insumo.estados["MG"]["central"]["pnd"]
+            - pr_un_pd =  insumo.estados["MG"]["central"]["pd"]
+          - else
+            - pr_un_pnd = insumo.estados[Banco::Busca.banco_estado(insumo["b"], estado)]["pnd"]
+            - pr_un_pd =  insumo.estados[Banco::Busca.banco_estado(insumo["b"], estado)]["pd"]
+        - else
+          - pr_un_pnd = 0.0
+          - pr_un_pd =  0.0
+        
+        - pr_pnd =      pr_un_pnd * quantidade
+        - pr_pd =       pr_un_pd * quantidade
+        
+        tr
+        
+          td = insumo["b"].banco
+          td = insumo.codigo
+          td = insumo.descricao
+          td = insumo.tipo_por_extenso
+          td = insumo.unidade
+          td = pr_un_pnd.real
+          td = pr_un_pd.real
+          td = quantidade.trocar_ponto_por_virgula
+          td = pr_pnd.real
+          td = pr_pd.real
+          
+          td
+            = link_to "Remover", excluir_subitem_banco_emp_composicoes_path(id: @composicao.id, contador: contador_insumo, classe: "insumo"), class: "btn btn-danger"
+
+        - @contador += 1
+        - contador_insumo += 1
+
+hr

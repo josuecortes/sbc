@@ -1,0 +1,68 @@
+= content_for :breadcrumbs
+
+= content_for :titulo
+	.sh-pagetitle-icon
+		i.icon.ion-ios-home.mg-t-3
+	.sh-pagetitle-title
+		span Seja Bem Vindo(a)
+		h2 Home
+
+.row.row-sm
+	.col-lg-8
+		.row
+			.col-md
+				.card.card-body.tx-white-8.bg-success.bd-0
+					center
+						h3 ATIVOS
+						h1 = @ativos
+			.col-md.mg-t-2-.mg-md-t-0
+				.card.card-body.tx-white-8.bg-warning.bd-0
+					center
+						h3 EXPIRADOS
+						h1 = @expirados
+			.col-md.mg-t-2-.mg-md-t-0
+				.card.card-body.tx-white-8.bg-primary.bd-0
+					center
+						h3 TODOS
+						h1 = @planos		
+
+	.col-lg-4
+		.card.bd-primary
+			.card-header.bg-primary.tx-white
+				= @empresa.nome
+			.card-body
+				dl
+					dt Nome/Razao Social
+					dd = @empresa.nome
+					dt CNPJ
+					dd = @empresa.cnpj
+					dt Area de Atuação
+					dd = @empresa.area
+					dt Usuários
+					dd = @empresa.users.count
+					dt Estado
+					dd = @empresa.estado
+					dt Cep
+					dd = @empresa.cep
+					dt Número
+					dd = @empresa.numero
+
+				- if current_user.permissao != "CLIENTE"
+					= link_to "Atualizar Dados", home_minha_empresa_path, class: 'btn btn-primary btn-block'
+
+- if current_user.bem_vindo == false
+	#bemVindoModal.modal.fade tabindex="-1" role="dialog" aria-labelledby="memberModalLabel" aria-hidden="true"
+		.modal-dialog
+			.modal-content
+				.modal-header
+					button.close type='button' data-dismiss="modal" aria-label="Close" 
+						span aria-hidden="true" &times;
+					h4.modal-title#memberModalLabel Obrigado por se cadastrar
+				.modal-body
+					p Nosso sistema é bla bla bla
+					br
+					p mais bla bla bla
+				.modal-footer
+					button.btn.btn-primary data-dismiss="modal" onclick='fecharBemVindo();' Fechar
+
+
