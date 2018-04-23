@@ -91,15 +91,14 @@ function fecharBemVindo(){
   
 //}
 
-
 function carregandoComposicoes() {
   jQuery(".composicoes").empty();
-  jQuery(".composicoes").html("<center><img src='/assets/carregando.gif' /></center><center><h2>Aguarde</h2></center>");
+  jQuery(".composicoes").html("<center><%= image_tag('carregando.gif') %></center><center><h2>Aguarde</h2></center>");
 }
 
 function carregandoInsumos() {
   jQuery(".insumos").empty();
-  jQuery(".insumos").html("<center><img src='/assets/carregando.gif' /></center><center><h2>Aguarde</h2></center>");
+  jQuery(".insumos").html("<center><%= image_tag('carregando.gif') %></center><center><h2>Aguarde</h2></center>");
 }
 
 function removerMensagens() {
