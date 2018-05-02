@@ -44,6 +44,7 @@
               <% if p.ativo %>
                 <%= link_to link_icone('editar'), edit_empresa_plano_path(@empresa,p), :class=>"btn btn-primary", title: "Editar Plano" %>
                 <%= link_to link_icone('usuario-texto'), empresa_plano_usuarios_path(@empresa,p), :class=>"btn btn-primary", title: "Gerenciar Usuários" %>
+                <%= link_to 'Adicionais', empresa_plano_adicionais_path(@empresa,p), :class=>"btn btn-success", title: "Adicionais" %>
               <% end %>
             </td>
           </tr>

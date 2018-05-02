@@ -48,4 +48,5 @@ ActiveSupport::Inflector.inflections(:en) do |inflect|
   inflect.irregular 'tutorial', 'tutoriais'
   inflect.irregular 'usuario', 'usuarios'
   inflect.irregular 'venda', 'vendas'
+  inflect.irregular 'configuracao', 'configuracoes'
 end

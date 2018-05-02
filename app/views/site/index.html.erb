@@ -1178,7 +1178,7 @@
 	}
 
 	function valorEstados(){
-		var retorno = totalEstados() * 100;
+		var retorno = totalEstados() * <%= @configuracao.valor_estado %>;
 		return retorno;
 	}
 
@@ -1186,7 +1186,7 @@
 		var numero = totalLicencas();
 		var retorno = 0;
 		if (numero > 2){
-			retorno = (numero - 2) * 15; 
+			retorno = (numero - 2) * <%= @configuracao.valor_licenca %>; 
 			return retorno;
 		} else {
 			return retorno;
@@ -1210,11 +1210,11 @@
 
 		if ((valor > 0) && (estados.length > 0)) {
 			
-			var criar = $.getJSON("/site/criar_transacao", {estados: estados, licencas: licencas, valor: valor}, function(transacao){
+			var criar = $.getJSON("/transacao/frente", {estados: estados, licencas: licencas, valor: valor}, function(transacao){
 				var link = transacao.link;
 				if ((transacao.link != "") && (transacao.retorno == true)){
-					console.log(link);
-					window.open(transacao.link, "_blank");
+					//window.open(transacao.link, "_blank");
+					window.open(transacao.link);
 					console.log(transacao.link);
 
 				} else {

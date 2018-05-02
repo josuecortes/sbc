@@ -28,7 +28,7 @@
 //= require orca/uteis
 //= require orca/tipos_de_composicoes
 //= require orca/convertemoeda
-
+//= require popular_transacao
 
 
 $(function() {
@@ -247,4 +247,6 @@ function removeTags(html) {
     html = html.replace(tagOrComment, '');
   } while (html !== oldHtml);
   return html.replace(/</g, '&lt;');
-}
+};
+
+

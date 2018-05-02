@@ -1,40 +1,55 @@
-class TransacaosController < ApplicationController
-  before_action :set_transacao, only: [:show, :edit, :update, :destroy]
-  skip_before_action :authenticate_user!
-  skip_before_action :verify_authenticity_token
-  respond_to :html
+class TransacaoController < ApplicationController
+  def frente
+  	@configuracao = Configuracao.first
 
-  def index
-    @transacaos = Transacao.all
-    respond_with(@transacaos)
+    pagamento = PagSeguro::PaymentRequest.new
+
+    @licencas = params["licencas"].to_i
+    @estados = params["estados"]
+    @valor = params["valor"]
+
+    if @licencas > 2 
+      licencas = (@licencas - 2) * @configuracao.valor_licenca
+      adicionais = @licencas - 2
+      item = PagSeguro::Item.new(amount: @configuracao.valor_licenca, description: 'Licenças adicionais', quantity: adicionais, id: 1)
+      pagamento.items << item
+    end
+
+    @estados.each do |e|
+      puts e
+      puts '-----'
+      descricao = "Estado - #{e}"
+      item = PagSeguro::Item.new(amount: @configuracao.valor_estado, description: descricao, id: e)
+      pagamento.items << item 
+    end
+
+    resposta = pagamento.register
+
+    puts 'ini res'
+    puts resposta.errors.count
+    puts 'end res'
+
+    if resposta
+      #return true
+
+      respond_to do |format|
+        format.html # index.html.erb
+        format.json { render json: {link: resposta.url, retorno: true} }
+      end
+
+    else
+      #return false
+
+      respond_to do |format|
+        format.html # index.html.erb
+        format.json { render json: {link: "", retorno: false} }
+      end
+
+    end
   end
 
-  def show
-    respond_with(@transacao)
-  end
-
-  def new
-    @transacao = Transacao.new
-    respond_with(@transacao)
-  end
-
-  def edit
-  end
-
-  def create
-    @transacao = Transacao.new(transacao_params)
-    @transacao.save
-    respond_with(@transacao)
-  end
-
-  def update
-    @transacao.update(transacao_params)
-    respond_with(@transacao)
-  end
-
-  def destroy
-    @transacao.destroy
-    respond_with(@transacao)
+  def plano
+  	
   end
 
   def notificacao_pagseguro
@@ -135,13 +150,4 @@ class TransacaosController < ApplicationController
       end
     end
   end
-
-  private
-    def set_transacao
-      @transacao = Transacao.find(params[:id])
-    end
-
-    def transacao_params
-      params.require(:transacao).permit(:estados, :licencas, :valor, :status)
-    end
 end

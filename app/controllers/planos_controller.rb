@@ -31,7 +31,7 @@ class PlanosController < ApplicationController
     @plano = @empresa.planos.new(plano_params)
 
     respond_to do |format|
-      if @plano.save
+      if @plano.save!
         flash[:success] = @@msgs
         format.html { redirect_to empresa_planos_path(@empresa) }
         format.json { render :index, status: :created, location: @plano }
@@ -108,6 +108,11 @@ class PlanosController < ApplicationController
 
     redirect_to empresa_plano_usuarios_path(@empresa,@plano)
 
+  end
+
+  def adicionais
+    @empresa = Empresa.find(params[:empresa_id])
+    @plano = @empresa.planos.gerenciaveis.find(params[:plano_id])
   end
 
   private

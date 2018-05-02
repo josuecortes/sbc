@@ -13,6 +13,12 @@
         <span>Empresas</span>
       </a>
     </li><!-- nav-item -->
+    <li class="nav-item">
+      <a href="<%= configuracoes_path %>" class="nav-link">
+        <i class="fa fa-cog"></i>
+        <span>Configurações</span>
+      </a>
+    </li><!-- nav-item -->
   <% end %>
   <% if current_user.permissao != "CLIENTE" %>
     <li class="nav-item">

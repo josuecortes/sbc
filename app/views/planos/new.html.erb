@@ -116,6 +116,10 @@
       </div>
     </div>
 
+    <% if @plano.transaction_code == nil %>
+      <%= f.input :transaction_code, :as => :hidden, :input_html => {value: @plano.id} %>  
+    <% end %>
+
     <div class="form-layout-footer">
       <%= link_to link_icone('voltar-texto'), empresa_planos_path(@empresa), class: "btn btn-secondary mg-r-5" %>
       <button type="submit" class="btn btn-success mg-r-5">

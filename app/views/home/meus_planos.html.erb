@@ -84,7 +84,8 @@
 		          </td>
 		          <td>
 		          	<% if p.ativo %>
-		          		<%= link_to link_icone('usuario-texto'), home_usuario_planos_path(plano_id: p.id), class: 'btn btn-primary' %>  
+		          		<%= link_to link_icone('usuario-texto'), home_usuario_planos_path(plano_id: p.id), class: 'btn btn-primary' %>
+		          		<%= link_to '+ Adicionais', home_adicionais_path(plano_id: p.id), class: 'btn btn-success' %>  
 		          	<% end %>	
 		          </td>
 		        </tr>

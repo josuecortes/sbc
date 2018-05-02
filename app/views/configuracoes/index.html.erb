@@ -1,0 +1,31 @@
+<% content_for :breadcrumbs do %>
+  <span class="breadcrumb-item active">Configurações</span>  
+<% end %>
+
+<% content_for :titulo do %>
+  <div class="sh-pagetitle-icon"><i class="fa fa-cog"></i></div>
+  <div class="sh-pagetitle-title">
+    <span></span>
+    <h2>Configurações</h2>
+  </div><!-- sh-pagetitle-left-title -->
+<% end %>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Valor estado</th>
+      <th>Valor licenca</th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @configuracoes.each do |configuracao| %>
+      <tr>
+        <td><%= configuracao.valor_estado %></td>
+        <td><%= configuracao.valor_licenca %></td>
+        <td><%= link_to link_icone('editar'), edit_configuracao_path(configuracao), class: 'btn btn-primary', title: "Editar Configurações" %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

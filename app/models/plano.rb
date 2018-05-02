@@ -53,4 +53,32 @@ class Plano
       end
     end
   end
+
+  def criar_link_plano_criado(licencas, estados)
+    pagamento = PagSeguro::PaymentRequest.new
+
+    if licencas > 2 
+      licencas = (licencas - 2) * 15
+      adicionais = licencas - 2
+      item = PagSeguro::Item.new(amount: 15, description: 'Licenças adicionais', quantity: adicionais, id: self.id)
+      pagamento.items << item
+    
+
+    end
+
+    estados.each do |e|
+      descricao = "Estado - #{e}"
+      item = PagSeguro::Item.new(amount: 100, description: descricao, id: self.id)
+      pagamento.items << item 
+    end
+
+    resposta = pagamento.register
+
+    if resposta
+      return resposta.url
+    else
+      return "ERRO"
+    end
+  end
+
 end

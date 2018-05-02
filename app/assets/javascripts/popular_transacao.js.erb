@@ -1,0 +1,111 @@
+$(document).ready(function() {
+
+	function totalEstados(){
+		var retorno = jQuery('input:checked').length;
+		return retorno;
+	}
+
+	function listaEstados(){
+		var lista = [];
+		jQuery('input:checked').each(function() {
+      lista.push(jQuery(this).val());
+    });
+		return lista;
+	}
+
+	function totalLicencas(){
+		var retorno = jQuery("#numero-licencas").val();
+		return retorno;
+	}
+
+	function valorEstados(){
+		var dias = diasExpirar();
+		var valor = <%= Configuracao.first.valor_estado %>;
+		var total_estados = totalEstados();
+		var retorno = total_estados * ((dias * valor) / 365);
+		return retorno;
+	}
+
+	function valorLicencas(){
+		var numero = totalLicencas();
+		var dias = diasExpirar();
+		var valor = <%= Configuracao.first.valor_licenca %>; 
+		retorno = numero * ((dias * valor) / 365); 
+		return retorno;
+	}
+
+	function valorFinal(){
+		var retorno = valorEstados() + valorLicencas();
+		return retorno
+	}
+
+	function calcularTudo(){
+		var valor = valorFinal();
+		jQuery('.quantidade').text(parseFloat(valor.toFixed(2)));
+	}
+
+	function codigoTransacao(){
+		var retorno = jQuery("#codigo").val();
+		return retorno;
+	}	
+
+	function diasExpirar(){
+		var retorno = jQuery("#dias").val();
+		return retorno;
+	}
+
+	function popularTransacao(){
+		var estados = listaEstados();
+		var licencas = totalLicencas();
+		var valor = valorFinal();
+		var codigo = codigoTransacao();
+		var dias = diasExpirar();
+
+
+		if (valor > 0) {
+			
+			var criar = $.getJSON("/transacao/plano", {codigo: codigo, dias: dias, estados: estados, licencas: licencas, valor: valor}, function(transacao){
+				var link = transacao.link;
+				if ((transacao.link != "") && (transacao.retorno == true)){
+					//window.open(transacao.link, "_blank");
+					window.open(transacao.link);
+					console.log(transacao.link);
+
+				} else {
+					console.log(link);
+					console.log("ficando aqui mesmo!");
+				}
+			});
+			
+			//$(location).attr({'href': 'http://stackoverflow.com', 'target': '_blank'});
+			//window.open("http://stackoverflow.com", "_blank");
+
+		}else{
+			console.log('algo errado.');
+			alert('Selecione ao menos 1 estado ou 1 usuário.');
+		}
+
+	}
+
+	console.log('ola');
+
+	calcularTudo();
+
+	jQuery("input[type=checkbox]").on( 'click', function(){
+		calcularTudo();
+	});
+
+	jQuery( "#numero-licencas" ).on( "change", function(){
+		calcularTudo();
+	});	
+
+	jQuery( "#btn-limpar" ).on( 'click', function(){
+		jQuery("#form-dados")[0].reset();
+		calcularTudo();
+	});
+
+	jQuery( "#btn-assinar" ).on( 'click', function(){
+		popularTransacao();
+	});
+
+});

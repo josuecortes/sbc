@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Valor estado:</strong>
+  <%= @configuracao.valor_estado %>
+</p>
+
+<p>
+  <strong>Valor licenca:</strong>
+  <%= @configuracao.valor_licenca %>
+</p>
+
+<%= link_to 'Edit', edit_configuracao_path(@configuracao) %> |
+<%= link_to 'Back', configuracoes_path %>

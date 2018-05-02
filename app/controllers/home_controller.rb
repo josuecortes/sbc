@@ -91,6 +91,12 @@ class HomeController < ApplicationController
     current_user.save(validate: false)
   end
 
+  def adicionais
+    @configuracao = Configuracao.first
+    @empresa = current_user.empresa
+    @plano = @empresa.planos.gerenciaveis.find(params[:plano_id])
+  end
+
   private
     # Never trust parameters from the scary internet, only allow the white list through.
     def empresa_params

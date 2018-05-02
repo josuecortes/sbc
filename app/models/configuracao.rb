@@ -1,13 +1,10 @@
-class Transacao
+class Configuracao
   include Mongoid::Document
   include Mongoid::Timestamps
-  field :estados, type: Array, default: []
-  field :licencas, type: Integer
-  field :valor, type: String
-  field :status, type: String
-  field :link, type: String
+  field :valor_estado, type: Float
+  field :valor_licenca, type: Float
 
-  validates_presence_of :estados, :licencas, :valor, :status
+  validates_presence_of :valor_licenca, :valor_estado
 
   def criar_transacao(estados, licencas, valor)
   	self.status = 'NOVA'

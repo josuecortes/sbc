@@ -1,0 +1,36 @@
+<% content_for :breadcrumbs do %>
+	<a class="breadcrumb-item" href="<%= configuracoes_path %>">Configurações</a>
+  <span class="breadcrumb-item active">Editar</span>	
+<% end %>
+
+<% content_for :titulo do %>
+	<div class="sh-pagetitle-icon"><i class="icon ion-ios-person mg-t-3"></i></div>
+	<div class="sh-pagetitle-title">
+	  <span></span>
+	  <h2>Editar Configurações</h2>
+	</div><!-- sh-pagetitle-left-title -->
+<% end %>
+
+<%= simple_form_for(@configuracao) do |f| %>
+  
+  <div class="form-inputs">
+  	<div class="row">
+  		<div class="col-lg-6">
+    		<%= f.input :valor_estado, :input_html => {:class=>"form-control"} %>
+    	</div>
+    	<div class="col-lg-6">
+    		<%= f.input :valor_licenca, :input_html => {:class=>"form-control"} %>
+    	</div>
+    </div>
+  </div>
+  
+  <br/>
+
+  <div class="form-layout-footer">
+    <%= link_to link_icone('voltar-texto'), configuracoes_path, class: "btn btn-secondary mg-r-5" %>
+    <button type="submit" class="btn btn-success mg-r-5">
+        <i class="fa fa-save"></i> Salvar
+    </button>
+  </div><!-- form-layout-footer -->
+
+<% end %>

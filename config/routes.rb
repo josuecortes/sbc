@@ -1,4 +1,11 @@
 Rails.application.routes.draw do
+  get 'transacao/frente'
+
+  get 'transacao/plano'
+
+  post 'transacao/notificacao_pagseguro'
+
+  resources :configuracoes
   resources :transacaos do
     post :notificacao_pagseguro, on: :collection
   end
@@ -10,6 +17,7 @@ Rails.application.routes.draw do
       get 'usuarios'
       get 'adicionar'
       get 'remover'
+      get 'adicionais'
     end 
   end
   resources :usuarios do
@@ -22,6 +30,9 @@ Rails.application.routes.draw do
   get 'home/usuario_planos'
   get 'home/adicionar_usuario_plano'
   get 'home/remover_usuario_plano'
+
+  get 'home/adicionais'
+
   get 'home/minha_empresa'
   put 'home/atualizar_empresa'
   post 'home/bem_vindo'
