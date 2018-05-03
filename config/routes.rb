@@ -6,9 +6,7 @@ Rails.application.routes.draw do
   post 'transacao/notificacao_pagseguro'
 
   resources :configuracoes
-  resources :transacaos do
-    post :notificacao_pagseguro, on: :collection
-  end
+
   get 'site/index'
   get 'site/criar_transacao'
 
