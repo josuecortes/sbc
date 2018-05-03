@@ -12,11 +12,7 @@
 	</div><!-- sh-pagetitle-left-title -->
 <% end %>
 
-<%= @plano %>
-
 <br/>
-
-
 
 	<form id="form-dados">
 
@@ -191,27 +187,14 @@
 
 	  <br/>
 
-	  <div class="row">
-	    <div class="col-lg-2">
-	      <strong>Codigo do Plano</strong>
-	    </div>
-	    <div class="col-lg-4">
-	      <input type="text" class="form-control" placeholder="" value="<%= @plano.transaction_code %>" readonly='readonly' id="codigo">
-    	</div>
-    </div>
-    
-    <br/>
+	 
+    <input type="hidden" class="form-control" placeholder="" value="<%= @plano.transaction_code %>" readonly='readonly' id="codigo">
+   
+    <input type="hidden" class="form-control" placeholder="" value="<%= (@plano.fim.to_date - DateTime.now.to_date).to_i %>" readonly='readonly' id="dias">
 
-    <div class="row">	
-    	<div class="col-lg-2">
-	      <strong>Dias para Terminar</strong>
-	    </div>
-	    <div class="col-lg-4">
-	      <input type="text" class="form-control" placeholder="" value="<%= (@plano.fim.to_date - DateTime.now.to_date).to_i %>" readonly='readonly' id="dias">
-    	</div>
+   	<input type="hidden" class="form-control" placeholder="" value="<%= @configuracao.valor_licenca %>" readonly='readonly' id="valor_licenca"> 
 
-
-	  </div>
+   	<input type="hidden" class="form-control" placeholder="" value="<%= @configuracao.valor_estado %>" readonly='readonly' id="valor_estado"> 
 
 	  <br/>
 
