@@ -1,4 +1,5 @@
 class TransacaoController < ApplicationController
+  skip_before_action :verify_authenticity_token
   def frente
   	@configuracao = Configuracao.first
 
